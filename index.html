@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrueProfit — #1 Net Profit Analytics for Shopify</title>
-  <meta name="description" content="Real-time net profit tracking for Shopify. Track COGS, shipping, ads, fees — see your true bottom line. Start your 14-day free trial." />
+  <meta name="description" content="Real-time net profit tracking for Shopify. COGS, shipping, ads, fees — see your true bottom line." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -19,28 +19,27 @@
 
   <style>
     :root {
-      --bg: #0b0d0f;
-      --bg-card: #111316;
-      --bg-code: #0d1117;
-      --bg-hover: #161a1f;
-      --border: #1e2329;
-      --border-hover: #2a3038;
-      --text: #e6edf3;
-      --text-secondary: #8b949e;
-      --text-muted: #525960;
-      --accent: #3fb950;
-      --accent-dim: rgba(63,185,80,0.12);
-      --accent-hover: #56d364;
-      --red: #f85149;
-      --yellow: #d29922;
-      --blue: #58a6ff;
+      --bg: #f6f5f0;
+      --bg-card: #ffffff;
+      --bg-mockup: #fafaf8;
+      --border: #e0ddd5;
+      --border-light: #eae8e2;
+      --text: #1a1a1a;
+      --text-2: #5c5c5c;
+      --text-3: #8a8a8a;
+      --text-4: #b0b0b0;
+      --orange: #23c48c;
+      --orange-dim: rgba(35,196,140,0.08);
+      --green: #2ea44f;
+      --red: #e05050;
       --mono: 'JetBrains Mono', monospace;
       --sans: 'Inter', -apple-system, sans-serif;
       --max-w: 820px;
-      --radius: 12px;
+      --max-w-wide: 1060px;
+      --r: 10px;
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -51,401 +50,560 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    ::selection { background: var(--accent-dim); color: var(--accent); }
+    ::selection { background: var(--orange-dim); color: var(--orange); }
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    a { color: var(--accent); text-decoration: none; transition: 0.2s; }
-    a:hover { color: var(--accent-hover); }
+    .w { max-width: var(--max-w); margin: 0 auto; padding: 0 0px; }
+    .w-wide { max-width: var(--max-w-wide); margin: 0 auto; padding: 0 24px; }
 
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
-
-    /* ─── Nav ─── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(11,13,15,0.85);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+      background: rgba(246,245,240,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      height: 54px;
     }
     .nav-inner {
       max-width: var(--max-w); margin: 0 auto; padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between; height: 56px;
+      display: flex; align-items: center; height: 54px; gap: 28px;
     }
-    .nav-logo {
-      font-family: var(--mono); font-weight: 700; font-size: 0.95rem;
+    .nav-brand {
+      font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
       color: var(--text); text-decoration: none;
       display: flex; align-items: center; gap: 8px;
+      margin-right: auto;
     }
-    .nav-logo-mark {
-      width: 28px; height: 28px; border-radius: 6px;
-      background: var(--accent); display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem; font-weight: 800; color: var(--bg);
+    .nav-mark {
+      width: 26px; height: 26px; border-radius: 5px;
+      background: var(--orange); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 800;
     }
-    .nav-links { display: flex; align-items: center; gap: 24px; }
-    .nav-links a {
-      font-size: 0.82rem; color: var(--text-secondary); font-weight: 500;
+    nav a:not(.nav-brand) {
+      font-size: 0.82rem; color: var(--text-2); text-decoration: none;
     }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      font-family: var(--mono); font-size: 0.78rem; font-weight: 600;
-      background: var(--accent); color: var(--bg); padding: 6px 14px;
-      border-radius: 6px; transition: 0.2s;
+    nav a:not(.nav-brand):hover { color: var(--text); text-decoration: none; }
+    .nav-get {
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 600;
+      background: var(--text); color: var(--bg) !important; padding: 5px 14px;
+      border-radius: 5px;
     }
-    .nav-cta:hover { background: var(--accent-hover); color: var(--bg); }
-    .mobile-menu { display: none; background: none; border: none; color: var(--text); cursor: pointer; }
+    .nav-get:hover { background: #333; }
 
-    /* ─── Hero ─── */
+    /* ── Hero ── */
     .hero { padding: 140px 0 80px; text-align: center; }
     .hero-eyebrow {
-      font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted);
-      letter-spacing: 0.02em; margin-bottom: 24px;
-      animation: fadeIn 0.6s ease-out;
+      font-family: var(--mono); font-size: 0.82rem; font-weight: 600;
+      color: var(--orange); letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      padding: 8px 20px;
+      border: 1.5px solid var(--orange);
+      border-radius: 100px;
+      display: inline-block;
     }
     .hero h1 {
-      font-family: var(--sans); font-weight: 700;
-      font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.15;
-      letter-spacing: -0.03em; margin-bottom: 20px;
-      animation: fadeIn 0.6s ease-out 0.1s both;
+      font-family: var(--mono); font-weight: 700;
+      font-size: clamp(2.4rem, 5.5vw, 4.0rem); line-height: 1.2;
+      letter-spacing: -0.02em; margin-bottom: 18px;
     }
     .hero-sub {
-      font-size: 1.05rem; color: var(--text-secondary); max-width: 520px;
-      margin: 0 auto 36px; line-height: 1.7;
-      animation: fadeIn 0.6s ease-out 0.2s both;
+      font-family: var(--mono); font-size: 0.92rem; color: var(--text-2);
+      max-width: 560px; margin: 0 auto 36px; line-height: 1.75;
     }
 
-    /* Terminal CTA block */
-    .terminal-cta {
-      display: inline-block; text-align: left;
-      background: var(--bg-code); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      animation: fadeIn 0.6s ease-out 0.3s both;
-      max-width: 460px; width: 100%;
+    /* ── Code block (shared) ── */
+    .cb {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
     }
-    .terminal-tab {
-      padding: 8px 16px; border-bottom: 1px solid var(--border);
-      font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted);
+    .cb-top {
       display: flex; align-items: center; gap: 6px;
+      padding: 10px 16px; border-bottom: 1px solid var(--border);
     }
-    .terminal-tab::before {
-      content: ''; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent); display: inline-block;
+    .cb-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .cb-dot.r { background: var(--red); }
+    .cb-dot.y { background: #e0b030; }
+    .cb-dot.g { background: var(--green); }
+    .cb-dot.gray { background: var(--text-4); }
+    .cb-tab {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
+      margin-left: 8px;
     }
-    .terminal-body { padding: 16px 20px; }
-    .terminal-body a {
+    .cb-body { padding: 16px 20px; }
+
+    /* ── Terminal CTA ── */
+    .tcta { max-width: 440px; margin: 0 auto; text-align: left; }
+    .tcta .cb-body a {
       display: block; font-family: var(--mono); font-size: 0.88rem;
-      font-weight: 600; color: var(--accent); padding: 10px 16px;
-      background: var(--accent-dim); border-radius: 6px;
-      text-align: center; transition: 0.2s;
+      font-weight: 600; padding: 12px 18px; border-radius: 6px;
+      background: var(--text); color: var(--bg);
+      text-align: center; text-decoration: none;
     }
-    .terminal-body a:hover { background: rgba(63,185,80,0.2); }
+    .tcta .cb-body a:hover { background: #333; text-decoration: none; }
+    .tcta-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 12px;
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
+    }
+    .tcta-meta .stars { color: var(--orange); }
+    .appstore-link {
+      color: var(--text) !important; font-weight: 700 !important;
+      text-decoration: underline !important; background: none !important;
+      padding: 0 !important; border-radius: 0 !important;
+      display: inline !important; font-size: inherit !important;
+    }
+
+    .hero-stats {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-top: 24px;
+      font-family: var(--mono); font-size: 0.75rem; color: var(--text-3);
+    }
+    .hero-stat-num { font-weight: 700; color: var(--text); }
+    .hero-stat-dot { color: var(--orange); font-size: 0.5rem; vertical-align: middle; }
 
     .hero-meta {
       display: flex; align-items: center; justify-content: center;
-      gap: 24px; margin-top: 24px; font-size: 0.78rem; color: var(--text-muted);
-      animation: fadeIn 0.6s ease-out 0.4s both;
+      gap: 20px; margin-top: 22px;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--text-3);
     }
-    .hero-meta span { display: flex; align-items: center; gap: 6px; }
-    .stars { color: var(--yellow); }
+    .stars { color: var(--orange); }
 
-    /* ─── Section shared ─── */
-    .section { padding: 100px 0; }
-    .section-label {
+    /* ── Section ── */
+    .sec { padding: 60px 0; }
+    .sec-label {
       font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
-      color: var(--accent); letter-spacing: 0.06em; margin-bottom: 16px;
-      display: flex; align-items: center; gap: 8px;
+      color: var(--orange); margin-bottom: 16px;
+      text-align: center; text-transform: uppercase; letter-spacing: 0.04em;
     }
-    .section-label::before {
-      content: '●'; font-size: 0.6rem;
-    }
-    .section-title {
-      font-family: var(--sans); font-weight: 700;
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem); line-height: 1.2;
+    .sec-label::before { content: '● '; font-size: 0.55rem; vertical-align: middle; }
+    .sec h2 {
+      font-family: var(--mono); font-weight: 700;
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem); line-height: 1.25;
       letter-spacing: -0.02em; margin-bottom: 12px;
+      text-align: center;
     }
-    .section-sub {
-      font-size: 0.95rem; color: var(--text-secondary); max-width: 500px; line-height: 1.7;
-    }
-
-    /* ─── Dashboard mockup (terminal style) ─── */
-    .dashboard-block {
-      margin-top: 48px; background: var(--bg-code);
-      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
-    }
-    .dash-tab {
-      padding: 10px 16px; border-bottom: 1px solid var(--border);
-      font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .dash-tab .dots { display: flex; gap: 5px; }
-    .dash-tab .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dash-tab .dot:nth-child(1) { background: #f85149; }
-    .dash-tab .dot:nth-child(2) { background: #d29922; }
-    .dash-tab .dot:nth-child(3) { background: #3fb950; }
-    .dash-tab .filename { margin-left: 8px; }
-    .dash-body { padding: 20px; }
-    .dash-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px;
-    }
-    .dash-stat {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 8px; padding: 16px;
-    }
-    .dash-stat-label {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
-    }
-    .dash-stat-val {
-      font-family: var(--mono); font-weight: 700; font-size: 1.3rem;
-    }
-    .dash-stat-val.green { color: var(--accent); }
-    .dash-stat-val.red { color: var(--red); }
-    .dash-stat-change {
-      font-family: var(--mono); font-size: 0.68rem; margin-top: 2px;
-    }
-    .dash-stat-change.up { color: var(--accent); }
-    .dash-stat-change.down { color: var(--red); }
-    .dash-chart {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px; height: 160px;
-      display: flex; align-items: flex-end; gap: 6px;
-    }
-    .bar {
-      flex: 1; border-radius: 3px 3px 0 0;
-      background: linear-gradient(to top, var(--accent), rgba(63,185,80,0.25));
-      opacity: 0; animation: growBar 0.4s ease-out forwards;
+    .sec h2 em { font-style: normal; color: var(--orange); }
+    .sec-sub {
+      font-family: var(--mono); font-size: 0.88rem; color: var(--text-2);
+      text-align: center; max-width: 520px; margin: 0 auto;
+      line-height: 1.7;
     }
 
-    /* ─── Feature tabs ─── */
-    .feature-tabs {
-      display: flex; flex-wrap: wrap; gap: 6px; margin: 32px 0 24px;
+    /* ── Feature tabs ── */
+    .ftabs {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 8px; margin: 36px 0 22px;
     }
-    .feature-tab {
-      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-      padding: 6px 12px; border-radius: 6px; cursor: pointer;
-      background: var(--bg-card); border: 1px solid var(--border);
-      color: var(--text-secondary); transition: 0.2s;
+    .ftab {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+      padding: 8px 16px; border-radius: 100px; cursor: pointer;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-2); transition: 0.15s;
+      text-transform: uppercase; letter-spacing: 0.02em;
     }
-    .feature-tab:hover, .feature-tab.active {
-      background: var(--accent-dim); border-color: var(--accent); color: var(--accent);
-    }
-    .feature-desc {
-      font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.7;
+    .ftab:hover { border-color: var(--text-3); color: var(--text); }
+    .ftab.on { background: var(--text); border-color: var(--text); color: var(--bg); }
+    .fdesc {
+      font-family: var(--mono); font-size: 0.88rem; color: var(--text-2);
+      text-align: center; max-width: 500px; margin: 0 auto 24px;
+      line-height: 1.7;
     }
 
-    /* ─── Funnel / Truth ─── */
-    .funnel-block {
-      margin-top: 40px; background: var(--bg-code);
-      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    /* ── Dashboard mockup ── */
+    .mockup { max-width: 780px; margin: 0 auto; }
+    .mockup .cb-body { padding: 0; }
+    .mock-badge {
+      font-family: var(--mono); font-size: 0.6rem; color: var(--text-3);
+      border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px;
+      float: right; margin: 12px 16px 0 0; text-transform: uppercase; letter-spacing: 0.03em;
     }
-    .funnel-body { padding: 20px; }
-    .funnel-row {
+    .mock-sidebar {
+      position: absolute; left: 0; top: 0; bottom: 0; width: 48px;
+      border-right: 1px solid var(--border); display: flex;
+      flex-direction: column; align-items: center; padding-top: 14px; gap: 10px;
+    }
+    .mock-sidebar .ico {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: var(--text-3);
+    }
+    .mock-sidebar .ico.active { background: var(--orange); color: #fff; }
+    .mock-main {
+      margin-left: 48px; padding: 16px 20px;
+    }
+    .mock-head {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 16px; font-family: var(--mono); font-size: 0.85rem;
-      border-bottom: 1px solid var(--border); transition: 0.2s;
+      margin-bottom: 16px;
     }
-    .funnel-row:last-child { border-bottom: none; }
-    .funnel-row:hover { background: var(--bg-hover); }
-    .funnel-row .label { color: var(--text-secondary); }
-    .funnel-row .val { font-weight: 600; }
-    .funnel-row.highlight { color: var(--accent); font-weight: 700; background: var(--accent-dim); border-radius: 6px; border-bottom: none; margin-top: 4px; }
-    .funnel-row.highlight .label, .funnel-row.highlight .val { color: var(--accent); }
-    .funnel-row.deduct .val { color: var(--red); }
+    .mock-title {
+      font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .mock-date {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
+      border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px;
+    }
+    .mock-inner { position: relative; }
 
-    /* ─── Pricing (JSON style) ─── */
-    .pricing-block {
-      margin-top: 40px;
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    /* Dashboard grid */
+    .dg {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); margin-bottom: 1px;
     }
-    .price-card {
-      background: var(--bg-code); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; transition: 0.2s;
-      position: relative;
+    .dc {
+      background: var(--bg-card); padding: 12px 14px;
     }
-    .price-card:hover { border-color: var(--border-hover); }
-    .price-card.featured { border-color: var(--accent); box-shadow: 0 0 30px var(--accent-dim); }
-    .price-card.featured .price-tab::before { background: var(--accent); }
-    .price-badge {
-      position: absolute; top: 12px; right: 12px;
-      font-family: var(--mono); font-size: 0.62rem; font-weight: 700;
-      background: var(--accent); color: var(--bg); padding: 2px 8px;
-      border-radius: 4px; text-transform: uppercase;
-    }
-    .price-tab {
-      padding: 8px 16px; border-bottom: 1px solid var(--border);
-      font-family: var(--mono); font-size: 0.68rem; color: var(--text-muted);
-      display: flex; align-items: center; gap: 6px;
-    }
-    .price-tab::before {
-      content: ''; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--text-muted); display: inline-block;
-    }
-    .price-body { padding: 16px 20px; }
-    .price-json {
-      font-family: var(--mono); font-size: 0.78rem; line-height: 1.8;
-    }
-    .json-brace { color: var(--text-muted); }
-    .json-key { color: var(--blue); }
-    .json-str { color: var(--accent); }
-    .json-num { color: var(--yellow); }
-    .json-bool { color: var(--red); }
-    .json-line { padding-left: 20px; }
-    .price-cta {
-      display: block; text-align: center; margin: 12px 20px 16px;
-      font-family: var(--mono); font-size: 0.78rem; font-weight: 600;
-      padding: 10px; border-radius: 6px; transition: 0.2s;
-    }
-    .price-cta.primary { background: var(--accent); color: var(--bg); }
-    .price-cta.primary:hover { background: var(--accent-hover); }
-    .price-cta.outline { border: 1px solid var(--border); color: var(--text-secondary); }
-    .price-cta.outline:hover { border-color: var(--accent); color: var(--accent); }
+    .dc-l { font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 3px; }
+    .dc-v { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; display: flex; align-items: baseline; gap: 8px; }
+    .dc-c { font-size: 0.62rem; font-weight: 500; }
+    .dc-c.up { color: var(--green); }
+    .dc-c.dn { color: var(--red); }
+    .dc-v .hi { color: var(--orange); }
 
-    /* ─── Steps ─── */
-    .steps-block {
-      margin-top: 40px; background: var(--bg-code);
-      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    /* ── Funnel ── */
+    .frow {
+      display: flex; justify-content: space-between;
+      padding: 12px 18px;
+      font-family: var(--mono); font-size: 0.82rem;
+      border-bottom: 1px solid var(--border-light);
     }
-    .steps-body { padding: 20px; }
-    .step-row {
-      display: flex; gap: 16px; padding: 16px 0;
-      border-bottom: 1px solid var(--border);
+    .frow:last-child { border-bottom: none; }
+    .frow .l { color: var(--text-2); }
+    .frow .v { font-weight: 600; }
+    .frow.neg .v { color: var(--red); }
+    .frow.net {
+      background: var(--orange-dim); border-radius: 6px;
+      border-bottom: none; margin: 6px 4px 4px;
     }
-    .step-row:last-child { border-bottom: none; }
-    .step-num {
-      font-family: var(--mono); font-weight: 700; font-size: 0.82rem;
-      color: var(--accent); min-width: 28px;
-    }
-    .step-row h3 {
-      font-size: 0.95rem; font-weight: 600; margin-bottom: 4px;
-    }
-    .step-row p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .frow.net .l, .frow.net .v { color: var(--orange); font-weight: 700; }
 
-    /* ─── Testimonials ─── */
-    .testimonials { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
-    .testimonial {
-      background: var(--bg-code); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px; transition: 0.2s;
+    /* ── Steps ── */
+    .srow {
+      display: flex; gap: 14px; padding: 14px 18px;
+      border-bottom: 1px solid var(--border-light);
     }
-    .testimonial:hover { border-color: var(--border-hover); }
-    .testimonial blockquote {
-      font-size: 0.92rem; color: var(--text-secondary);
-      line-height: 1.7; font-style: italic; margin-bottom: 16px;
-      border-left: 2px solid var(--accent); padding-left: 16px;
+    .srow:last-child { border-bottom: none; }
+    .srow .n {
+      font-family: var(--mono); font-weight: 700; font-size: 0.78rem;
+      color: var(--orange); min-width: 24px; padding-top: 2px;
     }
-    .testimonial-author {
-      font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted);
-    }
-    .testimonial-author strong { color: var(--text); font-weight: 600; }
+    .srow h3 { font-family: var(--mono); font-size: 0.88rem; font-weight: 600; margin-bottom: 2px; }
+    .srow p { font-size: 0.82rem; color: var(--text-2); line-height: 1.6; }
 
-    /* ─── Comparison table ─── */
-    .compare-table {
-      margin-top: 40px; background: var(--bg-code);
-      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    /* ── Testimonials (3-column, card style) ── */
+    .tgrid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-top: 40px;
     }
-    .compare-table table {
-      width: 100%; border-collapse: collapse;
-      font-size: 0.82rem;
+    .tcard {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      display: flex; flex-direction: column;
     }
-    .compare-table th, .compare-table td {
-      padding: 12px 16px; text-align: left;
-      border-bottom: 1px solid var(--border);
+    .tcard-top {
+      display: flex; gap: 5px; padding: 12px 18px;
+      border-bottom: 1px solid var(--border-light);
     }
-    .compare-table th {
-      font-family: var(--mono); font-weight: 600; font-size: 0.75rem;
-      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;
+    .tcard-top .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--text-4); }
+    .tcard-body {
+      padding: 22px 20px; flex: 1;
+      font-family: var(--mono); font-size: 0.82rem; color: var(--text);
+      line-height: 1.75;
+    }
+    .tcard-body em { font-style: italic; font-weight: 600; }
+    .tcard-footer {
+      padding: 14px 20px; border-top: 1px solid var(--border-light);
+    }
+    .tcard-name { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; color: var(--text); }
+    .tcard-role { font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); margin-top: 2px; }
+
+    /* ── Pricing (JSON) ── */
+    .pgrid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px;
+    }
+    .pcard {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden; position: relative;
+    }
+    .pcard.feat { border-color: var(--orange); }
+    .pbadge {
+      position: absolute; top: 9px; right: 12px;
+      font-family: var(--mono); font-size: 0.58rem; font-weight: 700;
+      background: var(--orange); color: #fff; padding: 2px 8px;
+      border-radius: 3px; text-transform: uppercase;
+    }
+    .pcard .cb-top { border-bottom: 1px solid var(--border-light); }
+    .pcard .cb-body { padding: 14px 18px; }
+    .json { font-family: var(--mono); font-size: 0.72rem; line-height: 1.85; }
+    .jb { color: var(--text-3); }
+    .jk { color: #2e6bd6; }
+    .js { color: var(--green); }
+    .jn { color: var(--orange); }
+    .ji { padding-left: 18px; }
+    .jii { padding-left: 34px; }
+    .pcta {
+      display: block; text-align: center; margin: 8px 18px 16px;
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+      padding: 9px; border-radius: 6px; text-decoration: none;
+    }
+    .pcta.fill { background: var(--text); color: var(--bg); }
+    .pcta.fill:hover { background: #333; text-decoration: none; }
+    .pcta.line { border: 1px solid var(--border); color: var(--text-2); }
+    .pcta.line:hover { border-color: var(--orange); color: var(--orange); text-decoration: none; }
+
+    /* ── Compare ── */
+    .ctbl {
+      margin-top: 36px; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+    }
+    .ctbl table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .ctbl th, .ctbl td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--border-light); }
+    .ctbl th {
+      font-family: var(--mono); font-weight: 600; font-size: 0.68rem;
+      color: var(--text-3); text-transform: uppercase; letter-spacing: 0.04em;
       background: var(--bg);
     }
-    .compare-table th:last-child { color: var(--accent); }
-    .compare-table td { color: var(--text-secondary); }
-    .compare-table td:first-child { color: var(--text); font-weight: 500; }
-    .compare-table tr:last-child td { border-bottom: none; }
-    .check { color: var(--accent); }
-    .cross { color: var(--red); }
-    .compare-table td:last-child { color: var(--accent); font-weight: 600; }
+    .ctbl th:last-child { color: var(--orange); }
+    .ctbl td { color: var(--text-2); font-family: var(--mono); font-size: 0.75rem; }
+    .ctbl td:first-child { color: var(--text); font-weight: 500; }
+    .ctbl td:last-child { color: var(--orange); font-weight: 600; }
+    .ctbl tr:last-child td { border-bottom: none; }
+    .ck { color: var(--green); }
+    .cx { color: var(--red); }
 
-    /* ─── FAQ ─── */
-    .faq-list { margin-top: 40px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    /* ── Inline CTA ── */
+    .icta { text-align: center; margin-top: 24px; }
+    .icta a { font-family: var(--mono); font-size: 0.8rem; font-weight: 600; }
+    .icta .note { font-family: var(--mono); font-size: 0.66rem; color: var(--text-3); margin-top: 5px; }
+
+    /* ── FAQ ── */
+    .faq { margin-top: 36px; max-width: var(--max-w); margin-left: auto; margin-right: auto; }
+    .faq-i { border-bottom: 1px solid var(--border); }
     .faq-q {
       width: 100%; background: none; border: none; color: var(--text);
-      font-family: var(--sans); font-size: 0.92rem; font-weight: 600;
+      font-family: var(--mono); font-size: 0.88rem; font-weight: 600;
       padding: 18px 0; cursor: pointer; text-align: left;
       display: flex; justify-content: space-between; align-items: center;
     }
     .faq-q::after {
       content: '+'; font-family: var(--mono); font-size: 1.1rem;
-      color: var(--text-muted); transition: 0.2s;
+      color: var(--text-3); flex-shrink: 0; margin-left: 12px;
     }
-    .faq-item.open .faq-q::after { content: '−'; color: var(--accent); }
-    .faq-a {
-      max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
-    }
-    .faq-a-inner {
-      padding: 0 0 18px; font-size: 0.88rem;
-      color: var(--text-secondary); line-height: 1.7;
+    .faq-i.open .faq-q::after { content: '−'; color: var(--orange); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-a-in {
+      padding: 0 0 18px; font-family: var(--mono); font-size: 0.82rem;
+      color: var(--text-2); line-height: 1.7;
     }
 
-    /* ─── CTA footer ─── */
-    .cta-final {
+    /* ── Bottom CTA ── */
+    .bcta {
       text-align: center; padding: 80px 0;
       border-top: 1px solid var(--border);
     }
-    .cta-final h2 {
-      font-family: var(--sans); font-weight: 700;
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem); line-height: 1.2;
+    .bcta h2 {
+      font-family: var(--mono); font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.25;
       letter-spacing: -0.02em; margin-bottom: 12px;
     }
-    .cta-final p {
-      font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 28px;
+    .bcta p { font-family: var(--mono); font-size: 0.88rem; color: var(--text-2); margin-bottom: 28px; }
+    .bcta .note { font-family: var(--mono); font-size: 0.66rem; color: var(--text-3); margin-top: 16px; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 28px 0; border-top: 1px solid var(--border); text-align: center;
     }
-    .cta-final .terminal-cta { margin-bottom: 16px; }
-    .cta-meta {
-      font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted);
+    .ft-brand {
+      font-family: var(--mono); font-size: 0.78rem; color: var(--text-2);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-bottom: 12px;
+    }
+    .ft-brand .nav-mark { width: 20px; height: 20px; font-size: 0.6rem; }
+    .ft-links { font-family: var(--mono); font-size: 0.68rem; color: var(--text-3); }
+    .ft-links a { color: var(--text-3); }
+    .ft-links a:hover { color: var(--orange); text-decoration: none; }
+    .ft-copy { font-family: var(--mono); font-size: 0.64rem; color: var(--text-4); margin-top: 10px; }
+
+    /* ── Before vs After ── */
+    .vs-grid {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin-top: 36px;
+      align-items: stretch;
+    }
+    .vs-card {
+      border-radius: var(--r); overflow: hidden;
+      border: 1px solid var(--border); background: var(--bg-card);
+    }
+    .vs-after { border-color: var(--orange); }
+    .vs-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 16px 20px; border-bottom: 1px solid var(--border-light);
+    }
+    .vs-logo-icon { flex-shrink: 0; border-radius: 4px; }
+    .vs-title { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; }
+    .vs-tp-logo {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--orange); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.78rem; font-weight: 800;
+      flex-shrink: 0;
+    }
+    .vs-pain-list { padding: 18px 20px; }
+    .vs-pain {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 0.78rem; color: var(--text-3);
+      padding: 9px 0; border-bottom: 1px solid var(--border-light);
+      line-height: 1.5;
+    }
+    .vs-pain:last-child { border-bottom: none; }
+    .vs-x { color: var(--red); font-weight: 700; font-size: 0.72rem; flex-shrink: 0; }
+    .vs-arrow {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 14px;
+    }
+    .vs-solution {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 32px 24px; min-height: 240px;
+    }
+    .vs-sol-icon { margin-bottom: 16px; }
+    .vs-sol-text {
+      font-family: var(--mono); font-size: 1.1rem; font-weight: 700;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .vs-sol-text strong { color: var(--orange); }
+    .vs-sol-sub {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--text-2);
+      line-height: 1.7; margin-bottom: 18px;
+    }
+    .vs-sol-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+    .vs-tag {
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+      color: var(--orange); padding: 4px 10px;
+      border: 1px solid rgba(35,196,140,0.25); border-radius: 100px;
+      background: rgba(35,196,140,0.06);
     }
 
-    /* ─── Footer ─── */
-    .footer {
-      padding: 40px 0; border-top: 1px solid var(--border); text-align: center;
-    }
-    .footer-logo {
-      font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
-      color: var(--text); display: flex; align-items: center; justify-content: center; gap: 8px;
-      margin-bottom: 16px;
-    }
-    .footer-logo .nav-logo-mark { width: 24px; height: 24px; font-size: 0.7rem; }
-    .footer-links {
-      font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted);
-    }
-    .footer-links a { color: var(--text-muted); margin: 0 6px; }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-copy {
-      font-size: 0.72rem; color: var(--text-muted); margin-top: 16px;
-      font-family: var(--mono);
-    }
+    /* ── Iceberg ── */
+    .ice-wrap{max-width:740px;margin:0 auto}
+    .ice-head{text-align:center;margin-bottom:32px}
+    .ice-main{flex:1;min-width:0}
+    .ice-wl{position:relative;height:2px;background:linear-gradient(90deg,transparent,var(--border) 10%,var(--border) 90%,transparent);margin:0 4px}
+    .ice-top{padding:20px 20px 24px}
+    .ice-bot{padding:16px 20px 28px}
+    .ice-row{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;margin:5px auto;border-radius:8px;font-family:var(--mono);font-size:13px;transition:transform 0.2s}
+    .ice-row:hover{transform:scale(1.02)}
+    .ice-row .il{color:var(--text-2);font-weight:500}
+    .ice-row .iv{font-weight:700}
+    .ir{background:rgba(35,196,140,0.06);border:1px solid rgba(35,196,140,0.15);max-width:100%}
+    .ir .iv{color:var(--orange)}
+    .ic{background:rgba(224,80,80,0.05);border:1px solid rgba(224,80,80,0.1)}
+    .ic .iv{color:var(--red)}
+    .ic1{max-width:96%}.ic2{max-width:92%}.ic3{max-width:88%}.ic4{max-width:84%}.ic5{max-width:80%}.ic6{max-width:76%}
+    .ice-div{display:flex;align-items:center;gap:10px;margin:14px auto;max-width:88%}
+    .ice-div-line{flex:1;height:1px;background:var(--border)}
+    .ice-div-text{font-family:var(--mono);font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap}
+    .ip{background:rgba(35,196,140,0.1);border:2px solid var(--orange);max-width:72%;margin-top:4px}
+    .ip .il,.ip .iv{color:var(--orange);font-weight:700}
+    .ice-lbl{font-family:var(--mono);font-size:11px;color:var(--text-3);margin-bottom:6px;letter-spacing:0.03em;text-align:center}
+    .ice-badges{display:flex;justify-content:center;gap:6px;margin-top:20px;flex-wrap:wrap}
+    .ice-badge{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--orange);padding:4px 10px;border:1px solid rgba(35,196,140,0.25);border-radius:100px;background:rgba(35,196,140,0.06)}
 
-    /* ─── Animations ─── */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(16px); }
+    /* ── Callout annotation ── */
+    .callout {
+      display: flex; align-items: flex-start; gap: 0;
+      justify-content: flex-end;
+      margin-top: 16px; padding-right: 20px;
+      animation: fadeCallout 0.8s ease-out 0.5s both;
+    }
+    .callout-arrow { display: block; flex-shrink: 0; margin-top: 2px; }
+    .callout-text {
+      font-family: var(--mono); text-align: left;
+      padding-top: 38px;
+    }
+    .callout-text span {
+      display: block; font-size: 0.82rem; font-weight: 700;
+      color: var(--orange);
+    }
+    .callout-text .callout-sub {
+      font-size: 0.7rem; font-weight: 500;
+      color: var(--text-3); margin-top: 3px;
+      line-height: 1.5;
+    }
+    @keyframes fadeCallout {
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes growBar {
-      from { transform: scaleY(0); opacity: 0; }
-      to { transform: scaleY(1); opacity: 1; }
-    }
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── Responsive ─── */
-    @media (max-width: 700px) {
-      .nav-links { display: none; }
-      .mobile-menu { display: block; }
-      .dash-grid { grid-template-columns: 1fr; }
-      .pricing-block { grid-template-columns: 1fr; }
-      .compare-table { overflow-x: auto; }
-      .compare-table table { min-width: 480px; }
-      .hero { padding: 120px 0 60px; }
+    /* ── Two-column Iceberg Layout ── */
+    .ice-two-col {
+      display: flex; gap: 0; align-items: stretch; margin-top: 36px;
+      position: relative;
+    }
+    .ice-col-left { flex: 1.2; min-width: 0; }
+    .ice-col-right { flex: 1; min-width: 0; display: flex; align-items: flex-start; padding-top: 0; }
+    .ice-col-mid {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 0 6px; flex-shrink: 0;
+    }
+    .leak-panel {
+      background: rgba(224,80,80,0.04); border: 1px solid rgba(224,80,80,0.12);
+      border-radius: var(--r); padding: 28px 24px; width: 100%;
+    }
+    .leak-title {
+      font-family: var(--mono); font-size: 1.1rem; font-weight: 700;
+      color: var(--text); margin-bottom: 20px;
+    }
+    .leak-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid var(--border-light);
+    }
+    .leak-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .leak-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .leak-name {
+      font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
+      color: var(--text); margin-bottom: 3px;
+    }
+    .leak-desc {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--text-2);
+      line-height: 1.6;
+    }
+    .ip-neg .iv { color: var(--red) !important; }
+    .ip-neg { background: rgba(224,80,80,0.08) !important; border-color: var(--red) !important; }
+    .ip-neg .il { color: var(--red) !important; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .vs-grid { grid-template-columns: 1fr; }
+      .vs-arrow { padding: 12px 0; }
+      .vs-arrow svg { transform: rotate(90deg); }
+      .tgrid { grid-template-columns: 1fr; }
+      .pgrid { grid-template-columns: 1fr; }
+      .dg { grid-template-columns: 1fr 1fr; }
+      .ctbl { overflow-x: auto; }
+      .ctbl table { min-width: 460px; }
+      .hero { padding: 115px 0 50px; }
+      .ftabs { gap: 6px; }
+      .ftab { font-size: 0.65rem; padding: 6px 10px; }
+      .callout { justify-content: center; padding-right: 0; }
+      .callout-arrow { width: 80px; height: 50px; }
+      .callout-text { padding-top: 24px; text-align: center; }
+      .mock-sidebar { display: none; }
+      .mock-main { margin-left: 0; }
+      .ice-two-col { flex-direction: column; gap: 24px; }
+      .ice-col-mid { display: none; }
+      .leak-panel { padding: 20px 18px; }
+    }
+    @media (max-width: 480px) {
+      .dg { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 6px; }
+      .hero-stat-dot { display: none; }
     }
   </style>
 </head>
@@ -455,447 +613,556 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K56KZRDH"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ═══ Nav ═══ -->
-  <nav class="nav">
+  <!-- Nav -->
+  <nav>
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <span class="nav-logo-mark">T</span>
-        TrueProfit
-      </a>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#compare">Compare</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://trueprof.it/link/KfUchICah9" class="nav-cta">Get started</a>
-      </div>
-      <button class="mobile-menu" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('show')">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
-      </button>
+      <a href="#" class="nav-brand"><span class="nav-mark">T</span> TrueProfit</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#compare">Compare</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://trueprof.it/link/KfUchICah9" class="nav-get">Get started</a>
     </div>
   </nav>
 
-  <!-- ═══ Hero ═══ -->
+  <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-eyebrow">#1 Net Profit Analytics for Shopify</div>
-      <h1>Stop guessing your profits.<br/>Start knowing them.</h1>
-      <p class="hero-sub">
-        Real-time net profit tracking. COGS, shipping, ads, transaction fees — all accounted for. See your true bottom line per order, per product, per day.
-      </p>
+    <div class="w">
+      <h1>Stop mistracking your<br/><span style="color:#23c48c;">Shopify Profits</span></h1>
+      <div class="hero-eyebrow">#1 net profit analytics for Shopify</div>
+      <p class="hero-sub">Dashboard, profit-tracking, product analytics, ad attribution, and everything else you need to see your true bottom line.</p>
 
-      <div class="terminal-cta">
-        <div class="terminal-tab">start-tracking.sh</div>
-        <div class="terminal-body">
+      <div class="cb tcta">
+        <div class="cb-top">
+          <span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span>
+          <span class="cb-tab">get-started.sh</span>
+        </div>
+        <div class="cb-body">
           <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
-        </div>
-      </div>
-
-      <div class="hero-meta">
-        <span><span class="stars">★★★★★</span> 4.9 on Shopify</span>
-        <span>14-day free trial</span>
-        <span>5,000+ stores</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Features ═══ -->
-  <section class="section" id="features">
-    <div class="container fade-in">
-      <div class="section-label">FEATURES</div>
-      <h2 class="section-title">Everything you need — nothing you don't</h2>
-
-      <div class="feature-tabs">
-        <span class="feature-tab active" data-tab="0">DASHBOARD</span>
-        <span class="feature-tab" data-tab="1">P&L</span>
-        <span class="feature-tab" data-tab="2">PRODUCT ANALYTICS</span>
-        <span class="feature-tab" data-tab="3">LIFETIME VALUE</span>
-        <span class="feature-tab" data-tab="4">AD TRACKING</span>
-        <span class="feature-tab" data-tab="5">EXPENSE TRACKING</span>
-      </div>
-
-      <p class="feature-desc" id="feature-desc">Track revenue, profit, ROAS, and every cost in real-time. Drill down by day, week, or month to spot trends instantly.</p>
-
-      <!-- Dashboard mockup -->
-      <div class="dashboard-block">
-        <div class="dash-tab">
-          <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-          <span class="filename">profit-dashboard.app</span>
-        </div>
-        <div class="dash-body">
-          <div class="dash-grid">
-            <div class="dash-stat">
-              <div class="dash-stat-label">Revenue</div>
-              <div class="dash-stat-val">$48,290</div>
-              <div class="dash-stat-change up">+12.4%</div>
-            </div>
-            <div class="dash-stat">
-              <div class="dash-stat-label">Total Costs</div>
-              <div class="dash-stat-val red">$31,820</div>
-              <div class="dash-stat-change down">+8.1%</div>
-            </div>
-            <div class="dash-stat">
-              <div class="dash-stat-label">Net Profit</div>
-              <div class="dash-stat-val green">$16,470</div>
-              <div class="dash-stat-change up">+22.7%</div>
-            </div>
+          <div class="tcta-meta">
+            <span><span class="stars">★★★★★</span> 4.9 in <a href="https://trueprof.it/link/KfUchICah9" class="appstore-link">Shopify App Store</a></span>
           </div>
-          <div class="dash-chart" id="dash-chart"></div>
+          <div class="tcta-meta">
+            <span>14-day free trial</span>
+          </div>
         </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-dot">●</span> <span class="hero-stat-num">70,000+</span> stores</div>
+        <div class="hero-stat"><span class="hero-stat-dot">●</span> <span class="hero-stat-num">$98B</span> Total Revenue Tracked</div>
+        <div class="hero-stat"><span class="hero-stat-dot">●</span> <span class="hero-stat-num">$2.6B</span> Total Ad Spend Tracked</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Truth / Funnel ═══ -->
-  <section class="section fade-in">
-    <div class="container">
-      <div class="section-label">THE TRUTH</div>
-      <h2 class="section-title">Net profit is the only metric that matters</h2>
-      <p class="section-sub">Revenue looks great — until you subtract everything. Here's what's really left.</p>
-
-      <div class="funnel-block">
-        <div class="dash-tab">
-          <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-          <span class="filename">profit-waterfall.json</span>
+  <!-- Iceberg (Modified: two-column layout) -->
+  <section class="sec">
+    <div class="w-wide">
+      <div class="ice-head">
+        <div class="sec-label">THE TRUTH</div>
+        <h2 style="text-align:center">Most sellers only see the <em>tip<br/>of the iceberg</em></h2>
+        <p class="sec-sub" style="margin:0 auto">Shopify Built-in Report show you Revenue - the surface. True profitability lives beneath it.</p>
+      </div>
+      <div class="ice-two-col">
+        <!-- Left: Iceberg -->
+        <div class="ice-col-left">
+          <div class="ice-main">
+            <div class="ice-top">
+              <div class="ice-row ir"><span class="il">Revenue</span><span class="iv">$100,000</span></div>
+            </div>
+            <div class="ice-wl"></div>
+            <div class="ice-bot">
+              <div class="ice-row ic ic1"><span class="il">– Ad Spend</span><span class="iv">−$50,000</span></div>
+              <div class="ice-row ic ic2"><span class="il">– COGS</span><span class="iv">−$28,000</span></div>
+              <div class="ice-row ic ic3"><span class="il">– Shipping</span><span class="iv">−$12,000</span></div>
+              <div class="ice-row ic ic4"><span class="il">– Transaction Fees</span><span class="iv">−$4,500</span></div>
+              <div class="ice-row ic ic5"><span class="il">– Taxes</span><span class="iv">−$8,500</span></div>
+              <div class="ice-row ic ic6"><span class="il">– Other costs</span><span class="iv">−$8,500</span></div>
+              <div class="ice-div"><span class="ice-div-line"></span><span class="ice-div-text">What you actually keep</span><span class="ice-div-line"></span></div>
+              <div class="ice-row ip ip-neg"><span class="il">= Net Profit</span><span class="iv">−$3,000</span></div>
+            </div>
+          </div>
         </div>
-        <div class="funnel-body">
-          <div class="funnel-row"><span class="label">Gross Revenue</span><span class="val">$50,000</span></div>
-          <div class="funnel-row deduct"><span class="label">– Cost of Goods</span><span class="val">−$15,000</span></div>
-          <div class="funnel-row deduct"><span class="label">– Shipping & Fees</span><span class="val">−$6,200</span></div>
-          <div class="funnel-row deduct"><span class="label">– Ad Spend</span><span class="val">−$12,300</span></div>
-          <div class="funnel-row highlight"><span class="label">= Net Profit</span><span class="val">$16,500</span></div>
+        <!-- Arrow connecting iceberg to leak panel -->
+        <div class="ice-col-mid">
+          <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
+            <path d="M8 4 C12 28, 35 52, 80 62" stroke="var(--red)" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M72 56 L80 62 L72 66" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </svg>
+        </div>
+        <div class="ice-col-right">
+          <div class="leak-panel">
+            <h3 class="leak-title">Where the money leaks</h3>
+            <div class="leak-item">
+              <div class="leak-icon" style="background:rgba(224,80,80,0.08);color:var(--red);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div>
+                <div class="leak-name">Ad Spend</div>
+                <div class="leak-desc">Spending bad ad dollars across campaigns without seeing true ROAS.</div>
+              </div>
+            </div>
+            <div class="leak-item">
+              <div class="leak-icon" style="background:rgba(224,80,80,0.08);color:var(--red);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3h-8l-2 4h12z"/></svg>
+              </div>
+              <div>
+                <div class="leak-name">COGS</div>
+                <div class="leak-desc">Miscalculating costs that vary by quantity, variant, or region.</div>
+              </div>
+            </div>
+            <div class="leak-item">
+              <div class="leak-icon" style="background:rgba(224,80,80,0.08);color:var(--red);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+              </div>
+              <div>
+                <div class="leak-name">Shipping</div>
+                <div class="leak-desc">Underestimating costs by weight, distance, or carrier.</div>
+              </div>
+            </div>
+            <div class="leak-item">
+              <div class="leak-icon" style="background:rgba(224,80,80,0.08);color:var(--red);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              </div>
+              <div>
+                <div class="leak-name">Transaction Fees</div>
+                <div class="leak-desc">Payment gateway fees that silently eat into every sale.</div>
+              </div>
+            </div>
+            <div class="leak-item">
+              <div class="leak-icon" style="background:rgba(224,80,80,0.08);color:var(--red);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+              </div>
+              <div>
+                <div class="leak-name">Other costs</div>
+                <div class="leak-desc">Overlooking hidden fees, returns, and operational expenses.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+<!-- Before vs After -->
+  <section class="sec">
+    <div class="w">
+      <div class="sec-label">WHY TRUEPROFIT</div>
+      <h2>Struggle to track your <em>Profit & Expenses</em> using Spreadsheets & Shopify-Built in Report?</h2>
 
-  <!-- ═══ How It Works ═══ -->
-  <section class="section fade-in" id="how-it-works">
-    <div class="container">
-      <div class="section-label">GET STARTED</div>
-      <h2 class="section-title">Start tracking profits in under 2 minutes</h2>
-      <p class="section-sub">No developer needed. Install, connect, profit.</p>
-
-      <div class="steps-block">
-        <div class="dash-tab">
-          <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-          <span class="filename">setup-guide.sh</span>
-        </div>
-        <div class="steps-body">
-          <div class="step-row">
-            <span class="step-num">01</span>
-            <div>
-              <h3>Install the app</h3>
-              <p>One click from the Shopify App Store. Takes 30 seconds.</p>
-            </div>
+      <div class="vs-grid">
+        <!-- Before -->
+        <div class="vs-card vs-before">
+          <div class="vs-header">
+            <svg class="vs-logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect width="28" height="28" rx="4" fill="#1D6F42"/>
+              <rect x="5" y="6" width="8" height="3" rx="0.5" fill="#fff" opacity="0.9"/>
+              <rect x="5" y="11" width="8" height="3" rx="0.5" fill="#fff" opacity="0.6"/>
+              <rect x="5" y="16" width="8" height="3" rx="0.5" fill="#fff" opacity="0.4"/>
+              <rect x="15" y="6" width="8" height="3" rx="0.5" fill="#fff" opacity="0.5"/>
+              <rect x="15" y="11" width="8" height="3" rx="0.5" fill="#fff" opacity="0.3"/>
+              <rect x="15" y="16" width="8" height="3" rx="0.5" fill="#fff" opacity="0.2"/>
+              <rect x="5" y="21" width="18" height="2" rx="0.5" fill="#fff" opacity="0.15"/>
+            </svg>
+            <svg class="vs-logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect width="28" height="28" rx="4" fill="#96bf48"/>
+              <path d="M17.5 7.5c-.3 0-.5.1-.7.2-.2-.5-.6-.9-1.1-1-.5-.1-.9.1-1.2.4l-.2-.3c-.2-.2-.4-.3-.7-.2-.2 0-.4.2-.5.4l-1.5 4.5-1.2-.8c-.3-.2-.6-.1-.8.1l-.5.7 3.8 5.5h5.2l1.5-5.5c.1-.3 0-.6-.2-.8l-1.2-1c-.2-.1-.3-.2-.5-.2z" fill="#fff"/>
+            </svg>
+            <span class="vs-title">Spreadsheets & Shopify Reports</span>
           </div>
-          <div class="step-row">
-            <span class="step-num">02</span>
-            <div>
-              <h3>Connect your data</h3>
-              <p>Auto-sync orders, products, and costs. Connect Meta, Google, TikTok ads.</p>
-            </div>
-          </div>
-          <div class="step-row">
-            <span class="step-num">03</span>
-            <div>
-              <h3>See your profit</h3>
-              <p>Dashboard populates instantly. Net profit per order, product, and channel.</p>
-            </div>
+          <div class="vs-pain-list">
+            <div class="vs-pain"><span class="vs-x">✕</span> Can't track net profit</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> Hours of manual work</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> Data always outdated</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> Formula errors everywhere</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> No ad-to-profit connection</div>
           </div>
         </div>
-      </div>
 
-      <div style="text-align:center; margin-top:24px;">
-        <a href="https://trueprof.it/link/KfUchICah9" style="font-family:var(--mono); font-size:0.82rem; font-weight:600;">Start 14-day free trial →</a>
-        <div class="cta-meta" style="margin-top:8px;">14-day free trial | Cancel anytime</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Testimonials ═══ -->
-  <section class="section fade-in" id="testimonials">
-    <div class="container">
-      <div class="section-label">TESTIMONIALS</div>
-      <h2 class="section-title">Trusted by profit-focused brands</h2>
-
-      <div class="testimonials">
-        <div class="testimonial">
-          <blockquote>"I thought I was profitable until TrueProfit showed me my real numbers. Turned out 3 of my 'best sellers' were actually losing money on ads."</blockquote>
-          <div class="testimonial-author"><strong>Jake M.</strong> — Dropshipping Store • $50K/mo</div>
+        <!-- Arrow -->
+        <div class="vs-arrow">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="23" stroke="var(--orange)" stroke-width="1.5"/>
+            <path d="M18 24h12M26 19l5 5-5 5" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <div class="testimonial">
-          <blockquote>"Finally ditched my spreadsheets. The real-time dashboard saves me hours every week and the product analytics are a game changer."</blockquote>
-          <div class="testimonial-author"><strong>Sarah L.</strong> — DTC Brand • $120K/mo</div>
-        </div>
-        <div class="testimonial">
-          <blockquote>"The ad tracking alone is worth it. I can see true ROAS by channel and killed campaigns that were eating my margins."</blockquote>
-          <div class="testimonial-author"><strong>Ryan K.</strong> — Print on Demand • $30K/mo</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══ Pricing ═══ -->
-  <section class="section fade-in" id="pricing">
-    <div class="container">
-      <div class="section-label">PRICING</div>
-      <h2 class="section-title">Unlocking your profit potential begins with the right plan</h2>
-      <p class="section-sub">14-day free trial on every plan. No credit card required.</p>
-
-      <div class="pricing-block">
-        <!-- Basic -->
-        <div class="price-card">
-          <div class="price-tab">basic-plan.json</div>
-          <div class="price-body">
-            <div class="price-json">
-              <div><span class="json-brace">{</span></div>
-              <div class="json-line"><span class="json-key">"plan"</span>: <span class="json-str">"Basic"</span>,</div>
-              <div class="json-line"><span class="json-key">"price"</span>: <span class="json-num">35</span>,</div>
-              <div class="json-line"><span class="json-key">"currency"</span>: <span class="json-str">"USD/month"</span>,</div>
-              <div class="json-line"><span class="json-key">"orders"</span>: <span class="json-num">300</span>,</div>
-              <div class="json-line"><span class="json-key">"features"</span>: [</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Realtime profit dashboard"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Customer Lifetime Value"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Quantity-based COGS"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Custom Costs"</span></div>
-              <div class="json-line">]</div>
-              <div><span class="json-brace">}</span></div>
+        <!-- After -->
+        <div class="vs-card vs-after">
+          <div class="vs-header">
+            <span class="vs-tp-logo">T</span>
+            <span class="vs-title">TrueProfit</span>
+          </div>
+          <div class="vs-solution">
+            <div class="vs-sol-icon">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="28" r="27" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.3"/>
+                <circle cx="28" cy="28" r="18" fill="var(--orange)" opacity="0.1"/>
+                <path d="M20 28l5.5 5.5L37 22" stroke="var(--orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="vs-sol-text">We handle <strong>all of it</strong></div>
+            <div class="vs-sol-sub">Net profit, COGS, shipping, ads,<br/>fees — tracked automatically, in real time.</div>
+            <div class="vs-sol-tags">
+              <span class="vs-tag">Auto-synced</span>
+              <span class="vs-tag">Real-time</span>
+              <span class="vs-tag">Zero manual work</span>
             </div>
           </div>
-          <a href="https://trueprof.it/link/KfUchICah9" class="price-cta outline">Start 14 Days Free</a>
-        </div>
-
-        <!-- Advanced -->
-        <div class="price-card">
-          <div class="price-tab">advanced-plan.json</div>
-          <div class="price-body">
-            <div class="price-json">
-              <div><span class="json-brace">{</span></div>
-              <div class="json-line"><span class="json-key">"plan"</span>: <span class="json-str">"Advanced"</span>,</div>
-              <div class="json-line"><span class="json-key">"price"</span>: <span class="json-num">60</span>,</div>
-              <div class="json-line"><span class="json-key">"currency"</span>: <span class="json-str">"USD/month"</span>,</div>
-              <div class="json-line"><span class="json-key">"orders"</span>: <span class="json-num">600</span>,</div>
-              <div class="json-line"><span class="json-key">"features"</span>: [</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Everything in Basic"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Product Analytics"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"P&amp;L Report"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Ad Sync Custom Rules"</span></div>
-              <div class="json-line">]</div>
-              <div><span class="json-brace">}</span></div>
-            </div>
-          </div>
-          <a href="https://trueprof.it/link/KfUchICah9" class="price-cta outline">Start 14 Days Free</a>
-        </div>
-
-        <!-- Ultimate -->
-        <div class="price-card featured">
-          <div class="price-badge">Recommended</div>
-          <div class="price-tab">ultimate-plan.json</div>
-          <div class="price-body">
-            <div class="price-json">
-              <div><span class="json-brace">{</span></div>
-              <div class="json-line"><span class="json-key">"plan"</span>: <span class="json-str">"Ultimate"</span>,</div>
-              <div class="json-line"><span class="json-key">"price"</span>: <span class="json-num">100</span>,</div>
-              <div class="json-line"><span class="json-key">"currency"</span>: <span class="json-str">"USD/month"</span>,</div>
-              <div class="json-line"><span class="json-key">"orders"</span>: <span class="json-num">1500</span>,</div>
-              <div class="json-line"><span class="json-key">"features"</span>: [</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Everything in Advanced"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Ad Sync Custom Rules"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Unlimited COGS Zones"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Marketing Attribution"</span></div>
-              <div class="json-line">]</div>
-              <div><span class="json-brace">}</span></div>
-            </div>
-          </div>
-          <a href="https://trueprof.it/link/KfUchICah9" class="price-cta primary">Start 14 Days Free</a>
-        </div>
-
-        <!-- Enterprise -->
-        <div class="price-card">
-          <div class="price-tab">enterprise-plan.json</div>
-          <div class="price-body">
-            <div class="price-json">
-              <div><span class="json-brace">{</span></div>
-              <div class="json-line"><span class="json-key">"plan"</span>: <span class="json-str">"Enterprise"</span>,</div>
-              <div class="json-line"><span class="json-key">"price"</span>: <span class="json-num">200</span>,</div>
-              <div class="json-line"><span class="json-key">"currency"</span>: <span class="json-str">"USD/month"</span>,</div>
-              <div class="json-line"><span class="json-key">"orders"</span>: <span class="json-num">3500</span>,</div>
-              <div class="json-line"><span class="json-key">"features"</span>: [</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Everything in Ultimate"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Unlimited Team Members"</span>,</div>
-              <div class="json-line" style="padding-left:36px;"><span class="json-str">"Prioritized Support"</span></div>
-              <div class="json-line">]</div>
-              <div><span class="json-brace">}</span></div>
-            </div>
-          </div>
-          <a href="https://trueprof.it/link/KfUchICah9" class="price-cta outline">Start 14 Days Free</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Compare ═══ -->
-  <section class="section fade-in" id="compare">
-    <div class="container">
-      <div class="section-label">COMPARE</div>
-      <h2 class="section-title">See how TrueProfit stacks up</h2>
-      <p class="section-sub">Same insights. Built for Shopify merchants who care about the bottom line.</p>
+  <!-- Truth -->
+  <section class="sec">
+    <div class="w">
+      <div class="sec-label">THE TRUTH</div>
+      <h2>Net profit is the only metric<br/>that <em>actually</em> matters</h2>
+      <p class="sec-sub">Revenue looks great — until you subtract everything.</p>
 
-      <div class="compare-table">
+      <div style="margin-top:32px;">
+        <div class="cb">
+          <div class="cb-top">
+            <span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span>
+            <span class="cb-tab">profit-waterfall.json</span>
+          </div>
+          <div class="cb-body" style="padding:8px 0;">
+            <div class="frow"><span class="l">Gross Revenue</span><span class="v">$50,000</span></div>
+            <div class="frow neg"><span class="l">– Cost of Goods</span><span class="v">−$15,000</span></div>
+            <div class="frow neg"><span class="l">– Shipping & Fees</span><span class="v">−$6,200</span></div>
+            <div class="frow neg"><span class="l">– Ad Spend</span><span class="v">−$12,300</span></div>
+            <div class="frow net"><span class="l">= Net Profit</span><span class="v">$16,500</span></div>
+          </div>
+        </div>
+
+        <!-- Callout annotation -->
+        <div class="callout">
+          <svg class="callout-arrow" width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 4 C12 28, 35 52, 80 62" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M72 56 L80 62 L72 66" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </svg>
+          <div class="callout-text">
+            <span>This is what matters.</span>
+            <span class="callout-sub">Shopify reports & spreadsheets<br/>can't track this accurately.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="sec" id="features">
+    <div class="w">
+      <div class="sec-label">FEATURES</div>
+      <h2>Everything you need<br/>— nothing you don't</h2>
+
+      <div class="ftabs">
+        <span class="ftab on" data-i="0">DASHBOARD</span>
+        <span class="ftab" data-i="1">P&L REPORT</span>
+        <span class="ftab" data-i="2">PRODUCT ANALYTICS</span>
+        <span class="ftab" data-i="3">COSTS & EXPENSES</span>
+        <span class="ftab" data-i="4">ADVERTISING ATTRIBUTION</span>
+        <span class="ftab" data-i="5">LIFETIME VALUE</span>
+        <span class="ftab" data-i="6">MCP SERVER</span>
+      </div>
+
+      <p class="fdesc" id="fdesc">Track revenue, costs, and net profit in real-time. Customize your dashboard to your needs.</p>
+
+      <!-- Feature Image -->
+      <div class="cb" style="overflow:hidden;">
+        <div class="cb-top">
+          <span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span>
+          <span style="flex:1;"></span>
+          <span style="font-family:var(--mono);font-size:0.58rem;color:var(--text-4);border:1px solid var(--border);border-radius:3px;padding:2px 7px;text-transform:uppercase;letter-spacing:0.03em;">Illustration</span>
+        </div>
+        <img id="feature-img" src="./images/trueprofit-general-dashboard-2.jpg" alt="Dashboard" style="width:100%;display:block;" />
+      </div>
+            <div class="ice-badges" style="margin-top:28px;">
+        <span class="ice-badge">Every cost layer tracked</span>
+        <span class="ice-badge">Automatically</span>
+        <span class="ice-badge">In real time</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="sec" id="pricing">
+    <div class="w">
+      <div class="sec-label">PRICING</div>
+      <h2>Four plans. Pick yours.</h2>
+      <p class="sec-sub">14-day free trial on every plan. No credit card required.</p>
+
+      <div class="pgrid">
+        <div class="pcard">
+          <div class="cb-top"><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-tab">basic-plan.json</span></div>
+          <div class="cb-body"><div class="json">
+            <div><span class="jb">{</span></div>
+            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Basic"</span>,</div>
+            <div class="ji"><span class="jk">"price"</span>: <span class="jn">35</span>,</div>
+            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
+            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">300</span>,</div>
+            <div class="ji"><span class="jk">"features"</span>: [</div>
+            <div class="jii"><span class="js">"14-day free trial"</span>,</div>
+            <div class="jii"><span class="js">"Realtime profit dashboard"</span>,</div>
+            <div class="jii"><span class="js">"Customer Lifetime Value"</span>,</div>
+            <div class="jii"><span class="js">"Quantity-based COGS"</span>,</div>
+            <div class="jii"><span class="js">"Custom Costs"</span></div>
+            <div class="ji">]</div>
+            <div><span class="jb">}</span></div>
+          </div></div>
+          <a href="https://trueprof.it/link/KfUchICah9" class="pcta line">Start 14 Days Free</a>
+        </div>
+
+        <div class="pcard">
+          <div class="cb-top"><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-tab">advanced-plan.json</span></div>
+          <div class="cb-body"><div class="json">
+            <div><span class="jb">{</span></div>
+            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Advanced"</span>,</div>
+            <div class="ji"><span class="jk">"price"</span>: <span class="jn">60</span>,</div>
+            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
+            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">600</span>,</div>
+            <div class="ji"><span class="jk">"features"</span>: [</div>
+            <div class="jii"><span class="js">"Everything in Basic"</span>,</div>
+            <div class="jii"><span class="js">"Product Analytics"</span>,</div>
+            <div class="jii"><span class="js">"P&amp;L Report"</span>,</div>
+            <div class="jii"><span class="js">"Ad Sync Custom Rules"</span></div>
+            <div class="ji">]</div>
+            <div><span class="jb">}</span></div>
+          </div></div>
+          <a href="https://trueprof.it/link/KfUchICah9" class="pcta line">Start 14 Days Free</a>
+        </div>
+
+        <div class="pcard feat">
+          <div class="pbadge">Recommended</div>
+          <div class="cb-top"><span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span><span class="cb-tab">ultimate-plan.json</span></div>
+          <div class="cb-body"><div class="json">
+            <div><span class="jb">{</span></div>
+            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Ultimate"</span>,</div>
+            <div class="ji"><span class="jk">"price"</span>: <span class="jn">100</span>,</div>
+            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
+            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">1500</span>,</div>
+            <div class="ji"><span class="jk">"features"</span>: [</div>
+            <div class="jii"><span class="js">"Everything in Advanced"</span>,</div>
+            <div class="jii"><span class="js">"Ad Sync Custom Rules"</span>,</div>
+            <div class="jii"><span class="js">"Unlimited COGS Zones"</span>,</div>
+            <div class="jii"><span class="js">"Marketing Attribution"</span></div>
+            <div class="ji">]</div>
+            <div><span class="jb">}</span></div>
+          </div></div>
+          <a href="https://trueprof.it/link/KfUchICah9" class="pcta fill">Start 14 Days Free</a>
+        </div>
+
+        <div class="pcard">
+          <div class="cb-top"><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-tab">enterprise-plan.json</span></div>
+          <div class="cb-body"><div class="json">
+            <div><span class="jb">{</span></div>
+            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Enterprise"</span>,</div>
+            <div class="ji"><span class="jk">"price"</span>: <span class="jn">200</span>,</div>
+            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
+            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">3500</span>,</div>
+            <div class="ji"><span class="jk">"features"</span>: [</div>
+            <div class="jii"><span class="js">"Everything in Ultimate"</span>,</div>
+            <div class="jii"><span class="js">"Unlimited Team Members"</span>,</div>
+            <div class="jii"><span class="js">"Prioritized Support"</span></div>
+            <div class="ji">]</div>
+            <div><span class="jb">}</span></div>
+          </div></div>
+          <a href="https://trueprof.it/link/KfUchICah9" class="pcta line">Start 14 Days Free</a>
+        </div>
+      </div>
+
+      <div class="icta">
+        <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
+        <div class="note">14-day free trial | Cancel anytime</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="sec" id="testimonials">
+    <div class="w-wide">
+      <div class="sec-label">TESTIMONIALS</div>
+      <h2>Trusted by <em>profit-focused</em> brands</h2>
+      <p class="sec-sub">Profitable brands use TrueProfit to kill vanity metrics and focus on money-in-the-bank.</p>
+
+      <div class="tgrid">
+        <div class="tcard">
+          <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="tcard-body">"I thought I was profitable until TrueProfit showed me my real numbers. <em>Turned out 3 of my 'best sellers' were actually losing money on ads.</em>"</div>
+          <div class="tcard-footer">
+            <div class="tcard-name">Jake M.</div>
+            <div class="tcard-role">— Dropshipping Store, $50K/mo</div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="tcard-body">"Finally ditched my spreadsheets. <em>The real-time dashboard saves me hours every week</em> and the product analytics are a game changer."</div>
+          <div class="tcard-footer">
+            <div class="tcard-name">Sarah L.</div>
+            <div class="tcard-role">— DTC Brand, $120K/mo</div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="tcard-body">"The ad tracking alone is worth it. <em>I can see true ROAS by channel and killed campaigns that were eating my margins.</em>"</div>
+          <div class="tcard-footer">
+            <div class="tcard-name">Ryan K.</div>
+            <div class="tcard-role">— Print on Demand, $30K/mo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section class="sec" id="compare">
+    <div class="w">
+      <div class="sec-label">COMPARE</div>
+      <h2>See how TrueProfit stacks up</h2>
+      <p class="sec-sub">Same insights. Built for merchants who care about the bottom line.</p>
+
+      <div class="ctbl">
         <table>
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>Triple Whale</th>
-              <th>Lifetimely</th>
-              <th>TrueProfit</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Feature</th><th>Triple Whale</th><th>Lifetimely</th><th>TrueProfit</th></tr></thead>
           <tbody>
-            <tr><td>Starting Price</td><td>$219/mo</td><td>$149/mo</td><td>$35/mo</td></tr>
-            <tr><td>Profit Dashboard</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>P&L Breakdown</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Product Analytics</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Customer LTV</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Ad Integrations</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Marketing Attribution</td><td><span class="check">✓</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>14-Day Free Trial</td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Starting price</td><td>$219/mo</td><td>$149/mo</td><td>$35/mo</td></tr>
+            <tr><td>Profit dashboard</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>P&L breakdown</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Product analytics</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Customer LTV</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Ad integrations</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Marketing attribution</td><td><span class="ck">✓</span></td><td><span class="cx">✕</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>14-day free trial</td><td><span class="cx">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
           </tbody>
         </table>
       </div>
 
-      <div style="text-align:center; margin-top:24px;">
-        <a href="https://trueprof.it/link/KfUchICah9" style="font-family:var(--mono); font-size:0.82rem; font-weight:600;">Start 14-day free trial →</a>
-        <div class="cta-meta" style="margin-top:8px;">14-day free trial | Cancel anytime</div>
+      <div class="icta">
+        <a href="https://trueprof.it/link/KfUchICah9">Start saving money now →</a>
+        <div class="note">14-day free trial | Cancel anytime</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ FAQ ═══ -->
-  <section class="section fade-in" id="faq">
-    <div class="container">
-      <div class="section-label">FAQ</div>
-      <h2 class="section-title">Questions? Answers.</h2>
+  <!-- Get Started -->
+  <section class="sec" id="setup">
+    <div class="w">
+      <div class="sec-label">GET STARTED</div>
+      <h2>Start tracking profits<br/>in under 2 minutes</h2>
+      <p class="sec-sub">No developer needed. TrueProfit installs like any Shopify app.</p>
 
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q">What ad integrations do you offer?</button>
-          <div class="faq-a"><div class="faq-a-inner">TrueProfit connects with Facebook/Meta, Google, TikTok, Snapchat, and Pinterest ads. We pull your spend data automatically so you can see true ROAS based on net profit.</div></div>
+      <div class="cb" style="margin-top:32px;">
+        <div class="cb-top">
+          <span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span>
+          <span class="cb-tab">setup-guide.sh</span>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">How do you calculate COGS?</button>
-          <div class="faq-a"><div class="faq-a-inner">We pull COGS directly from your Shopify store. You can also set custom COGS per product, per variant, and per time period. Quantity-based COGS is supported on all plans.</div></div>
+        <div class="cb-body" style="padding:8px 0;">
+          <div class="srow"><span class="n">01</span><div><h3>Install the app</h3><p>One click from the Shopify App Store. 30 seconds.</p></div></div>
+          <div class="srow"><span class="n">02</span><div><h3>Connect ad channels</h3><p>Meta, Google, TikTok, Snapchat, Pinterest.</p></div></div>
+          <div class="srow"><span class="n">03</span><div><h3>Define costs</h3><p>COGS, shipping, transaction fees, custom expenses.</p></div></div>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">How accurate is the data?</button>
-          <div class="faq-a"><div class="faq-a-inner">Extremely accurate. We sync directly with Shopify's API and your connected ad platforms. Your numbers match what you see in Shopify admin, plus all the cost layers Shopify doesn't show you.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Can I track shipping costs?</button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. You can set average shipping costs, define cost matrices by weight and destination, or connect directly with your fulfillment provider for automatic cost syncing.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Do I need a developer to set this up?</button>
-          <div class="faq-a"><div class="faq-a-inner">Not at all. TrueProfit installs like any Shopify app — one click. Your data starts syncing immediately. Most merchants are fully set up in under 5 minutes.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">What if I need help?</button>
-          <div class="faq-a"><div class="faq-a-inner">We offer live chat and email support. Our team is made up of actual ecommerce operators who understand your business. We're here to help you make more profit.</div></div>
-        </div>
+      </div>
+
+      <div class="icta">
+        <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
+        <div class="note">14-day free trial | Cancel anytime</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Final CTA ═══ -->
-  <section class="cta-final fade-in">
-    <div class="container">
+  <!-- FAQ -->
+  <section class="sec" id="faq">
+    <div class="w">
+      <div class="sec-label">FAQ</div>
+      <h2>Questions? Answers.</h2>
+
+      <div class="faq">
+        <div class="faq-i"><button class="faq-q">What ad integrations do you offer?</button><div class="faq-a"><div class="faq-a-in">Facebook/Meta, Google, TikTok, Snapchat, and Pinterest. Spend data is pulled automatically so you see true ROAS based on net profit.</div></div></div>
+        <div class="faq-i"><button class="faq-q">How do you get COGS?</button><div class="faq-a"><div class="faq-a-in">We pull COGS directly from Shopify. You can also set custom COGS per product, per variant, and per time period. Quantity-based COGS is supported on all plans.</div></div></div>
+        <div class="faq-i"><button class="faq-q">How accurate is the data vs Shopify?</button><div class="faq-a"><div class="faq-a-in">Extremely accurate. We sync directly with Shopify's API and your connected ad platforms. Your numbers match Shopify admin, plus all the cost layers Shopify doesn't show you.</div></div></div>
+        <div class="faq-i"><button class="faq-q">How can I input shipping costs?</button><div class="faq-a"><div class="faq-a-in">Set average shipping costs per order, define cost matrices by weight and destination, or connect with your fulfillment provider for automatic syncing.</div></div></div>
+        <div class="faq-i"><button class="faq-q">Do I need a developer to set this up?</button><div class="faq-a"><div class="faq-a-in">No. TrueProfit installs like any Shopify app — one click. Data starts syncing immediately. Most merchants are fully set up in under 5 minutes.</div></div></div>
+        <div class="faq-i"><button class="faq-q">What if I need help?</button><div class="faq-a"><div class="faq-a-in">Live chat and email support from a team of actual ecommerce operators who understand your business.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bcta">
+    <div class="w">
       <h2>Stop guessing. Start profiting.</h2>
       <p>Join 5,000+ Shopify merchants tracking their true net profit.</p>
 
-      <div class="terminal-cta" style="margin:0 auto;">
-        <div class="terminal-tab">start-profiting.sh</div>
-        <div class="terminal-body">
+      <div class="cb tcta" style="margin:0 auto;">
+        <div class="cb-top">
+          <span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span>
+          <span class="cb-tab">start-profiting.sh</span>
+        </div>
+        <div class="cb-body">
           <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
         </div>
       </div>
 
-      <div class="cta-meta" style="margin-top:16px;">No credit card required • 30-second install • Cancel anytime</div>
+      <div class="note">No credit card required · 30-second install · Cancel anytime</div>
     </div>
   </section>
 
-  <!-- ═══ Footer ═══ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-logo">
-        <span class="nav-logo-mark">T</span>
-        Real-time net profit analytics for Shopify.
-      </div>
-      <div class="footer-links">
-        <a href="#features">Features</a> •
-        <a href="#pricing">Pricing</a> •
-        <a href="#compare">Compare</a> •
-        <a href="#faq">FAQ</a> •
-        <a href="https://trueprof.it/link/KfUchICah9">Start Free Trial</a> •
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div class="ft-brand"><span class="nav-mark">T</span> Real-time net profit analytics for Shopify.</div>
+      <div class="ft-links">
+        <a href="#features">Features</a> ·
+        <a href="#pricing">Pricing</a> ·
+        <a href="#compare">Compare</a> ·
+        <a href="#faq">FAQ</a> ·
+        <a href="https://trueprof.it/link/KfUchICah9">Start Free Trial</a> ·
         <a href="https://trueprof.it/link/KfUchICah9">Privacy Policy</a>
       </div>
-      <div class="footer-copy">TrueProfit © 2026</div>
+      <div class="ft-copy">TrueProfit © 2026</div>
     </div>
   </footer>
 
   <script>
-    // Chart bars
-    const chart = document.getElementById('dash-chart');
-    const heights = [40, 58, 35, 68, 52, 78, 62, 88, 70, 55, 82, 92, 65, 75, 48, 85, 72, 90, 58, 80];
-    heights.forEach((h, i) => {
-      const bar = document.createElement('div');
-      bar.className = 'bar';
-      bar.style.height = h + '%';
-      bar.style.animationDelay = (0.3 + i * 0.04) + 's';
-      chart.appendChild(bar);
-    });
-
     // Feature tabs
-    const descs = [
-      "Track revenue, profit, ROAS, and every cost in real-time. Drill down by day, week, or month to spot trends instantly.",
+    const dd = [
+      "Track revenue, costs, and net profit in real-time. Customize your dashboard to your needs.",
       "Auto-generated profit & loss statements for any time period. Export for your accountant in one click.",
-      "Know exactly which products make money and which ones drain it. Sort by profit margin, volume, or ROI.",
-      "See how much each customer is really worth over time. Make smarter decisions on acquisition spend.",
-      "Connect Facebook, Google, and TikTok ads. See true ROAS based on net profit — not just revenue.",
-      "Log every cost — COGS, shipping, transaction fees, custom expenses — and see their impact on your bottom line."
+      "Know exactly which products make money and which drain it. Sort by margin, volume, or ROI.",
+      "Log every cost — COGS, shipping, transaction fees, custom expenses — and see their impact instantly.",
+      "Connect Meta, Google, and TikTok ads. See true ROAS based on net profit — not just revenue.",
+      "See how much each customer is really worth over time. Make smarter acquisition decisions.",
+      "Connect ChatGPT, Claude, Gemini or any AI assistant directly to your store's data and make them your employee."
     ];
-    document.querySelectorAll('.feature-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.feature-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById('feature-desc').textContent = descs[tab.dataset.tab];
+    const imgs = [
+      "./images/trueprofit-general-dashboard-2.jpg",
+      "./images/TrueProfit-Automated-PnL-Report.png",
+      "./images/product-analytics.png",
+      "./images/TrueProfit-COGS-dashboard.png",
+      "./images/advertising-tracking-dashboard-2.png",
+      "./images/ltv-tracking-dashboard-2.png",
+      "./images/trueprofit-general-dashboard-1.png"
+    ];
+    // Preload all feature images
+    imgs.forEach(src => { const img = new Image(); img.src = src; });
+    document.querySelectorAll('.ftab').forEach(t => {
+      t.addEventListener('click', () => {
+        document.querySelectorAll('.ftab').forEach(x => x.classList.remove('on'));
+        t.classList.add('on');
+        document.getElementById('fdesc').textContent = dd[t.dataset.i];
+        document.getElementById('feature-img').src = imgs[t.dataset.i];
       });
     });
 
-    // FAQ accordion
-    document.querySelectorAll('.faq-q').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        const answer = item.querySelector('.faq-a');
-        const isOpen = item.classList.contains('open');
-
-        document.querySelectorAll('.faq-item').forEach(fi => {
-          fi.classList.remove('open');
-          fi.querySelector('.faq-a').style.maxHeight = '0';
-        });
-
-        if (!isOpen) {
-          item.classList.add('open');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
+    // FAQ
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const i = q.parentElement, a = i.querySelector('.faq-a'), o = i.classList.contains('open');
+        document.querySelectorAll('.faq-i').forEach(x => { x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = '0'; });
+        if (!o) { i.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
       });
     });
-
-    // Scroll fade-in
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
   </script>
 
 </body>
