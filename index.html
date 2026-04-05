@@ -511,6 +511,121 @@
     .ice-badges{display:flex;justify-content:center;gap:6px;margin-top:20px;flex-wrap:wrap}
     .ice-badge{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--orange);padding:4px 10px;border:1px solid rgba(35,196,140,0.25);border-radius:100px;background:rgba(35,196,140,0.06)}
 
+    /* ── Cost Tracking Funnel ── */
+    .funnel-sec { background: var(--bg); }
+    .funnel-layout {
+      display: flex; gap: 0; align-items: stretch; margin-top: 40px;
+      max-width: var(--max-w-wide); margin-left: auto; margin-right: auto;
+    }
+    .funnel-left {
+      flex: 1; min-width: 0;
+      display: flex; flex-direction: column; gap: 10px;
+      padding-right: 0; justify-content: center;
+    }
+    .funnel-beam {
+      flex-shrink: 0; display: flex; align-items: center;
+      justify-content: center; width: 80px;
+    }
+    .funnel-center {
+      flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 0;
+    }
+    .funnel-right {
+      flex: 1; min-width: 0;
+      display: flex; flex-direction: column; gap: 10px;
+      padding-left: 0; justify-content: center;
+    }
+
+    /* Input cards (left side) */
+    .fi-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 16px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .fi-card:hover { transform: translateX(4px); border-color: var(--text-3); }
+    .fi-head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+    }
+    .fi-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .fi-icon.ads { background: rgba(59,130,246,0.1); color: #3b82f6; }
+    .fi-icon.fulfill { background: rgba(245,158,11,0.1); color: #f59e0b; }
+    .fi-icon.ship { background: rgba(16,185,129,0.1); color: #10b981; }
+    .fi-icon.cogs { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+    .fi-icon.fees { background: rgba(224,80,80,0.08); color: var(--red); }
+    .fi-icon.other { background: rgba(107,114,128,0.1); color: #6b7280; }
+    .fi-name {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+      color: var(--text);
+    }
+    .fi-logos {
+      display: flex; gap: 5px; flex-wrap: wrap;
+    }
+    .fi-logo {
+      font-family: var(--mono); font-size: 0.58rem; font-weight: 600;
+      padding: 2px 7px; border-radius: 4px;
+      background: var(--bg); border: 1px solid var(--border-light);
+      color: var(--text-2);
+    }
+
+    /* Center machine */
+    .funnel-machine {
+      background: var(--bg-card); border: 2px solid var(--orange);
+      border-radius: 14px; padding: 28px 22px;
+      text-align: center; position: relative;
+      box-shadow: 0 0 0 4px rgba(35,196,140,0.08);
+    }
+    .fm-logo {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--orange); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 1rem; font-weight: 800;
+      margin: 0 auto 12px;
+    }
+    .fm-title {
+      font-family: var(--mono); font-size: 0.88rem; font-weight: 700;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .fm-sub {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
+      line-height: 1.5;
+    }
+
+    /* Output cards (right side) */
+    .fo-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 16px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .fo-card:hover { transform: translateX(-4px); border-color: var(--orange); }
+    .fo-head {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .fo-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      border: 2px solid;
+    }
+    .fo-dot.green { border-color: var(--orange); }
+    .fo-name {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+      color: var(--text);
+    }
+    .fo-sub {
+      font-family: var(--mono); font-size: 0.62rem; color: var(--text-3);
+      margin-top: 3px; line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .funnel-layout { flex-direction: column; gap: 20px; padding: 0 16px; }
+      .funnel-left, .funnel-right { padding: 0; }
+      .funnel-beam { width: 100%; height: 40px; }
+      .funnel-beam svg { transform: rotate(90deg); }
+      .funnel-center { padding: 8px 0; }
+    }
+
     /* ── Callout annotation ── */
     .callout {
       display: flex; align-items: flex-start; gap: 0;
@@ -656,12 +771,82 @@
     </div>
   </section>
 
+<!-- Before vs After -->
+  <section class="sec">
+    <div class="w">
+      <div class="sec-label">WHY TRUEPROFIT</div>
+      <h2>Struggle to track your <em>Profit & Expenses</em> using Spreadsheets & Shopify-Built in Report?</h2>
+
+      <div class="vs-grid">
+        <!-- Before -->
+        <div class="vs-card vs-before">
+          <div class="vs-header">
+            <svg class="vs-logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect width="28" height="28" rx="4" fill="#1D6F42"/>
+              <rect x="5" y="6" width="8" height="3" rx="0.5" fill="#fff" opacity="0.9"/>
+              <rect x="5" y="11" width="8" height="3" rx="0.5" fill="#fff" opacity="0.6"/>
+              <rect x="5" y="16" width="8" height="3" rx="0.5" fill="#fff" opacity="0.4"/>
+              <rect x="15" y="6" width="8" height="3" rx="0.5" fill="#fff" opacity="0.5"/>
+              <rect x="15" y="11" width="8" height="3" rx="0.5" fill="#fff" opacity="0.3"/>
+              <rect x="15" y="16" width="8" height="3" rx="0.5" fill="#fff" opacity="0.2"/>
+              <rect x="5" y="21" width="18" height="2" rx="0.5" fill="#fff" opacity="0.15"/>
+            </svg>
+            <svg class="vs-logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect width="28" height="28" rx="4" fill="#96bf48"/>
+              <path d="M17.5 7.5c-.3 0-.5.1-.7.2-.2-.5-.6-.9-1.1-1-.5-.1-.9.1-1.2.4l-.2-.3c-.2-.2-.4-.3-.7-.2-.2 0-.4.2-.5.4l-1.5 4.5-1.2-.8c-.3-.2-.6-.1-.8.1l-.5.7 3.8 5.5h5.2l1.5-5.5c.1-.3 0-.6-.2-.8l-1.2-1c-.2-.1-.3-.2-.5-.2z" fill="#fff"/>
+            </svg>
+            <span class="vs-title">Spreadsheets & Shopify Reports</span>
+          </div>
+          <div class="vs-pain-list">
+            <div class="vs-pain"><span class="vs-x">✕</span> Can't track net profit</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> Hours of manual work</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> Data always outdated</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> Formula errors everywhere</div>
+            <div class="vs-pain"><span class="vs-x">✕</span> No ad-to-profit connection</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="vs-arrow">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="23" stroke="var(--orange)" stroke-width="1.5"/>
+            <path d="M18 24h12M26 19l5 5-5 5" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- After -->
+        <div class="vs-card vs-after">
+          <div class="vs-header">
+            <span class="vs-tp-logo">T</span>
+            <span class="vs-title">TrueProfit</span>
+          </div>
+          <div class="vs-solution">
+            <div class="vs-sol-icon">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="28" r="27" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.3"/>
+                <circle cx="28" cy="28" r="18" fill="var(--orange)" opacity="0.1"/>
+                <path d="M20 28l5.5 5.5L37 22" stroke="var(--orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="vs-sol-text">We handle <strong>all of it</strong></div>
+            <div class="vs-sol-sub">Net profit, COGS, shipping, ads,<br/>fees — tracked automatically, in real time.</div>
+            <div class="vs-sol-tags">
+              <span class="vs-tag">Auto-synced</span>
+              <span class="vs-tag">Real-time</span>
+              <span class="vs-tag">Zero manual work</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Iceberg (Modified: two-column layout) -->
   <section class="sec">
     <div class="w-wide">
       <div class="ice-head">
         <div class="sec-label">THE TRUTH</div>
-        <h2 style="text-align:center">Most sellers only see the <em>tip<br/>of the iceberg</em></h2>
+        <h2 style="text-align:center">Most tools only see the <em>tip</em><br/>of the iceberg</h2>
         <p class="sec-sub" style="margin:0 auto">Shopify Built-in Report show you Revenue - the surface. True profitability lives beneath it.</p>
       </div>
       <div class="ice-two-col">
@@ -744,72 +929,166 @@
       </div>
     </div>
   </section>
-<!-- Before vs After -->
-  <section class="sec">
-    <div class="w">
-      <div class="sec-label">WHY TRUEPROFIT</div>
-      <h2>Struggle to track your <em>Profit & Expenses</em> using Spreadsheets & Shopify-Built in Report?</h2>
 
-      <div class="vs-grid">
-        <!-- Before -->
-        <div class="vs-card vs-before">
-          <div class="vs-header">
-            <svg class="vs-logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <rect width="28" height="28" rx="4" fill="#1D6F42"/>
-              <rect x="5" y="6" width="8" height="3" rx="0.5" fill="#fff" opacity="0.9"/>
-              <rect x="5" y="11" width="8" height="3" rx="0.5" fill="#fff" opacity="0.6"/>
-              <rect x="5" y="16" width="8" height="3" rx="0.5" fill="#fff" opacity="0.4"/>
-              <rect x="15" y="6" width="8" height="3" rx="0.5" fill="#fff" opacity="0.5"/>
-              <rect x="15" y="11" width="8" height="3" rx="0.5" fill="#fff" opacity="0.3"/>
-              <rect x="15" y="16" width="8" height="3" rx="0.5" fill="#fff" opacity="0.2"/>
-              <rect x="5" y="21" width="18" height="2" rx="0.5" fill="#fff" opacity="0.15"/>
-            </svg>
-            <svg class="vs-logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <rect width="28" height="28" rx="4" fill="#96bf48"/>
-              <path d="M17.5 7.5c-.3 0-.5.1-.7.2-.2-.5-.6-.9-1.1-1-.5-.1-.9.1-1.2.4l-.2-.3c-.2-.2-.4-.3-.7-.2-.2 0-.4.2-.5.4l-1.5 4.5-1.2-.8c-.3-.2-.6-.1-.8.1l-.5.7 3.8 5.5h5.2l1.5-5.5c.1-.3 0-.6-.2-.8l-1.2-1c-.2-.1-.3-.2-.5-.2z" fill="#fff"/>
-            </svg>
-            <span class="vs-title">Spreadsheets & Shopify Reports</span>
+  <!-- Cost Tracking Funnel -->
+  <section class="sec funnel-sec">
+    <div class="w-wide">
+      <div class="sec-label">ADVANCED COST TRACKING</div>
+      <h2>Track every cost with <em>precision</em></h2>
+      <p class="sec-sub">Wrong cost calculations lead to wrong decisions. TrueProfit pulls data from every source and outputs the metrics that matter.</p>
+
+      <div class="funnel-layout">
+        <!-- Left: All cost inputs -->
+        <div class="funnel-left">
+          <div class="fi-card">
+            <div class="fi-head">
+              <div class="fi-icon ads">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              </div>
+              <div class="fi-name">Ad channels</div>
+            </div>
+            <div class="fi-logos">
+              <span class="fi-logo">Meta</span><span class="fi-logo">Google</span><span class="fi-logo">TikTok</span><span class="fi-logo">Snapchat</span><span class="fi-logo">Pinterest</span>
+            </div>
           </div>
-          <div class="vs-pain-list">
-            <div class="vs-pain"><span class="vs-x">✕</span> Can't track net profit</div>
-            <div class="vs-pain"><span class="vs-x">✕</span> Hours of manual work</div>
-            <div class="vs-pain"><span class="vs-x">✕</span> Data always outdated</div>
-            <div class="vs-pain"><span class="vs-x">✕</span> Formula errors everywhere</div>
-            <div class="vs-pain"><span class="vs-x">✕</span> No ad-to-profit connection</div>
+          <div class="fi-card">
+            <div class="fi-head">
+              <div class="fi-icon fulfill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3h-8l-2 4h12z"/></svg>
+              </div>
+              <div class="fi-name">Fulfillment platforms</div>
+            </div>
+            <div class="fi-logos">
+              <span class="fi-logo">DSers</span><span class="fi-logo">CJ</span><span class="fi-logo">AutoDS</span><span class="fi-logo">Zendrop</span>
+            </div>
+          </div>
+          <div class="fi-card">
+            <div class="fi-head">
+              <div class="fi-icon ship">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="6" width="15" height="12" rx="1"/><path d="M16 10h4l3 3v5h-7V10z"/><circle cx="5.5" cy="19.5" r="1.5"/><circle cx="18.5" cy="19.5" r="1.5"/></svg>
+              </div>
+              <div class="fi-name">Shipping providers</div>
+            </div>
+            <div class="fi-logos">
+              <span class="fi-logo">ShipStation</span><span class="fi-logo">Pirate Ship</span><span class="fi-logo">ShipBob</span>
+            </div>
+          </div>
+          <div class="fi-card">
+            <div class="fi-head">
+              <div class="fi-icon cogs">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              </div>
+              <div class="fi-name">COGS breakdown</div>
+            </div>
+            <div class="fi-logos">
+              <span class="fi-logo">by SKU</span><span class="fi-logo">by Bundle</span><span class="fi-logo">by Country</span>
+            </div>
+          </div>
+          <div class="fi-card">
+            <div class="fi-head">
+              <div class="fi-icon fees">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              </div>
+              <div class="fi-name">Transaction fees</div>
+            </div>
+            <div class="fi-logos">
+              <span class="fi-logo">Shopify Payments</span><span class="fi-logo">PayPal</span><span class="fi-logo">Stripe</span>
+            </div>
+          </div>
+          <div class="fi-card">
+            <div class="fi-head">
+              <div class="fi-icon other">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              </div>
+              <div class="fi-name">Custom costs</div>
+            </div>
+            <div class="fi-logos">
+              <span class="fi-logo">Returns</span><span class="fi-logo">Taxes</span><span class="fi-logo">Packaging</span>
+            </div>
           </div>
         </div>
 
-        <!-- Arrow -->
-        <div class="vs-arrow">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="23" stroke="var(--orange)" stroke-width="1.5"/>
-            <path d="M18 24h12M26 19l5 5-5 5" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Converging beam: left → center -->
+        <div class="funnel-beam">
+          <svg width="80" height="380" viewBox="0 0 80 380" fill="none">
+            <path d="M4 30 Q40 30, 72 190" stroke="var(--text-3)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.4"/>
+            <path d="M4 100 Q40 100, 72 190" stroke="var(--text-3)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.4"/>
+            <path d="M4 160 Q50 160, 72 190" stroke="var(--text-3)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M4 220 Q50 220, 72 190" stroke="var(--text-3)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M4 280 Q40 280, 72 190" stroke="var(--text-3)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.4"/>
+            <path d="M4 350 Q40 350, 72 190" stroke="var(--text-3)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.4"/>
+            <path d="M66 184 L74 190 L66 196" stroke="var(--text-3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6"/>
           </svg>
         </div>
 
-        <!-- After -->
-        <div class="vs-card vs-after">
-          <div class="vs-header">
-            <span class="vs-tp-logo">T</span>
-            <span class="vs-title">TrueProfit</span>
-          </div>
-          <div class="vs-solution">
-            <div class="vs-sol-icon">
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                <circle cx="28" cy="28" r="27" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.3"/>
-                <circle cx="28" cy="28" r="18" fill="var(--orange)" opacity="0.1"/>
-                <path d="M20 28l5.5 5.5L37 22" stroke="var(--orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="vs-sol-text">We handle <strong>all of it</strong></div>
-            <div class="vs-sol-sub">Net profit, COGS, shipping, ads,<br/>fees — tracked automatically, in real time.</div>
-            <div class="vs-sol-tags">
-              <span class="vs-tag">Auto-synced</span>
-              <span class="vs-tag">Real-time</span>
-              <span class="vs-tag">Zero manual work</span>
-            </div>
+        <!-- Center: TrueProfit Machine -->
+        <div class="funnel-center">
+          <div class="funnel-machine">
+            <div class="fm-logo">T</div>
+            <div class="fm-title">TrueProfit</div>
+            <div class="fm-sub">Processes every cost<br/>layer automatically</div>
           </div>
         </div>
+
+        <!-- Diverging beam: center → right -->
+        <div class="funnel-beam">
+          <svg width="80" height="380" viewBox="0 0 80 380" fill="none">
+            <path d="M8 190 Q40 30, 76 50" stroke="var(--orange)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M8 190 Q40 110, 76 120" stroke="var(--orange)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M8 190 Q40 190, 76 190" stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+            <path d="M8 190 Q40 270, 76 260" stroke="var(--orange)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M8 190 Q40 350, 76 330" stroke="var(--orange)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <circle cx="76" cy="50" r="3" fill="var(--orange)" opacity="0.5"/>
+            <circle cx="76" cy="120" r="3" fill="var(--orange)" opacity="0.5"/>
+            <circle cx="76" cy="190" r="3" fill="var(--orange)" opacity="0.6"/>
+            <circle cx="76" cy="260" r="3" fill="var(--orange)" opacity="0.5"/>
+            <circle cx="76" cy="330" r="3" fill="var(--orange)" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <!-- Right: Result Metrics -->
+        <div class="funnel-right">
+          <div class="fo-card">
+            <div class="fo-head">
+              <span class="fo-dot green"></span>
+              <div class="fo-name">Gross Profit</div>
+            </div>
+            <div class="fo-sub">Revenue minus COGS — your true product margin.</div>
+          </div>
+          <div class="fo-card">
+            <div class="fo-head">
+              <span class="fo-dot green"></span>
+              <div class="fo-name">Net Profit</div>
+            </div>
+            <div class="fo-sub">What you actually keep after every cost.</div>
+          </div>
+          <div class="fo-card">
+            <div class="fo-head">
+              <span class="fo-dot green"></span>
+              <div class="fo-name">Profit Margins</div>
+            </div>
+            <div class="fo-sub">Per-product, per-order, and store-wide margins.</div>
+          </div>
+          <div class="fo-card">
+            <div class="fo-head">
+              <span class="fo-dot green"></span>
+              <div class="fo-name">CAC</div>
+            </div>
+            <div class="fo-sub">Customer acquisition cost by channel.</div>
+          </div>
+          <div class="fo-card">
+            <div class="fo-head">
+              <span class="fo-dot green"></span>
+              <div class="fo-name">LTV</div>
+            </div>
+            <div class="fo-sub">Customer lifetime value over time.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icta" style="margin-top:36px;">
+        <a href="https://trueprof.it/link/KfUchICah9">Start Free Trial →</a>
+        <div class="note">All cost integrations included on every plan</div>
       </div>
     </div>
   </section>
