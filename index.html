@@ -171,6 +171,61 @@
     }
     .stars { color: var(--orange); }
 
+    /* ── Hero Metrics Grid ── */
+    .hero-metrics {
+      margin-top: 36px;
+      text-align: center;
+    }
+    .hero-metrics-label {
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-4); margin-bottom: 16px;
+    }
+    .hero-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .hm-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 12px 14px;
+      text-align: center;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .hm-card:hover { transform: translateY(-2px); border-color: var(--text-3); }
+    .hm-card-accent {
+      background: var(--orange-dim);
+      border-color: rgba(35,196,140,0.25);
+    }
+    .hm-card-accent:hover { border-color: var(--orange); }
+    .hm-num {
+      font-family: var(--mono); font-weight: 700;
+      font-size: 1.9rem; line-height: 1;
+      color: var(--text); letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .hm-card-accent .hm-num { color: var(--orange); }
+    .hm-sup {
+      font-size: 0.9rem; font-weight: 700;
+      vertical-align: super; letter-spacing: 0;
+    }
+    .hm-label {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--text-3); line-height: 1.4;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .hm-source {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--text-4); margin-top: 12px;
+    }
+    @media (max-width: 480px) {
+      .hero-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     /* ── Section ── */
     .sec { padding: 60px 0; }
     .sec-label {
@@ -1015,10 +1070,35 @@
         </div>
       </div>
 
-      <div class="hero-stats">
-        <div class="hero-stat"><span class="hero-stat-dot">●</span> <span class="hero-stat-num">70,000+</span> stores</div>
-        <div class="hero-stat"><span class="hero-stat-dot">●</span> <span class="hero-stat-num">$98B</span> Total Revenue Tracked</div>
-        <div class="hero-stat"><span class="hero-stat-dot">●</span> <span class="hero-stat-num">$2.6B</span> Total Ad Spend Tracked</div>
+      <div class="hero-metrics">
+        <div class="hero-metrics-label">TRUSTED BY SHOPIFY MERCHANTS WORLDWIDE</div>
+        <div class="hero-metrics-grid">
+          <div class="hm-card">
+            <div class="hm-num">70,000<span class="hm-sup">+</span></div>
+            <div class="hm-label">Stores worldwide</div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-num">$98<span class="hm-sup">B</span></div>
+            <div class="hm-label">Revenue tracked</div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-num">$2.6<span class="hm-sup">B</span></div>
+            <div class="hm-label">Ad spend tracked</div>
+          </div>
+          <div class="hm-card hm-card-accent">
+            <div class="hm-num">3.5<span class="hm-sup">hrs+</span></div>
+            <div class="hm-label">Saved per week</div>
+          </div>
+          <div class="hm-card hm-card-accent">
+            <div class="hm-num">+27.6<span class="hm-sup">%</span></div>
+            <div class="hm-label">Net profit improvement</div>
+          </div>
+          <div class="hm-card hm-card-accent">
+            <div class="hm-num">+42.7<span class="hm-sup">%</span></div>
+            <div class="hm-label">Net margin improvement</div>
+          </div>
+        </div>
+        <div class="hm-source">Aggregate data from TrueProfit customers · 2025</div>
       </div>
     </div>
   </section>
