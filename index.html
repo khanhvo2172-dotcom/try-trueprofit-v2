@@ -720,6 +720,211 @@
       .hero-stats { flex-direction: column; gap: 6px; }
       .hero-stat-dot { display: none; }
     }
+
+    /* ── Mobile Nav ── */
+    .nav-links { display: flex; gap: 28px; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: 0.2s;
+    }
+    .nav-mobile {
+      display: none; flex-direction: column; padding: 12px 24px 16px;
+      border-top: 1px solid var(--border);
+      background: rgba(246,245,240,0.97);
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: var(--mono); font-size: 0.85rem; color: var(--text-2);
+      padding: 10px 0; border-bottom: 1px solid var(--border-light);
+      text-decoration: none;
+    }
+    .nav-mobile a:hover { color: var(--text); }
+    .nav-mobile-cta {
+      margin-top: 10px; text-align: center;
+      background: var(--text); color: var(--bg) !important;
+      padding: 10px !important; border-radius: 6px; border: none !important;
+      font-weight: 600;
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-get { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ── Testimonial stars ── */
+    .tcard-stars {
+      padding: 6px 20px 0;
+      font-size: 0.78rem; color: var(--orange);
+      letter-spacing: 2px;
+    }
+
+    /* ── Make More Section ── */
+    .mm-sec { background: var(--bg); }
+
+    /* Top: cards + growth */
+    .mm-top {
+      display: flex; gap: 48px; align-items: flex-start;
+      margin-top: 44px; flex-wrap: wrap;
+    }
+    .mm-cards-wrap {
+      position: relative; flex: 1; min-width: 280px;
+      display: flex; gap: 0;
+    }
+    .mm-arrow-svg {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .mm-arrow-svg svg { width: 100%; height: 100%; }
+
+    .mm-card {
+      position: relative; z-index: 1;
+      border-radius: 12px; padding: 20px 22px;
+      min-width: 155px; flex: 1;
+    }
+    .mm-card-today {
+      background: var(--bg-card); border: 1px solid var(--border);
+      margin-right: -10px;
+    }
+    .mm-card-later {
+      background: #1a4d35; border: 1.5px solid #2a7050;
+      box-shadow: 0 8px 32px rgba(35,196,140,0.18);
+    }
+    .mm-badge {
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      background: var(--bg); color: var(--text-2);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 4px 12px; display: inline-block; margin-bottom: 14px;
+    }
+    .mm-badge-green {
+      background: rgba(35,196,140,0.18); color: #5fe0b0;
+      border-color: rgba(35,196,140,0.3);
+    }
+    .mm-lbl { font-family: var(--mono); font-size: 0.7rem; color: var(--text-3); }
+    .mm-lbl-dim { color: rgba(255,255,255,0.5); }
+    .mm-val {
+      font-family: var(--mono); font-size: 1.5rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px;
+    }
+    .mm-val-white { color: #fff; }
+    .mm-sep { height: 1px; background: var(--border); margin: 12px 0; }
+    .mm-sep-dim { background: rgba(255,255,255,0.12); }
+    .mm-row { display: flex; }
+    .mt8 { margin-top: 8px; }
+
+    /* Growth panel */
+    .mm-growth-panel {
+      flex: 1; min-width: 220px;
+      display: flex; flex-direction: column; justify-content: center; gap: 16px;
+    }
+    .mm-growth-tag {
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-3); text-align: center;
+    }
+    .mm-growth-row {
+      display: flex; align-items: center; gap: 0;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+    }
+    .mm-growth-item {
+      flex: 1; padding: 20px 18px; text-align: center;
+    }
+    .mm-growth-line { width: 1px; background: var(--border); align-self: stretch; }
+    .mm-growth-num {
+      font-family: var(--mono); font-size: 1.8rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.03em;
+    }
+    .mm-growth-green { color: var(--orange); }
+    .mm-growth-sub {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
+      margin-top: 4px;
+    }
+    .mm-insight {
+      font-family: var(--mono); font-size: 0.78rem; color: var(--text-2);
+      background: var(--orange-dim); border: 1px solid rgba(35,196,140,0.15);
+      border-radius: 8px; padding: 12px 16px; line-height: 1.6; text-align: center;
+    }
+    .mm-insight strong { color: var(--orange); }
+
+    /* Scale what works section */
+    .mm-bottom { margin-top: 72px; }
+    .mm-scale-layout {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 56px; align-items: center;
+    }
+    .mm-scale-left { display: flex; flex-direction: column; gap: 0; }
+    .mm-scale-sub {
+      font-family: var(--mono); font-size: 0.9rem; color: var(--text-2);
+      margin-bottom: 28px; line-height: 1.7;
+    }
+    .mm-feature-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+    .mm-feature-item {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .mm-feature-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: var(--orange-dim); color: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .mm-feature-title {
+      font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
+      color: var(--text); margin-bottom: 3px;
+      text-decoration: underline; text-decoration-color: rgba(35,196,140,0.4);
+      text-underline-offset: 3px;
+    }
+    .mm-feature-desc {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Stop / Start pills */
+    .mm-pill-row {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .mm-pill {
+      flex: 1; display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 8px;
+    }
+    .mm-pill-bad  { background: rgba(224,80,80,0.06);  border: 1px solid rgba(224,80,80,0.18); }
+    .mm-pill-good { background: rgba(35,196,140,0.07); border: 1px solid rgba(35,196,140,0.22); }
+    .mm-pill-icon {
+      font-size: 0.7rem; font-weight: 700; color: var(--red);
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(224,80,80,0.1); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .mm-pill-icon-green { color: var(--orange); background: rgba(35,196,140,0.12); }
+    .mm-pill-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); }
+    .mm-pill-val   { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; }
+    .mm-pill-arrow { font-size: 1rem; color: var(--text-3); flex-shrink: 0; }
+
+    /* Right image */
+    .mm-scale-right {
+      position: relative; border-radius: 14px; overflow: hidden;
+    }
+    .mm-scale-img {
+      width: 100%; height: auto; display: block;
+      border-radius: 14px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.10);
+    }
+
+    @media (max-width: 768px) {
+      .mm-top { flex-direction: column; gap: 28px; }
+      .mm-cards-wrap { max-width: 100%; }
+      .mm-scale-layout { grid-template-columns: 1fr; gap: 32px; }
+      .mm-scale-right { order: -1; }
+    }
+
+    /* Shared mm color utilities */
+    .mm-col-green { color: var(--orange); font-weight: 700; }
+    .mm-col-red   { color: var(--red);    font-weight: 700; }
+    .mm-col-muted { color: var(--text-3); }
   </style>
 </head>
 <body>
@@ -732,19 +937,33 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-brand"><span class="nav-mark">T</span> TrueProfit</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#compare">Compare</a>
-      <a href="#faq">FAQ</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#compare">Compare</a>
+        <a href="#faq">FAQ</a>
+      </div>
       <a href="https://trueprof.it/link/KfUchICah9" class="nav-get">Get started</a>
+      <button class="nav-hamburger" aria-label="Menu" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile">
+      <a href="#features" onclick="this.closest('.nav-mobile').classList.remove('open')">Features</a>
+      <a href="#pricing" onclick="this.closest('.nav-mobile').classList.remove('open')">Pricing</a>
+      <a href="#compare" onclick="this.closest('.nav-mobile').classList.remove('open')">Compare</a>
+      <a href="#faq" onclick="this.closest('.nav-mobile').classList.remove('open')">FAQ</a>
+      <a href="https://trueprof.it/link/KfUchICah9" class="nav-mobile-cta">Get started →</a>
     </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
     <div class="w">
-      <h1>Stop mistracking your<br/><span style="color:#23c48c;">Shopify Profits</span></h1>
       <div class="hero-eyebrow">#1 net profit analytics for Shopify</div>
+      <h1>Stop mistracking your<br/><span style="color:#23c48c;">Shopify Profits</span></h1>
+
+      <p class="hero-sub">Real-time net profit tracking for Shopify. COGS, shipping, ads, fees — see your true bottom line, automatically.</p>
 
       <div class="cb tcta">
         <div class="cb-top">
@@ -754,7 +973,9 @@
         <div class="cb-body">
           <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
           <div class="tcta-meta">
-            <span><span class="stars">★★★★★</span> 4.9 in <a href="https://trueprof.it/link/KfUchICah9" class="appstore-link">Shopify App Store</a></span>
+            <span><span class="stars">★★★★★</span> 4.9 · <a href="https://trueprof.it/link/KfUchICah9" class="appstore-link">Shopify App Store</a></span>
+            <span>·</span>
+            <span>No credit card required</span>
           </div>
         </div>
       </div>
@@ -1093,6 +1314,138 @@
     </div>
   </section>
 
+  <!-- Make More Section -->
+  <section class="sec mm-sec" id="make-more">
+    <div class="w">
+
+      <!-- Part 1: Growth story -->
+      <div class="sec-label">PROFIT OPTIMIZATION</div>
+      <h2>It's not just about wasting less.<br/><em>It's about making more.</em></h2>
+      <p class="sec-sub">Unlike revenue, optimizing for net profit means the growth you see is the growth you keep. Every dollar of it.</p>
+
+      <div class="mm-top">
+        <!-- Today vs Later cards -->
+        <div class="mm-cards-wrap">
+          <div class="mm-arrow-svg">
+            <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 155 Q80 150 140 100 Q200 50 270 20" stroke="rgba(35,196,140,0.18)" stroke-width="48" stroke-linecap="round" fill="none"/>
+              <path d="M248 8 L274 18 L260 42" fill="rgba(35,196,140,0.15)"/>
+            </svg>
+          </div>
+          <div class="mm-card mm-card-today">
+            <div class="mm-badge">TODAY</div>
+            <div class="mm-row"><span class="mm-lbl">Revenue</span></div>
+            <div class="mm-val">$100K</div>
+            <div class="mm-row mt8"><span class="mm-lbl">Net profit margin</span></div>
+            <div class="mm-val">5%</div>
+            <div class="mm-sep"></div>
+            <div class="mm-row"><span class="mm-lbl">Net profit</span></div>
+            <div class="mm-val">$5K</div>
+          </div>
+          <div class="mm-card mm-card-later">
+            <div class="mm-badge mm-badge-green">6 MONTHS LATER</div>
+            <div class="mm-row"><span class="mm-lbl mm-lbl-dim">Revenue</span></div>
+            <div class="mm-val mm-val-white">$130K</div>
+            <div class="mm-row mt8"><span class="mm-lbl mm-lbl-dim">Net profit margin</span></div>
+            <div class="mm-val mm-val-white">8%</div>
+            <div class="mm-sep mm-sep-dim"></div>
+            <div class="mm-row"><span class="mm-lbl mm-lbl-dim">Net profit</span></div>
+            <div class="mm-val mm-val-white">$10.4K</div>
+          </div>
+        </div>
+
+        <!-- Growth numbers -->
+        <div class="mm-growth-panel">
+          <div class="mm-growth-tag">TOTAL GROWTH</div>
+          <div class="mm-growth-row">
+            <div class="mm-growth-item">
+              <div class="mm-growth-num">+30%</div>
+              <div class="mm-growth-sub">Revenue growth</div>
+            </div>
+            <div class="mm-growth-line"></div>
+            <div class="mm-growth-item">
+              <div class="mm-growth-num mm-growth-green">+108%</div>
+              <div class="mm-growth-sub">Net profit growth</div>
+            </div>
+          </div>
+          <div class="mm-insight">
+            A <strong>3-point</strong> net profit margin lift = <strong>2X</strong> the money you actually keep.
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 2: Scale what works / cut what doesn't -->
+      <!-- Scale what works / Cut what doesn't -->
+      <div class="mm-bottom">
+        <div class="mm-scale-layout">
+
+          <!-- Left: text + feature bullets -->
+          <div class="mm-scale-left">
+            <div class="sec-label" style="text-align:left;">PROFIT OPTIMIZATION</div>
+            <h2 style="text-align:left; font-size:clamp(1.5rem,3vw,2.1rem); margin-bottom:14px;">Scale what works.<br/>Cut what doesn't.</h2>
+            <p class="mm-scale-sub">Grow based on net profit — not just revenue.</p>
+
+            <div class="mm-feature-list">
+              <div class="mm-feature-item">
+                <div class="mm-feature-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                </div>
+                <div>
+                  <div class="mm-feature-title">Product Analytics</div>
+                  <div class="mm-feature-desc">Spot your most profitable products & cut the ones quietly draining your margin.</div>
+                </div>
+              </div>
+              <div class="mm-feature-item">
+                <div class="mm-feature-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
+                <div>
+                  <div class="mm-feature-title">Marketing Attribution</div>
+                  <div class="mm-feature-desc">Cut wasteful ad spend & scale profitably — unaffected by privacy constraints or cookie limits.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stop / Start pill -->
+            <div class="mm-pill-row">
+              <div class="mm-pill mm-pill-bad">
+                <span class="mm-pill-icon">✕</span>
+                <div>
+                  <div class="mm-pill-label">Stop wasting</div>
+                  <div class="mm-pill-val mm-col-red">−$620 on Video 2</div>
+                </div>
+              </div>
+              <div class="mm-pill-arrow">→</div>
+              <div class="mm-pill mm-pill-good">
+                <span class="mm-pill-icon mm-pill-icon-green">✓</span>
+                <div>
+                  <div class="mm-pill-label">Start making</div>
+                  <div class="mm-pill-val mm-col-green">+$1,823 on Video 1</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="icta" style="text-align:left; margin-top:28px;">
+              <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
+            </div>
+          </div>
+
+          <!-- Right: the screenshot image -->
+          <div class="mm-scale-right">
+            <img src="./scale_7cea86cc.webp" alt="Most Profitable Ads and Products dashboard" class="mm-scale-img" />
+          </div>
+
+        </div>
+      </div><!-- /mm-bottom -->
+
+      <div class="icta" style="margin-top:40px;">
+        <a href="https://trueprof.it/link/KfUchICah9">Start improving your margins today →</a>
+        <div class="note">14-day free trial · No credit card required</div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Features -->
   <section class="sec" id="features">
     <div class="w">
@@ -1231,6 +1584,7 @@
       <div class="tgrid">
         <div class="tcard">
           <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="tcard-stars">★★★★★</div>
           <div class="tcard-body">"I thought I was profitable until TrueProfit showed me my real numbers. <em>Turned out 3 of my 'best sellers' were actually losing money on ads.</em>"</div>
           <div class="tcard-footer">
             <div class="tcard-name">Jake M.</div>
@@ -1239,6 +1593,7 @@
         </div>
         <div class="tcard">
           <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="tcard-stars">★★★★★</div>
           <div class="tcard-body">"Finally ditched my spreadsheets. <em>The real-time dashboard saves me hours every week</em> and the product analytics are a game changer."</div>
           <div class="tcard-footer">
             <div class="tcard-name">Sarah L.</div>
@@ -1247,6 +1602,7 @@
         </div>
         <div class="tcard">
           <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="tcard-stars">★★★★★</div>
           <div class="tcard-body">"The ad tracking alone is worth it. <em>I can see true ROAS by channel and killed campaigns that were eating my margins.</em>"</div>
           <div class="tcard-footer">
             <div class="tcard-name">Ryan K.</div>
