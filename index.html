@@ -859,55 +859,89 @@
     }
     .mm-scale-left { display: flex; flex-direction: column; gap: 0; }
     .mm-scale-sub {
-      font-family: var(--mono); font-size: 0.9rem; color: var(--text-2);
-      margin-bottom: 28px; line-height: 1.7;
-    }
-    .mm-feature-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
-    .mm-feature-item {
-      display: flex; align-items: flex-start; gap: 12px;
-    }
-    .mm-feature-icon {
-      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-      background: var(--orange-dim); color: var(--orange);
-      display: flex; align-items: center; justify-content: center;
-      margin-top: 1px;
-    }
-    .mm-feature-title {
-      font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
-      color: var(--text); margin-bottom: 3px;
-      text-decoration: underline; text-decoration-color: rgba(35,196,140,0.4);
-      text-underline-offset: 3px;
-    }
-    .mm-feature-desc {
-      font-family: var(--mono); font-size: 0.75rem; color: var(--text-2);
-      line-height: 1.6;
+      font-family: var(--mono); font-size: 0.82rem; color: var(--text-2);
+      margin-bottom: 24px; line-height: 1.7;
     }
 
-    /* Stop / Start pills */
-    .mm-pill-row {
-      display: flex; align-items: center; gap: 8px;
+    /* Numeric stat blocks */
+    .mm-stat-blocks {
+      display: flex; align-items: stretch;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      margin-bottom: 24px;
     }
-    .mm-pill {
-      flex: 1; display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px; border-radius: 8px;
+    .mm-stat-block {
+      flex: 1; padding: 18px 16px; text-align: center;
     }
-    .mm-pill-bad  { background: rgba(224,80,80,0.06);  border: 1px solid rgba(224,80,80,0.18); }
-    .mm-pill-good { background: rgba(35,196,140,0.07); border: 1px solid rgba(35,196,140,0.22); }
-    .mm-pill-icon {
-      font-size: 0.7rem; font-weight: 700; color: var(--red);
-      width: 20px; height: 20px; border-radius: 50%;
-      background: rgba(224,80,80,0.1); display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+    .mm-stat-divider { width: 1px; background: var(--border); }
+    .mm-stat-num {
+      font-family: var(--mono); font-size: 1.6rem; font-weight: 700;
+      letter-spacing: -0.03em; margin-bottom: 5px;
+      color: var(--text);
     }
-    .mm-pill-icon-green { color: var(--orange); background: rgba(35,196,140,0.12); }
-    .mm-pill-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); }
-    .mm-pill-val   { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; }
-    .mm-pill-arrow { font-size: 1rem; color: var(--text-3); flex-shrink: 0; }
+    .mm-stat-label {
+      font-family: var(--mono); font-size: 0.6rem; color: var(--text-3);
+      line-height: 1.5; text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    /* Feature accordion tabs */
+    .mm-ftabs { display: flex; flex-direction: column; gap: 10px; }
+    .mm-ftab {
+      border: 1.5px solid var(--border); border-radius: 10px;
+      overflow: hidden; cursor: pointer; transition: border-color 0.2s;
+      background: var(--bg-card);
+    }
+    .mm-ftab:hover { border-color: var(--text-3); }
+    .mm-ftab.mm-ftab-active { border-color: var(--orange); }
+
+    .mm-ftab-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px;
+    }
+    .mm-ftab-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mm-ftab-icon-product { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+    .mm-ftab-icon-ads     { background: rgba(59,130,246,0.1);  color: #3b82f6; }
+    .mm-ftab-title {
+      font-family: var(--mono); font-size: 0.85rem; font-weight: 700;
+      color: var(--text); flex: 1;
+    }
+    .mm-ftab-active .mm-ftab-title { color: var(--orange); }
+    .mm-ftab-arrow {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--text-4);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .mm-ftab-active .mm-ftab-arrow { transform: rotate(90deg); color: var(--orange); }
+
+    .mm-ftab-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+      padding: 0 16px;
+    }
+    .mm-ftab-active .mm-ftab-body { max-height: 200px; padding: 0 16px 14px; }
+
+    /* Mini table inside tab */
+    .mm-mini-rows { display: flex; flex-direction: column; }
+    .mm-mini-r {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      padding: 7px 10px;
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-2);
+      border-bottom: 1px solid var(--border-light); align-items: center;
+    }
+    .mm-mini-r:last-child { border-bottom: none; }
+    .mm-mini-r-head {
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--text-3);
+      background: var(--bg); border-radius: 6px 6px 0 0;
+    }
+    .mm-mini-r-win  { background: rgba(35,196,140,0.05); }
+    .mm-mini-r-lose { background: rgba(224,80,80,0.05); }
+
 
     /* Right image */
     .mm-scale-right {
       position: relative; border-radius: 14px; overflow: hidden;
-      align-self: center;
     }
     .mm-scale-img {
       width: 100%; height: auto; display: block;
@@ -1375,53 +1409,84 @@
         </div>
       </div>
 
-      <!-- Part 2: Scale what works / cut what doesn't -->
       <!-- Scale what works / Cut what doesn't -->
       <div class="mm-bottom">
         <div class="mm-scale-layout">
 
-          <!-- Left: text + feature bullets -->
+          <!-- Left -->
           <div class="mm-scale-left">
             <div class="sec-label" style="text-align:left;">PROFIT OPTIMIZATION</div>
-            <h2 style="text-align:left; font-size:clamp(1.5rem,3vw,2.1rem); margin-bottom:14px;">Scale what works.<br/>Cut what doesn't.</h2>
-            <p class="mm-scale-sub">Grow based on net profit — not just revenue.</p>
+            <h2 style="text-align:left; font-size:clamp(1.5rem,3vw,2.1rem); margin-bottom:24px;">Scale what works.<br/>Cut what doesn't.</h2>
 
-            <div class="mm-feature-list">
-              <div class="mm-feature-item">
-                <div class="mm-feature-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                </div>
-                <div>
-                  <div class="mm-feature-title">Product Analytics</div>
-                  <div class="mm-feature-desc">Spot your most profitable products & cut the ones quietly draining your margin.</div>
-                </div>
+            <!-- Numeric stat blocks -->
+            <div class="mm-stat-blocks">
+              <div class="mm-stat-block">
+                <div class="mm-stat-num mm-col-green">+108%</div>
+                <div class="mm-stat-label">Net profit growth<br/>in 6 months</div>
               </div>
-              <div class="mm-feature-item">
-                <div class="mm-feature-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                </div>
-                <div>
-                  <div class="mm-feature-title">Marketing Attribution</div>
-                  <div class="mm-feature-desc">Cut wasteful ad spend & scale profitably — unaffected by privacy constraints or cookie limits.</div>
-                </div>
+              <div class="mm-stat-divider"></div>
+              <div class="mm-stat-block">
+                <div class="mm-stat-num mm-col-red">−34%</div>
+                <div class="mm-stat-label">Wasted ad spend<br/>eliminated</div>
+              </div>
+              <div class="mm-stat-divider"></div>
+              <div class="mm-stat-block">
+                <div class="mm-stat-num">2×</div>
+                <div class="mm-stat-label">More profit, same<br/>revenue</div>
               </div>
             </div>
 
-            <!-- Stop / Start pill -->
-            <div class="mm-pill-row">
-              <div class="mm-pill mm-pill-bad">
-                <span class="mm-pill-icon">✕</span>
-                <div>
-                  <div class="mm-pill-label">Stop wasting</div>
-                  <div class="mm-pill-val mm-col-red">−$620 on Video 2</div>
+            <!-- Feature tabs -->
+            <div class="mm-ftabs">
+              <div class="mm-ftab mm-ftab-active" data-img="./images/product-analytics.png">
+                <div class="mm-ftab-header">
+                  <div class="mm-ftab-icon mm-ftab-icon-product">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  </div>
+                  <div class="mm-ftab-title">Product Analytics</div>
+                  <div class="mm-ftab-arrow">→</div>
+                </div>
+                <div class="mm-ftab-body">
+                  <div class="mm-mini-rows">
+                    <div class="mm-mini-r mm-mini-r-head">
+                      <span>Product</span><span>Net Margin</span><span>Net Profit</span>
+                    </div>
+                    <div class="mm-mini-r mm-mini-r-win">
+                      <span>👑 Air Classic Pro</span><span class="mm-col-green">20.3%</span><span class="mm-col-green">+$42,569</span>
+                    </div>
+                    <div class="mm-mini-r">
+                      <span>Hoodie Elite</span><span class="mm-col-green">14.1%</span><span class="mm-col-green">+$11,026</span>
+                    </div>
+                    <div class="mm-mini-r mm-mini-r-lose">
+                      <span>⚠ Tee Basic V1</span><span class="mm-col-red">−5.8%</span><span class="mm-col-red">−$1,281</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="mm-pill-arrow">→</div>
-              <div class="mm-pill mm-pill-good">
-                <span class="mm-pill-icon mm-pill-icon-green">✓</span>
-                <div>
-                  <div class="mm-pill-label">Start making</div>
-                  <div class="mm-pill-val mm-col-green">+$1,823 on Video 1</div>
+
+              <div class="mm-ftab" data-img="./images/advertising-tracking-dashboard-2.png">
+                <div class="mm-ftab-header">
+                  <div class="mm-ftab-icon mm-ftab-icon-ads">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                  </div>
+                  <div class="mm-ftab-title">Marketing Attribution</div>
+                  <div class="mm-ftab-arrow">→</div>
+                </div>
+                <div class="mm-ftab-body">
+                  <div class="mm-mini-rows">
+                    <div class="mm-mini-r mm-mini-r-head">
+                      <span>Campaign</span><span>Net Profit</span><span>ROAS</span>
+                    </div>
+                    <div class="mm-mini-r mm-mini-r-win">
+                      <span><span class="mm-ch-icon mm-ch-fb">f</span> Video 1</span><span class="mm-col-green">+$1,203</span><span class="mm-col-green">4.72×</span>
+                    </div>
+                    <div class="mm-mini-r">
+                      <span><span class="mm-ch-icon mm-ch-gg">G</span> Static 1</span><span class="mm-col-green">+$892</span><span class="mm-col-green">3.41×</span>
+                    </div>
+                    <div class="mm-mini-r mm-mini-r-lose">
+                      <span><span class="mm-ch-icon mm-ch-ms">▪</span> Video 2</span><span class="mm-col-red">−$620</span><span class="mm-col-red">0.72×</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1431,9 +1496,9 @@
             </div>
           </div>
 
-          <!-- Right: the screenshot image -->
+          <!-- Right: image -->
           <div class="mm-scale-right">
-            <img src="./images/scale_7cea86cc.webp" alt="Most Profitable Ads and Products dashboard" class="mm-scale-img" />
+            <img id="mm-scale-img" src="./images/scale_7cea86cc.webp" alt="TrueProfit analytics dashboard" class="mm-scale-img" />
           </div>
 
         </div>
@@ -1724,7 +1789,7 @@
   </footer>
 
   <script>
-    // Feature tabs
+    // Feature tabs (existing)
     const dd = [
       "Track revenue, costs, and net profit in real-time. Customize your dashboard to your needs.",
       "Auto-generated profit & loss statements for any time period. Export for your accountant in one click.",
@@ -1760,6 +1825,20 @@
         const i = q.parentElement, a = i.querySelector('.faq-a'), o = i.classList.contains('open');
         document.querySelectorAll('.faq-i').forEach(x => { x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = '0'; });
         if (!o) { i.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+      });
+    });
+    // Scale section: accordion feature tabs
+    document.querySelectorAll('.mm-ftab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.mm-ftab').forEach(t => t.classList.remove('mm-ftab-active'));
+        tab.classList.add('mm-ftab-active');
+        const img = tab.dataset.img;
+        if (img) {
+          const el = document.getElementById('mm-scale-img');
+          el.style.opacity = '0';
+          setTimeout(() => { el.src = img; el.style.opacity = '1'; }, 180);
+          el.style.transition = 'opacity 0.18s ease';
+        }
       });
     });
   </script>
