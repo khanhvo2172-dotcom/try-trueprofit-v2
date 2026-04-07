@@ -134,26 +134,82 @@
     }
     .cb-body { padding: 16px 20px; }
 
-    /* ── Terminal CTA ── */
-    .tcta { max-width: 440px; margin: 0 auto; text-align: left; }
-    .tcta .cb-body a {
-      display: block; font-family: var(--mono); font-size: 0.88rem;
-      font-weight: 600; padding: 12px 18px; border-radius: 6px;
+    /* ── Hero CTA Card ── */
+    .hero-cta-card {
+      max-width: 480px; margin: 32px auto 0;
+      display: flex; flex-direction: column; gap: 14px;
+      align-items: center;
+    }
+    .hero-cta-btns {
+      display: flex; gap: 10px; width: 100%;
+    }
+    .tcta-btn-primary {
+      flex: 1.6; display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.88rem; font-weight: 700;
+      padding: 14px 20px; border-radius: 8px;
       background: var(--text); color: var(--bg);
-      text-align: center; text-decoration: none;
+      text-decoration: none; white-space: nowrap;
+      letter-spacing: -0.01em;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
     }
-    .tcta .cb-body a:hover { background: #333; text-decoration: none; }
-    .tcta-meta {
+    .tcta-btn-primary:hover {
+      background: #222; text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .tcta-btn-secondary {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.82rem; font-weight: 600;
+      padding: 14px 16px; border-radius: 8px;
+      background: var(--bg-card); color: var(--text);
+      border: 1.5px solid var(--border);
+      text-decoration: none; white-space: nowrap;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .tcta-btn-secondary:hover {
+      border-color: var(--text-2); color: var(--text);
+      text-decoration: none; transform: translateY(-1px);
+    }
+
+    /* Trust line */
+    .hero-cta-trust {
       display: flex; align-items: center; justify-content: center;
-      gap: 16px; margin-top: 12px;
-      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
+      gap: 7px; flex-wrap: nowrap;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--text-3);
     }
-    .tcta-meta .stars { color: var(--orange); }
+    .hero-cta-rating { display: flex; align-items: center; gap: 5px; }
+    .hero-cta-rating strong { color: var(--text); }
+    .hero-cta-rating .stars { color: var(--orange); font-size: 0.68rem; letter-spacing: 1px; }
+    .hero-cta-dot { color: var(--text-4); }
     .appstore-link {
       color: var(--text) !important; font-weight: 700 !important;
-      text-decoration: underline !important; background: none !important;
-      padding: 0 !important; border-radius: 0 !important;
-      display: inline !important; font-size: inherit !important;
+      text-decoration: underline !important;
+    }
+
+    /* ── Hero Banner Slot ── */
+    .hero-banner-slot {
+      max-width: var(--max-w-wide); margin: 36px auto 0;
+      padding: 0 24px;
+    }
+    .hero-banner-inner {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+    }
+    .hero-banner-img { width: 100%; display: block; }
+    .hero-banner-placeholder {
+      height: 340px; background: var(--bg-card);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+    }
+    .hero-banner-label {
+      font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+      color: var(--text-3); border: 1.5px dashed var(--border);
+      padding: 6px 16px; border-radius: 6px;
+    }
+    .hero-banner-hint {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-4);
     }
 
     .hero-stats {
@@ -1055,17 +1111,31 @@
 
       <p class="hero-sub">Real-time net profit tracking for Shopify. COGS, shipping, ads, fees — see your true bottom line, automatically.</p>
 
-      <div class="cb tcta">
-        <div class="cb-top">
-          <span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span>
-          <span class="cb-tab">get-started.sh</span>
+      <div class="hero-cta-card">
+        <div class="hero-cta-btns">
+          <a href="https://trueprof.it/link/KfUchICah9" class="tcta-btn-primary">
+            Start 14-day free trial →
+          </a>
+          <a href="https://trueprof.it/link/KfUchICah9" class="tcta-btn-secondary">
+            View Demo Store
+          </a>
         </div>
-        <div class="cb-body">
-          <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
-          <div class="tcta-meta">
-            <span><span class="stars">★★★★★</span> 4.9 · <a href="https://trueprof.it/link/KfUchICah9" class="appstore-link">Shopify App Store</a></span>
-            <span>·</span>
-            <span>No credit card required</span>
+        <div class="hero-cta-trust">
+          <span class="hero-cta-rating"><span class="stars">★★★★★</span> <strong>4.9</strong> on <a href="https://trueprof.it/link/KfUchICah9" class="appstore-link">Shopify App Store</a></span>
+          <span class="hero-cta-dot">·</span>
+          <span>No credit card required</span>
+        </div>
+      </div>
+
+      <!-- Hero banner placeholder -->
+      <div class="hero-banner-slot">
+        <div class="hero-banner-inner">
+          <!-- Replace this div with your hero banner image:
+               <img src="./images/your-hero-banner.png" alt="TrueProfit Dashboard" class="hero-banner-img" />
+          -->
+          <div class="hero-banner-placeholder">
+            <span class="hero-banner-label">Hero Banner</span>
+            <span class="hero-banner-hint">Replace with your dashboard screenshot</span>
           </div>
         </div>
       </div>
