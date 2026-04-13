@@ -714,9 +714,17 @@
     .vs-pain:last-child { border-bottom: none; }
     .vs-x { color: var(--red); font-weight: 700; font-size: 0.72rem; flex-shrink: 0; }
     .vs-arrow {
-      display: flex; align-items: center; justify-content: center;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 10px;
       padding: 0 14px;
     }
+    .vs-arrow-label {
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      text-align: center; line-height: 1.4; white-space: nowrap;
+    }
+    .vs-arrow-label-top { color: var(--orange); font-size: 0.72rem; }
+    .vs-arrow-label-bot { color: var(--orange); }
     .vs-solution {
       display: flex; flex-direction: column; align-items: center;
       justify-content: center; text-align: center;
@@ -733,12 +741,16 @@
       line-height: 1.7; margin-bottom: 18px;
     }
     .vs-sol-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-    .vs-tag {
-      font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
-      color: var(--orange); padding: 4px 10px;
-      border: 1px solid rgba(35,196,140,0.25); border-radius: 100px;
-      background: rgba(35,196,140,0.06);
+    .vs-resolution {
+      margin-top: 28px; text-align: center;
+      font-family: var(--mono); font-size: 1rem; font-weight: 600;
+      color: var(--text-2); line-height: 1.6;
+      padding: 18px 24px;
+      background: var(--orange-dim);
+      border: 1px solid rgba(35,196,140,0.2);
+      border-radius: 10px;
     }
+    .vs-resolution-tp { color: var(--orange); font-weight: 700; }
 
     /* ── Iceberg ── */
     .ice-wrap{max-width:740px;margin:0 auto}
@@ -1251,7 +1263,7 @@
       <div class="hero-cta-card">
         <div class="hero-cta-btns">
           <a href="https://trueprof.it/link/KfUchICah9" class="tcta-btn-primary">
-            See My True Profit →
+            See My Real Profit →
           </a>
           <a href="https://app.trueprofit.io/demo?_bt=BAh7BkkiC19yYWlscwY6BkVUewhJIglkYXRhBjsAVEkiFmFwcC50cnVlcHJvZml0LmlvBjsARkkiCGV4cAY7AFRJIh0yMDI2LTA0LTEzVDE3OjIyOjQ4LjQ0MloGOwBUSSIIcHVyBjsAVEkiHnBlcm1hbmVudF9wYXNzd29yZF9ieXBhc3MGOwBG--831358f1bc826bfff0716120d901f5ad99d84038" class="tcta-btn-secondary">
             View Demo Store
@@ -1428,10 +1440,12 @@
 
         <!-- Arrow -->
         <div class="vs-arrow">
+          <div class="vs-arrow-label vs-arrow-label-top">TrueProfit</div>
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
             <circle cx="24" cy="24" r="23" stroke="var(--orange)" stroke-width="1.5"/>
             <path d="M18 24h12M26 19l5 5-5 5" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
+          <div class="vs-arrow-label vs-arrow-label-bot">handles it all</div>
         </div>
 
         <!-- After: dashboard image -->
@@ -1439,6 +1453,11 @@
           <img src="./images/hero-banner-3.webp" alt="TrueProfit Dashboard" class="vs-after-img" />
         </div>
       </div>
+
+      <div class="vs-resolution">
+        Stop guessing. Your real P&L — live, accurate, and always up to date.
+      </div>
+
     </div>
   </section>
   <!-- Cost Tracking Funnel -->
@@ -1602,7 +1621,7 @@
       </div>
 
       <div class="icta" style="margin-top:36px;">
-        <a href="https://trueprof.it/link/KfUchICah9">Start Free Trial →</a>
+        <a href="https://trueprof.it/link/KfUchICah9">Stop Guessing Your Profit →</a>
         <div class="note">All cost integrations included on every plan</div>
       </div>
     </div>
