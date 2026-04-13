@@ -254,17 +254,19 @@
     }
     .hm-card:hover { transform: translateY(-2px); border-color: var(--text-3); }
     .hm-card-accent {
-      background: var(--orange-dim);
-      border-color: rgba(35,196,140,0.25);
+      background: #1a4d35;
+      border-color: #2a7050;
     }
-    .hm-card-accent:hover { border-color: var(--orange); }
+    .hm-card-accent:hover { border-color: #3a9060; }
+    .hm-card-accent .hm-num { color: #fff; }
+    .hm-card-accent .hm-label { color: rgba(255,255,255,0.6); }
     .hm-num {
       font-family: var(--mono); font-weight: 700;
       font-size: 1.9rem; line-height: 1;
       color: var(--text); letter-spacing: -0.03em;
       margin-bottom: 6px;
     }
-    .hm-card-accent .hm-num { color: var(--orange); }
+
     .hm-sup {
       font-size: 0.9rem; font-weight: 700;
       vertical-align: super; letter-spacing: 0;
@@ -431,39 +433,152 @@
     .tcard-name { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; color: var(--text); }
     .tcard-role { font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); margin-top: 2px; }
 
-    /* ── Pricing (JSON) ── */
+    /* ── KOL Video Grid ── */
+    .vgrid-label {
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-3); text-align: center;
+      margin: 48px 0 20px;
+      display: flex; align-items: center; gap: 12px; justify-content: center;
+    }
+    .vgrid-label::before, .vgrid-label::after {
+      content: ''; flex: 1; max-width: 120px;
+      height: 1px; background: var(--border);
+    }
+    .vgrid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .vcard {
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .vcard:hover {
+      border-color: var(--orange);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    }
+    .vcard-embed {
+      position: relative; width: 100%; padding-bottom: 56.25%;
+      background: #000;
+    }
+    .vcard-embed iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    @media (max-width: 768px) {
+      .tgrid { grid-template-columns: 1fr; }
+      .vgrid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .vgrid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Pricing ── */
+    .pricing-section {
+      position: relative; overflow: hidden;
+      padding: 80px 0;
+      background: linear-gradient(135deg, #0a2a2a 0%, #0d3d35 40%, #0a2e2e 70%, #071f1f 100%);
+    }
+    .pricing-section::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(35,196,140,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(35,196,140,0.06) 0%, transparent 40%);
+    }
+    .pricing-section .sec-label { color: rgba(255,255,255,0.45); }
+    .pricing-section h2 { color: #fff; }
+    .pricing-section .sec-sub { color: rgba(255,255,255,0.55); }
+
     .pgrid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-top: 40px; position: relative; z-index: 1;
     }
     .pcard {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--r); overflow: hidden; position: relative;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px; padding: 28px 22px;
+      display: flex; flex-direction: column;
+      position: relative; transition: border-color 0.2s, transform 0.2s;
     }
-    .pcard.feat { border-color: var(--orange); }
+    .pcard:hover { border-color: rgba(35,196,140,0.4); transform: translateY(-2px); }
+    .pcard.feat {
+      border-color: #23c48c;
+      background: rgba(35,196,140,0.08);
+      box-shadow: 0 0 0 1px #23c48c, 0 20px 60px rgba(35,196,140,0.15);
+    }
     .pbadge {
-      position: absolute; top: 9px; right: 12px;
-      font-family: var(--mono); font-size: 0.58rem; font-weight: 700;
-      background: var(--orange); color: #fff; padding: 2px 8px;
-      border-radius: 3px; text-transform: uppercase;
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
+      background: #23c48c; color: #fff; padding: 4px 14px;
+      border-radius: 100px; text-transform: uppercase; letter-spacing: 0.06em;
+      white-space: nowrap;
     }
-    .pcard .cb-top { border-bottom: 1px solid var(--border-light); }
-    .pcard .cb-body { padding: 14px 18px; }
-    .json { font-family: var(--mono); font-size: 0.72rem; line-height: 1.85; }
-    .jb { color: var(--text-3); }
-    .jk { color: #2e6bd6; }
-    .js { color: var(--green); }
-    .jn { color: var(--orange); }
-    .ji { padding-left: 18px; }
-    .jii { padding-left: 34px; }
+    .pbadge::before { content: '✦ '; }
+    .p-icon {
+      width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, rgba(35,196,140,0.2), rgba(35,196,140,0.05));
+      border: 1px solid rgba(35,196,140,0.2);
+    }
+    .p-name {
+      font-family: var(--mono); font-size: 1rem; font-weight: 700;
+      color: #fff; margin-bottom: 6px;
+    }
+    .p-desc {
+      font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.45);
+      line-height: 1.5; margin-bottom: 20px; min-height: 42px;
+    }
+    .p-price {
+      display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px;
+    }
+    .p-price-num {
+      font-family: var(--mono); font-size: 2.4rem; font-weight: 700;
+      color: #fff; letter-spacing: -0.03em; line-height: 1;
+    }
+    .p-price-unit {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .p-orders {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: rgba(255,255,255,0.35); margin-bottom: 20px; line-height: 1.5;
+    }
     .pcta {
-      display: block; text-align: center; margin: 8px 18px 16px;
-      font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
-      padding: 9px; border-radius: 6px; text-decoration: none;
+      display: block; text-align: center;
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
+      padding: 11px; border-radius: 8px; text-decoration: none;
+      margin-bottom: 24px; transition: 0.15s; letter-spacing: 0.01em;
     }
-    .pcta.fill { background: var(--text); color: var(--bg); }
-    .pcta.fill:hover { background: #333; text-decoration: none; }
-    .pcta.line { border: 1px solid var(--border); color: var(--text-2); }
-    .pcta.line:hover { border-color: var(--orange); color: var(--orange); text-decoration: none; }
+    .pcta.line {
+      border: 1.5px solid rgba(35,196,140,0.5); color: #23c48c;
+    }
+    .pcta.line:hover { background: rgba(35,196,140,0.1); text-decoration: none; }
+    .pcta.fill {
+      background: #23c48c; color: #fff;
+      box-shadow: 0 4px 20px rgba(35,196,140,0.35);
+    }
+    .pcta.fill:hover { background: #1fb07d; text-decoration: none; }
+    .p-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 18px; }
+    .p-features { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .p-feat {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-family: var(--mono); font-size: 0.7rem;
+      color: rgba(255,255,255,0.7); line-height: 1.4;
+    }
+    .p-feat-check { color: #23c48c; font-size: 0.75rem; flex-shrink: 0; margin-top: 1px; }
+    .p-feat-x { color: rgba(224,80,80,0.8); font-size: 0.75rem; flex-shrink: 0; margin-top: 1px; }
+
+    @media (max-width: 900px) {
+      .pgrid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .pgrid { grid-template-columns: 1fr; }
+    }
 
     /* ── Compare ── */
     .ctbl {
@@ -487,8 +602,22 @@
 
     /* ── Inline CTA ── */
     .icta { text-align: center; margin-top: 24px; }
-    .icta a { font-family: var(--mono); font-size: 0.8rem; font-weight: 600; }
-    .icta .note { font-family: var(--mono); font-size: 0.66rem; color: var(--text-3); margin-top: 5px; }
+    .icta a {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 0.88rem; font-weight: 700;
+      color: #fff; background: #23c48c;
+      padding: 14px 32px; border-radius: 8px;
+      text-decoration: none; letter-spacing: 0.01em;
+      box-shadow: 0 4px 20px rgba(35,196,140,0.35), 0 1px 4px rgba(35,196,140,0.2);
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+    .icta a:hover {
+      background: #1fb07d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(35,196,140,0.45), 0 2px 6px rgba(35,196,140,0.25);
+      text-decoration: none; color: #fff;
+    }
+    .icta .note { font-family: var(--mono); font-size: 0.66rem; color: var(--text-3); margin-top: 10px; }
 
     /* ── FAQ ── */
     .faq { margin-top: 36px; max-width: var(--max-w); margin-left: auto; margin-right: auto; }
@@ -521,7 +650,7 @@
       letter-spacing: -0.02em; margin-bottom: 12px;
     }
     .bcta p { font-family: var(--mono); font-size: 0.88rem; color: var(--text-2); margin-bottom: 28px; }
-    .bcta .note { font-family: var(--mono); font-size: 0.66rem; color: var(--text-3); margin-top: 16px; }
+    .bcta-note { font-family: var(--mono); font-size: 0.66rem; color: var(--text-3); margin-top: 14px; }
 
     /* ── Footer ── */
     footer {
@@ -877,60 +1006,61 @@
     /* ── Make More Section ── */
     .mm-sec { background: var(--bg); }
 
-    /* Top: cards + growth */
+    /* Top: cards left, growth right — side by side */
     .mm-top {
-      display: flex; gap: 48px; align-items: flex-start;
-      margin-top: 44px; flex-wrap: wrap;
+      display: flex; gap: 48px; align-items: center;
+      margin-top: 44px;
     }
     .mm-cards-wrap {
-      position: relative; flex: 1; min-width: 280px;
+      position: relative; flex: 0 0 auto;
       display: flex; gap: 0;
     }
-    .mm-arrow-svg {
-      position: absolute; inset: 0; pointer-events: none; z-index: 0;
-    }
+    .mm-arrow-svg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    @media (max-width: 768px) { .mm-arrow-svg { display: none; } }
     .mm-arrow-svg svg { width: 100%; height: 100%; }
 
     .mm-card {
       position: relative; z-index: 1;
-      border-radius: 12px; padding: 20px 22px;
-      min-width: 155px; flex: 1;
+      border-radius: 14px; padding: 28px 28px;
+      width: 200px;
     }
     .mm-card-today {
       background: var(--bg-card); border: 1px solid var(--border);
-      margin-right: -10px;
+      margin-right: -12px; border-radius: 14px 0 0 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
     .mm-card-later {
       background: #1a4d35; border: 1.5px solid #2a7050;
-      box-shadow: 0 8px 32px rgba(35,196,140,0.18);
+      box-shadow: 0 12px 40px rgba(35,196,140,0.22);
+      border-radius: 14px;
     }
     .mm-badge {
       font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
       letter-spacing: 0.07em; text-transform: uppercase;
       background: var(--bg); color: var(--text-2);
       border: 1px solid var(--border); border-radius: 100px;
-      padding: 4px 12px; display: inline-block; margin-bottom: 14px;
+      padding: 4px 12px; display: inline-block; margin-bottom: 18px;
     }
     .mm-badge-green {
       background: rgba(35,196,140,0.18); color: #5fe0b0;
       border-color: rgba(35,196,140,0.3);
     }
-    .mm-lbl { font-family: var(--mono); font-size: 0.7rem; color: var(--text-3); }
-    .mm-lbl-dim { color: rgba(255,255,255,0.5); }
+    .mm-lbl { font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); }
+    .mm-lbl-dim { color: rgba(255,255,255,0.45); }
     .mm-val {
-      font-family: var(--mono); font-size: 1.5rem; font-weight: 700;
-      color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px;
+      font-family: var(--mono); font-size: 1.9rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.03em; margin-bottom: 4px;
     }
     .mm-val-white { color: #fff; }
-    .mm-sep { height: 1px; background: var(--border); margin: 12px 0; }
+    .mm-sep { height: 1px; background: var(--border); margin: 16px 0; }
     .mm-sep-dim { background: rgba(255,255,255,0.12); }
     .mm-row { display: flex; }
-    .mt8 { margin-top: 8px; }
+    .mt8 { margin-top: 10px; }
 
-    /* Growth panel */
+    /* Growth panel — fills right */
     .mm-growth-panel {
-      flex: 1; min-width: 220px;
-      display: flex; flex-direction: column; justify-content: center; gap: 16px;
+      flex: 1; min-width: 0;
+      display: flex; flex-direction: column; justify-content: center; gap: 20px;
     }
     .mm-growth-tag {
       font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
@@ -940,73 +1070,51 @@
     .mm-growth-row {
       display: flex; align-items: center; gap: 0;
       background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; overflow: hidden;
+      border-radius: 12px; overflow: hidden;
     }
     .mm-growth-item {
-      flex: 1; padding: 20px 18px; text-align: center;
+      flex: 1; padding: 28px 20px; text-align: center;
     }
     .mm-growth-line { width: 1px; background: var(--border); align-self: stretch; }
     .mm-growth-num {
-      font-family: var(--mono); font-size: 1.8rem; font-weight: 700;
+      font-family: var(--mono); font-size: 2.4rem; font-weight: 700;
       color: var(--text); letter-spacing: -0.03em;
     }
     .mm-growth-green { color: var(--orange); }
     .mm-growth-sub {
-      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
-      margin-top: 4px;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--text-3);
+      margin-top: 6px;
     }
     .mm-insight {
-      font-family: var(--mono); font-size: 0.78rem; color: var(--text-2);
+      font-family: var(--mono); font-size: 0.82rem; color: var(--text-2);
       background: var(--orange-dim); border: 1px solid rgba(35,196,140,0.15);
-      border-radius: 8px; padding: 12px 16px; line-height: 1.6; text-align: center;
+      border-radius: 10px; padding: 16px 20px; line-height: 1.6; text-align: center;
     }
     .mm-insight strong { color: var(--orange); }
 
+    @media (max-width: 768px) {
+      .mm-top { flex-direction: column; gap: 32px; align-items: stretch; }
+      .mm-cards-wrap { justify-content: center; }
+      .mm-card { width: 165px; padding: 22px 20px; }
+      .mm-val { font-size: 1.5rem; }
+      .mm-growth-num { font-size: 1.8rem; }
+    }
+
     /* Scale what works section */
     .mm-bottom { margin-top: 72px; }
-    .mm-scale-layout {
-      display: grid; grid-template-columns: 1fr 1.3fr;
-      gap: 56px; align-items: center;
-    }
-    .mm-scale-left { display: flex; flex-direction: column; gap: 0; }
-    .mm-scale-sub {
-      font-family: var(--mono); font-size: 0.82rem; color: var(--text-2);
-      margin-bottom: 24px; line-height: 1.7;
-    }
 
-    /* Numeric stat blocks */
-    .mm-stat-blocks {
-      display: flex; align-items: stretch;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; overflow: hidden;
-      margin-bottom: 24px;
+    /* Row 1: 2 tables side by side */
+    .mm-tables-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 20px;
     }
-    .mm-stat-block {
-      flex: 1; padding: 18px 16px; text-align: center;
-    }
-    .mm-stat-divider { width: 1px; background: var(--border); }
-    .mm-stat-num {
-      font-family: var(--mono); font-size: 1.6rem; font-weight: 700;
-      letter-spacing: -0.03em; margin-bottom: 5px;
-      color: var(--text);
-    }
-    .mm-stat-label {
-      font-family: var(--mono); font-size: 0.6rem; color: var(--text-3);
-      line-height: 1.5; text-transform: uppercase; letter-spacing: 0.03em;
-    }
-    /* Feature accordion tabs */
-    .mm-ftabs { display: flex; flex-direction: column; gap: 10px; }
     .mm-ftab {
-      border: 1.5px solid var(--border); border-radius: 10px;
-      overflow: hidden; cursor: pointer; transition: border-color 0.2s;
-      background: var(--bg-card);
+      border: 1.5px solid var(--orange); border-radius: 12px;
+      overflow: hidden; background: var(--bg-card);
     }
-    .mm-ftab:hover { border-color: var(--text-3); }
-    .mm-ftab.mm-ftab-active { border-color: var(--orange); }
-
     .mm-ftab-header {
       display: flex; align-items: center; gap: 12px;
-      padding: 14px 16px;
+      padding: 14px 16px; border-bottom: 1px solid var(--border-light);
     }
     .mm-ftab-icon {
       width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
@@ -1016,27 +1124,18 @@
     .mm-ftab-icon-ads     { background: rgba(59,130,246,0.1);  color: #3b82f6; }
     .mm-ftab-title {
       font-family: var(--mono); font-size: 0.85rem; font-weight: 700;
-      color: var(--text); flex: 1;
+      color: var(--orange); flex: 1;
     }
-    .mm-ftab-active .mm-ftab-title { color: var(--orange); }
-    .mm-ftab-arrow {
-      font-family: var(--mono); font-size: 0.75rem; color: var(--text-4);
-      transition: transform 0.2s, color 0.2s;
-    }
-    .mm-ftab-active .mm-ftab-arrow { transform: rotate(90deg); color: var(--orange); }
 
-    .mm-ftab-body {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.2s;
-      padding: 0 16px;
-    }
-    .mm-ftab-active .mm-ftab-body { max-height: 200px; padding: 0 16px 14px; }
+    /* Table body — always visible */
+    .mm-ftab-body { padding: 0 16px; }
+    .mm-ftab-body-always { padding: 0 16px 14px; }
 
-    /* Mini table inside tab */
+    /* Mini table */
     .mm-mini-rows { display: flex; flex-direction: column; }
     .mm-mini-r {
       display: grid; grid-template-columns: 2fr 1fr 1fr;
-      padding: 7px 10px;
+      padding: 8px 10px;
       font-family: var(--mono); font-size: 0.68rem; color: var(--text-2);
       border-bottom: 1px solid var(--border-light); align-items: center;
     }
@@ -1044,27 +1143,48 @@
     .mm-mini-r-head {
       font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.05em; color: var(--text-3);
-      background: var(--bg); border-radius: 6px 6px 0 0;
+      background: var(--bg); border-radius: 4px 4px 0 0;
+      padding-top: 10px; padding-bottom: 10px;
     }
     .mm-mini-r-win  { background: rgba(35,196,140,0.05); }
     .mm-mini-r-lose { background: rgba(224,80,80,0.05); }
 
-
-    /* Right image */
-    .mm-scale-right {
-      position: relative; border-radius: 14px; overflow: hidden;
+    /* Row 2: full-width image */
+    .mm-scale-img-wrap {
+      border-radius: 14px; overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.10);
     }
     .mm-scale-img {
       width: 100%; height: auto; display: block;
-      border-radius: 14px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.10);
+    }
+
+    /* Row 3: stat blocks */
+    .mm-stat-blocks {
+      display: flex; align-items: stretch;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .mm-stat-block {
+      flex: 1; padding: 24px 16px; text-align: center;
+    }
+    .mm-stat-divider { width: 1px; background: var(--border); }
+    .mm-stat-num {
+      font-family: var(--mono); font-size: 1.8rem; font-weight: 700;
+      letter-spacing: -0.03em; margin-bottom: 6px;
+      color: var(--text);
+    }
+    .mm-stat-label {
+      font-family: var(--mono); font-size: 0.62rem; color: var(--text-3);
+      line-height: 1.5; text-transform: uppercase; letter-spacing: 0.03em;
     }
 
     @media (max-width: 768px) {
       .mm-top { flex-direction: column; gap: 28px; }
       .mm-cards-wrap { max-width: 100%; }
-      .mm-scale-layout { grid-template-columns: 1fr; gap: 32px; }
-      .mm-scale-right { order: -1; }
+      .mm-tables-row { grid-template-columns: 1fr; gap: 12px; }
+      .mm-stat-blocks { flex-direction: column; }
+      .mm-stat-divider { width: auto; height: 1px; }
     }
 
     /* Shared mm color utilities */
@@ -1553,96 +1673,92 @@
 
       <!-- Scale what works / Cut what doesn't -->
       <div class="mm-bottom">
-        <div class="mm-scale-layout">
 
-          <!-- Left -->
-          <div class="mm-scale-left">
-            <h2 style="text-align:left; font-size:clamp(1.5rem,3vw,2.1rem); margin-bottom:24px;">Scale what works.<br/>Cut what doesn't.</h2>
+        <h2 style="text-align:center; font-size:clamp(1.5rem,3vw,2.1rem); margin-bottom:10px;">Scale what works.<br/>Cut what doesn't.</h2>
+        <p class="sec-sub" style="margin-bottom:32px;">Know exactly which products and campaigns make money — and kill the ones that don't.</p>
 
-            <!-- Numeric stat blocks -->
-            <div class="mm-stat-blocks">
-              <div class="mm-stat-block">
-                <div class="mm-stat-num mm-col-green">+108%</div>
-                <div class="mm-stat-label">Net profit growth<br/>in 6 months</div>
+        <!-- Row 1: 2 tables side by side -->
+        <div class="mm-tables-row">
+
+          <div class="mm-ftab mm-ftab-active">
+            <div class="mm-ftab-header">
+              <div class="mm-ftab-icon mm-ftab-icon-product">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
               </div>
-              <div class="mm-stat-divider"></div>
-              <div class="mm-stat-block">
-                <div class="mm-stat-num mm-col-green">−34%</div>
-                <div class="mm-stat-label">Wasted ad spend<br/>eliminated</div>
-              </div>
-              <div class="mm-stat-divider"></div>
-              <div class="mm-stat-block">
-                <div class="mm-stat-num mm-col-green">2×</div>
-                <div class="mm-stat-label">More profit, same<br/>revenue</div>
-              </div>
+              <div class="mm-ftab-title">Product Analytics</div>
             </div>
-
-            <!-- Feature tabs -->
-            <div class="mm-ftabs">
-              <div class="mm-ftab mm-ftab-active" data-img="./images/product-analytics.png">
-                <div class="mm-ftab-header">
-                  <div class="mm-ftab-icon mm-ftab-icon-product">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                  </div>
-                  <div class="mm-ftab-title">Product Analytics</div>
-                  <div class="mm-ftab-arrow">→</div>
+            <div class="mm-ftab-body mm-ftab-body-always">
+              <div class="mm-mini-rows">
+                <div class="mm-mini-r mm-mini-r-head">
+                  <span>Product</span><span>Net Margin</span><span>Net Profit</span>
                 </div>
-                <div class="mm-ftab-body">
-                  <div class="mm-mini-rows">
-                    <div class="mm-mini-r mm-mini-r-head">
-                      <span>Product</span><span>Net Margin</span><span>Net Profit</span>
-                    </div>
-                    <div class="mm-mini-r mm-mini-r-win">
-                      <span>👑 Air Classic Pro</span><span class="mm-col-green">20.3%</span><span class="mm-col-green">+$42,569</span>
-                    </div>
-                    <div class="mm-mini-r">
-                      <span>Hoodie Elite</span><span class="mm-col-green">14.1%</span><span class="mm-col-green">+$11,026</span>
-                    </div>
-                    <div class="mm-mini-r mm-mini-r-lose">
-                      <span>⚠ Tee Basic V1</span><span class="mm-col-red">−5.8%</span><span class="mm-col-red">−$1,281</span>
-                    </div>
-                  </div>
+                <div class="mm-mini-r mm-mini-r-win">
+                  <span>👑 Air Classic Pro</span><span class="mm-col-green">20.3%</span><span class="mm-col-green">+$42,569</span>
+                </div>
+                <div class="mm-mini-r">
+                  <span>Hoodie Elite</span><span class="mm-col-green">14.1%</span><span class="mm-col-green">+$11,026</span>
+                </div>
+                <div class="mm-mini-r mm-mini-r-lose">
+                  <span>⚠ Tee Basic V1</span><span class="mm-col-red">−5.8%</span><span class="mm-col-red">−$1,281</span>
                 </div>
               </div>
-
-              <div class="mm-ftab" data-img="./images/advertising-tracking-dashboard-2.png">
-                <div class="mm-ftab-header">
-                  <div class="mm-ftab-icon mm-ftab-icon-ads">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                  </div>
-                  <div class="mm-ftab-title">Marketing Attribution</div>
-                  <div class="mm-ftab-arrow">→</div>
-                </div>
-                <div class="mm-ftab-body">
-                  <div class="mm-mini-rows">
-                    <div class="mm-mini-r mm-mini-r-head">
-                      <span>Campaign</span><span>Net Profit</span><span>ROAS</span>
-                    </div>
-                    <div class="mm-mini-r mm-mini-r-win">
-                      <span><span class="mm-ch-icon mm-ch-fb">f</span> Video 1</span><span class="mm-col-green">+$1,203</span><span class="mm-col-green">4.72×</span>
-                    </div>
-                    <div class="mm-mini-r">
-                      <span><span class="mm-ch-icon mm-ch-gg">G</span> Static 1</span><span class="mm-col-green">+$892</span><span class="mm-col-green">3.41×</span>
-                    </div>
-                    <div class="mm-mini-r mm-mini-r-lose">
-                      <span><span class="mm-ch-icon mm-ch-ms">▪</span> Video 2</span><span class="mm-col-red">−$620</span><span class="mm-col-red">0.72×</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="icta" style="text-align:left; margin-top:28px;">
-              <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
             </div>
           </div>
 
-          <!-- Right: image -->
-          <div class="mm-scale-right">
-            <img id="mm-scale-img" src="./images/scale_7cea86cc.webp" alt="TrueProfit analytics dashboard" class="mm-scale-img" />
+          <div class="mm-ftab mm-ftab-active">
+            <div class="mm-ftab-header">
+              <div class="mm-ftab-icon mm-ftab-icon-ads">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              </div>
+              <div class="mm-ftab-title">Marketing Attribution</div>
+            </div>
+            <div class="mm-ftab-body mm-ftab-body-always">
+              <div class="mm-mini-rows">
+                <div class="mm-mini-r mm-mini-r-head">
+                  <span>Campaign</span><span>Net Profit</span><span>ROAS</span>
+                </div>
+                <div class="mm-mini-r mm-mini-r-win">
+                  <span><span class="mm-ch-icon mm-ch-fb">f</span> Video 1</span><span class="mm-col-green">+$1,203</span><span class="mm-col-green">4.72×</span>
+                </div>
+                <div class="mm-mini-r">
+                  <span><span class="mm-ch-icon mm-ch-gg">G</span> Static 1</span><span class="mm-col-green">+$892</span><span class="mm-col-green">3.41×</span>
+                </div>
+                <div class="mm-mini-r mm-mini-r-lose">
+                  <span><span class="mm-ch-icon mm-ch-ms">▪</span> Video 2</span><span class="mm-col-red">−$620</span><span class="mm-col-red">0.72×</span>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
+
+        <!-- Row 2: full-width image -->
+        <div class="mm-scale-img-wrap">
+          <img src="./images/scale_7cea86cc.webp" alt="TrueProfit analytics dashboard" class="mm-scale-img" />
+        </div>
+
+        <!-- Row 3: 3 stat cells -->
+        <div class="mm-stat-blocks">
+          <div class="mm-stat-block">
+            <div class="mm-stat-num mm-col-green">+108%</div>
+            <div class="mm-stat-label">Net profit growth<br/>in 6 months</div>
+          </div>
+          <div class="mm-stat-divider"></div>
+          <div class="mm-stat-block">
+            <div class="mm-stat-num mm-col-green">−34%</div>
+            <div class="mm-stat-label">Wasted ad spend<br/>eliminated</div>
+          </div>
+          <div class="mm-stat-divider"></div>
+          <div class="mm-stat-block">
+            <div class="mm-stat-num mm-col-green">2×</div>
+            <div class="mm-stat-label">More profit, same<br/>revenue</div>
+          </div>
+        </div>
+
+        <div class="icta" style="margin-top:32px;">
+          <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
+        </div>
+
       </div><!-- /mm-bottom -->
 
       <div class="icta" style="margin-top:40px;">
@@ -1688,94 +1804,96 @@
   </section>
 
   <!-- Pricing -->
-  <section class="sec" id="pricing">
-    <div class="w">
-      <div class="sec-label">PRICING</div>
-      <h2>Four plans. Pick yours.</h2>
-      <p class="sec-sub">14-day free trial on every plan. No credit card required.</p>
+  <section class="pricing-section" id="pricing">
+    <div class="w-wide">
+      <div class="sec-label" style="text-align:center;">PRICING</div>
+      <h2 style="text-align:center;">Four plans. Pick yours.</h2>
+      <p class="sec-sub" style="text-align:center;">14-day free trial on every plan. No credit card required.</p>
 
       <div class="pgrid">
+
+        <!-- Basic -->
         <div class="pcard">
-          <div class="cb-top"><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-tab">basic-plan.json</span></div>
-          <div class="cb-body"><div class="json">
-            <div><span class="jb">{</span></div>
-            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Basic"</span>,</div>
-            <div class="ji"><span class="jk">"price"</span>: <span class="jn">35</span>,</div>
-            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
-            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">300</span>,</div>
-            <div class="ji"><span class="jk">"features"</span>: [</div>
-            <div class="jii"><span class="js">"14-day free trial"</span>,</div>
-            <div class="jii"><span class="js">"Realtime profit dashboard"</span>,</div>
-            <div class="jii"><span class="js">"Customer Lifetime Value"</span>,</div>
-            <div class="jii"><span class="js">"Quantity-based COGS"</span>,</div>
-            <div class="jii"><span class="js">"Custom Costs"</span></div>
-            <div class="ji">]</div>
-            <div><span class="jb">}</span></div>
-          </div></div>
+          <div class="p-icon">💡</div>
+          <div class="p-name">Basic</div>
+          <div class="p-desc">The essential features to track your store's net profit.</div>
+          <div class="p-price">
+            <span class="p-price-num">$35</span>
+            <span class="p-price-unit">/month</span>
+          </div>
+          <div class="p-orders">300 orders · $0.3 per extra order<br/>Maximum surcharge: $300</div>
           <a href="https://trueprof.it/link/KfUchICah9" class="pcta line">Start 14 Days Free</a>
+          <div class="p-divider"></div>
+          <div class="p-features">
+            <div class="p-feat"><span class="p-feat-check">✓</span> Realtime profit dashboard</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Customer Lifetime Value</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Quantity-based COGS</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Custom Costs</div>
+            <div class="p-feat"><span class="p-feat-x">✕</span> Product Analytics</div>
+          </div>
         </div>
 
+        <!-- Advanced -->
         <div class="pcard">
-          <div class="cb-top"><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-tab">advanced-plan.json</span></div>
-          <div class="cb-body"><div class="json">
-            <div><span class="jb">{</span></div>
-            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Advanced"</span>,</div>
-            <div class="ji"><span class="jk">"price"</span>: <span class="jn">60</span>,</div>
-            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
-            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">600</span>,</div>
-            <div class="ji"><span class="jk">"features"</span>: [</div>
-            <div class="jii"><span class="js">"Everything in Basic"</span>,</div>
-            <div class="jii"><span class="js">"Product Analytics"</span>,</div>
-            <div class="jii"><span class="js">"P&amp;L Report"</span>,</div>
-            <div class="jii"><span class="js">"Ad Sync Custom Rules"</span></div>
-            <div class="ji">]</div>
-            <div><span class="jb">}</span></div>
-          </div></div>
+          <div class="p-icon">🚀</div>
+          <div class="p-name">Advanced</div>
+          <div class="p-desc">The power to grow with data-based decisions.</div>
+          <div class="p-price">
+            <span class="p-price-num">$60</span>
+            <span class="p-price-unit">/month</span>
+          </div>
+          <div class="p-orders">600 orders · $0.2 per extra order<br/>Maximum surcharge: $500</div>
           <a href="https://trueprof.it/link/KfUchICah9" class="pcta line">Start 14 Days Free</a>
+          <div class="p-divider"></div>
+          <div class="p-features">
+            <div class="p-feat"><span class="p-feat-check">✓</span> Everything in Basic, plus:</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Product Analytics</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> P&amp;L Report</div>
+            <div class="p-feat"><span class="p-feat-x">✕</span> Ad Sync Custom Rules</div>
+          </div>
         </div>
 
+        <!-- Ultimate -->
         <div class="pcard feat">
           <div class="pbadge">Recommended</div>
-          <div class="cb-top"><span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span><span class="cb-tab">ultimate-plan.json</span></div>
-          <div class="cb-body"><div class="json">
-            <div><span class="jb">{</span></div>
-            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Ultimate"</span>,</div>
-            <div class="ji"><span class="jk">"price"</span>: <span class="jn">100</span>,</div>
-            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
-            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">1500</span>,</div>
-            <div class="ji"><span class="jk">"features"</span>: [</div>
-            <div class="jii"><span class="js">"Everything in Advanced"</span>,</div>
-            <div class="jii"><span class="js">"Ad Sync Custom Rules"</span>,</div>
-            <div class="jii"><span class="js">"Unlimited COGS Zones"</span>,</div>
-            <div class="jii"><span class="js">"Marketing Attribution"</span></div>
-            <div class="ji">]</div>
-            <div><span class="jb">}</span></div>
-          </div></div>
+          <div class="p-icon">⚡</div>
+          <div class="p-name">Ultimate</div>
+          <div class="p-desc">The insights to scale your businesses globally.</div>
+          <div class="p-price">
+            <span class="p-price-num">$100</span>
+            <span class="p-price-unit">/month</span>
+          </div>
+          <div class="p-orders">1500 orders · $0.1 per extra order<br/>Maximum surcharge: $700</div>
           <a href="https://trueprof.it/link/KfUchICah9" class="pcta fill">Start 14 Days Free</a>
+          <div class="p-divider"></div>
+          <div class="p-features">
+            <div class="p-feat"><span class="p-feat-check">✓</span> Everything in Advanced, plus:</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Ad Sync Custom Rules</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Unlimited COGS Zones</div>
+            <div class="p-feat"><span class="p-feat-x">✕</span> Marketing Attribution</div>
+          </div>
         </div>
 
+        <!-- Enterprise -->
         <div class="pcard">
-          <div class="cb-top"><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-dot gray"></span><span class="cb-tab">enterprise-plan.json</span></div>
-          <div class="cb-body"><div class="json">
-            <div><span class="jb">{</span></div>
-            <div class="ji"><span class="jk">"plan"</span>: <span class="js">"Enterprise"</span>,</div>
-            <div class="ji"><span class="jk">"price"</span>: <span class="jn">200</span>,</div>
-            <div class="ji"><span class="jk">"currency"</span>: <span class="js">"USD/month"</span>,</div>
-            <div class="ji"><span class="jk">"orders"</span>: <span class="jn">3500</span>,</div>
-            <div class="ji"><span class="jk">"features"</span>: [</div>
-            <div class="jii"><span class="js">"Everything in Ultimate"</span>,</div>
-            <div class="jii"><span class="js">"Unlimited Team Members"</span>,</div>
-            <div class="jii"><span class="js">"Prioritized Support"</span></div>
-            <div class="ji">]</div>
-            <div><span class="jb">}</span></div>
-          </div></div>
+          <div class="p-icon">🏆</div>
+          <div class="p-name">Enterprise</div>
+          <div class="p-desc">The complete package for elite sellers and brands.</div>
+          <div class="p-price">
+            <span class="p-price-num">$200</span>
+            <span class="p-price-unit">/month</span>
+          </div>
+          <div class="p-orders">3500 orders · $0.07 per extra order<br/>Maximum surcharge: $1000</div>
           <a href="https://trueprof.it/link/KfUchICah9" class="pcta line">Start 14 Days Free</a>
+          <div class="p-divider"></div>
+          <div class="p-features">
+            <div class="p-feat"><span class="p-feat-check">✓</span> Everything in Ultimate, plus:</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Marketing Attribution</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Unlimited Team Members</div>
+            <div class="p-feat"><span class="p-feat-check">✓</span> Prioritized Support</div>
+          </div>
         </div>
-      </div>
 
-      <div class="icta">
-        <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
-        <div class="note">14-day free trial | Cancel anytime</div>
       </div>
     </div>
   </section>
@@ -1816,6 +1934,42 @@
           </div>
         </div>
       </div>
+
+      <!-- KOL Videos -->
+      <div class="vgrid-label">Featured by creators</div>
+      <div class="vgrid">
+        <div class="vcard">
+          <div class="vcard-embed">
+            <iframe src="https://www.youtube.com/embed/DfO81cOoU6I" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="vcard">
+          <div class="vcard-embed">
+            <iframe src="https://www.youtube.com/embed/vZe0CgAws40" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="vcard">
+          <div class="vcard-embed">
+            <iframe src="https://www.youtube.com/embed/GbdjGeUIPrk" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="vcard">
+          <div class="vcard-embed">
+            <iframe src="https://www.youtube.com/embed/LAxczK_7MHA" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="vcard">
+          <div class="vcard-embed">
+            <iframe src="https://www.youtube.com/embed/yRRIGUSD_F8" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="vcard">
+          <div class="vcard-embed">
+            <iframe src="https://www.youtube.com/embed/VlR7B_tDF0o" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1894,19 +2048,11 @@
   <section class="bcta">
     <div class="w">
       <h2>Stop guessing. Start profiting.</h2>
-      <p>Join 5,000+ Shopify merchants tracking their true net profit.</p>
-
-      <div class="cb tcta" style="margin:0 auto;">
-        <div class="cb-top">
-          <span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span>
-          <span class="cb-tab">start-profiting.sh</span>
-        </div>
-        <div class="cb-body">
-          <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
-        </div>
+      <p>Join 70,000+ Shopify merchants tracking their true net profit.</p>
+      <div class="icta" style="margin-top:0;">
+        <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
       </div>
-
-      <div class="note">No credit card required · 30-second install · Cancel anytime</div>
+      <div class="bcta-note">No credit card required · 30-second install · Cancel anytime</div>
     </div>
   </section>
 
