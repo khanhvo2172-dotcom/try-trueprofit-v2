@@ -434,47 +434,57 @@
     .tcard-role { font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); margin-top: 2px; }
 
     /* ── KOL Video Grid ── */
-    .vgrid-label {
-      font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-3); text-align: center;
-      margin: 48px 0 20px;
-      display: flex; align-items: center; gap: 12px; justify-content: center;
+    .vgrid-header { text-align: center; margin: 52px 0 8px; }
+    .vgrid-header h3 {
+      font-family: var(--mono); font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 700; letter-spacing: -0.02em; color: var(--text);
+      margin-bottom: 8px;
     }
-    .vgrid-label::before, .vgrid-label::after {
-      content: ''; flex: 1; max-width: 120px;
-      height: 1px; background: var(--border);
+    .vgrid-header p {
+      font-family: var(--mono); font-size: 0.82rem; color: var(--text-2);
+      max-width: 480px; margin: 0 auto; line-height: 1.6;
     }
     .vgrid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 28px; margin-top: 32px;
     }
     .vcard {
-      border-radius: 12px; overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-    .vcard:hover {
-      border-color: var(--orange);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      display: flex; flex-direction: column; gap: 14px;
     }
     .vcard-embed {
       position: relative; width: 100%; padding-bottom: 56.25%;
-      background: #000;
+      background: #000; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     }
     .vcard-embed iframe {
       position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      border: none;
+      width: 100%; height: 100%; border: none;
     }
-    @media (max-width: 768px) {
-      .tgrid { grid-template-columns: 1fr; }
-      .vgrid { grid-template-columns: 1fr 1fr; }
+    .vcard-meta {
+      display: flex; align-items: center; gap: 10px; padding: 0 4px;
     }
-    @media (max-width: 480px) {
-      .vgrid { grid-template-columns: 1fr; }
+    .vcard-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--border); flex-shrink: 0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
+      color: var(--text-2); background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+    .vcard-info { flex: 1; }
+    .vcard-name {
+      font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
+      color: var(--text); display: flex; align-items: center; gap: 5px;
+    }
+    .vcard-check {
+      color: #23c48c; font-size: 0.7rem;
+    }
+    .vcard-subs {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--text-3);
+      margin-top: 2px;
+    }
+    @media (max-width: 640px) {
+      .vgrid { grid-template-columns: 1fr; gap: 24px; }
     }
 
     /* ── Pricing ── */
@@ -669,14 +679,18 @@
 
     /* ── Before vs After ── */
     .vs-grid {
-      display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin-top: 36px;
+      display: grid; grid-template-columns: 1fr auto 1.4fr; gap: 0; margin-top: 36px;
       align-items: stretch;
     }
     .vs-card {
       border-radius: var(--r); overflow: hidden;
       border: 1px solid var(--border); background: var(--bg-card);
     }
-    .vs-after { border-color: var(--orange); }
+    .vs-after { border-color: var(--orange); border-radius: 14px; overflow: hidden; }
+    .vs-after-img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      border-radius: 14px;
+    }
     .vs-header {
       display: flex; align-items: center; gap: 10px;
       padding: 16px 20px; border-bottom: 1px solid var(--border-light);
@@ -936,6 +950,8 @@
     /* ── Responsive ── */
     @media (max-width: 768px) {
       .vs-grid { grid-template-columns: 1fr; }
+      .vs-arrow svg { transform: rotate(90deg); }
+      .vs-after-img { max-height: 320px; object-fit: cover; }
       .vs-arrow { padding: 12px 0; }
       .vs-arrow svg { transform: rotate(90deg); }
       .tgrid { grid-template-columns: 1fr; }
@@ -1164,6 +1180,7 @@
       display: flex; align-items: stretch;
       background: var(--bg-card); border: 1px solid var(--border);
       border-radius: 12px; overflow: hidden;
+      margin-bottom: 32px;
     }
     .mm-stat-block {
       flex: 1; padding: 24px 16px; text-align: center;
@@ -1376,7 +1393,7 @@
   </section>
 <!-- Before vs After -->
   <section class="sec">
-    <div class="w">
+    <div class="w-wide">
       <h2>Struggle to track your <em>Profit & Expenses</em> using Spreadsheets & Shopify-Built in Report?</h2>
 
       <div class="vs-grid">
@@ -1417,28 +1434,9 @@
           </svg>
         </div>
 
-        <!-- After -->
+        <!-- After: dashboard image -->
         <div class="vs-card vs-after">
-          <div class="vs-header">
-            <span class="vs-tp-logo">T</span>
-            <span class="vs-title">TrueProfit</span>
-          </div>
-          <div class="vs-solution">
-            <div class="vs-sol-icon">
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                <circle cx="28" cy="28" r="27" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.3"/>
-                <circle cx="28" cy="28" r="18" fill="var(--orange)" opacity="0.1"/>
-                <path d="M20 28l5.5 5.5L37 22" stroke="var(--orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="vs-sol-text">We handle <strong>all of it</strong></div>
-            <div class="vs-sol-sub">Net profit, COGS, shipping, ads,<br/>fees — tracked automatically, in real time.</div>
-            <div class="vs-sol-tags">
-              <span class="vs-tag">Auto-synced</span>
-              <span class="vs-tag">Real-time</span>
-              <span class="vs-tag">Zero manual work</span>
-            </div>
-          </div>
+          <img src="./images/hero-banner-3.webp" alt="TrueProfit Dashboard" class="vs-after-img" />
         </div>
       </div>
     </div>
@@ -1542,8 +1540,7 @@
         <!-- Center: TrueProfit Machine -->
         <div class="funnel-center">
           <div class="funnel-machine">
-            <div class="fm-logo">T</div>
-            <div class="fm-title">TrueProfit</div>
+            <img src="./images/logo-trueprofit.png" alt="TrueProfit" style="width:80px; height:auto; display:block; margin:0 auto 12px;" />
             <div class="fm-sub">Processes every cost<br/>layer automatically</div>
           </div>
         </div>
@@ -1674,7 +1671,7 @@
       <!-- Scale what works / Cut what doesn't -->
       <div class="mm-bottom">
 
-        <h2 style="text-align:center; font-size:clamp(1.5rem,3vw,2.1rem); margin-bottom:10px;">Scale what works.<br/>Cut what doesn't.</h2>
+        <h2>Scale what works.<br/>Cut what doesn't.</h2>
         <p class="sec-sub" style="margin-bottom:32px;">Know exactly which products and campaigns make money — and kill the ones that don't.</p>
 
         <!-- Row 1: 3 stat cells -->
@@ -1960,38 +1957,90 @@
       </div>
 
       <!-- KOL Videos -->
-      <div class="vgrid-label">Featured by creators</div>
+      <div class="vgrid-header">
+        <h3>Why the big guys vouch for TrueProfit</h3>
+        <p>When it comes to profit tracking and business scaling, TrueProfit is the go-to platform of the top performers.</p>
+      </div>
       <div class="vgrid">
+
         <div class="vcard">
           <div class="vcard-embed">
-            <iframe src="https://www.youtube.com/embed/DfO81cOoU6I" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/DfO81cOoU6I" title="Jordan Brown - TrueProfit" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="vcard-meta">
+            <div class="vcard-avatar">JB</div>
+            <div class="vcard-info">
+              <div class="vcard-name">Jordan Brown <span class="vcard-check">✔</span></div>
+              <div class="vcard-subs">260K subscribers</div>
+            </div>
           </div>
         </div>
+
         <div class="vcard">
           <div class="vcard-embed">
-            <iframe src="https://www.youtube.com/embed/vZe0CgAws40" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/vZe0CgAws40" title="Marcos Molla - TrueProfit" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="vcard-meta">
+            <div class="vcard-avatar">MM</div>
+            <div class="vcard-info">
+              <div class="vcard-name">Marcos Molla <span class="vcard-check">✔</span></div>
+              <div class="vcard-subs">79K subscribers</div>
+            </div>
           </div>
         </div>
+
         <div class="vcard">
           <div class="vcard-embed">
-            <iframe src="https://www.youtube.com/embed/GbdjGeUIPrk" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/GbdjGeUIPrk" title="Andy Stauring - TrueProfit" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="vcard-meta">
+            <div class="vcard-avatar">AS</div>
+            <div class="vcard-info">
+              <div class="vcard-name">Andy Stauring <span class="vcard-check">✔</span></div>
+              <div class="vcard-subs">123K subscribers</div>
+            </div>
           </div>
         </div>
+
         <div class="vcard">
           <div class="vcard-embed">
-            <iframe src="https://www.youtube.com/embed/LAxczK_7MHA" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/LAxczK_7MHA" title="Taysthetic - TrueProfit" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="vcard-meta">
+            <div class="vcard-avatar">TY</div>
+            <div class="vcard-info">
+              <div class="vcard-name">Taysthetic <span class="vcard-check">✔</span></div>
+              <div class="vcard-subs">56.9K subscribers</div>
+            </div>
           </div>
         </div>
+
         <div class="vcard">
           <div class="vcard-embed">
-            <iframe src="https://www.youtube.com/embed/yRRIGUSD_F8" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/yRRIGUSD_F8" title="KOL - TrueProfit" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="vcard-meta">
+            <div class="vcard-avatar">KL</div>
+            <div class="vcard-info">
+              <div class="vcard-name">Creator <span class="vcard-check">✔</span></div>
+              <div class="vcard-subs">TrueProfit partner</div>
+            </div>
           </div>
         </div>
+
         <div class="vcard">
           <div class="vcard-embed">
-            <iframe src="https://www.youtube.com/embed/VlR7B_tDF0o" title="TrueProfit review" loading="lazy" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VlR7B_tDF0o" title="KOL - TrueProfit" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="vcard-meta">
+            <div class="vcard-avatar">KL</div>
+            <div class="vcard-info">
+              <div class="vcard-name">Creator <span class="vcard-check">✔</span></div>
+              <div class="vcard-subs">TrueProfit partner</div>
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>
