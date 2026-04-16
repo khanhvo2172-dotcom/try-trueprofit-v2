@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Preload first-visible images to eliminate load lag -->
+  <link rel="preload" as="image" href="./images/hero-banner-1-v2.png" />
+  <link rel="preload" as="image" href="./images/trueprofit-general-dashboard-2.jpg" />
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -2162,7 +2166,13 @@
         document.querySelectorAll('.ftab').forEach(x => x.classList.remove('on'));
         t.classList.add('on');
         document.getElementById('fdesc').textContent = dd[t.dataset.i];
-        document.getElementById('feature-img').src = imgs[t.dataset.i];
+        const featureImg = document.getElementById('feature-img');
+        featureImg.style.transition = 'opacity 0.15s ease';
+        featureImg.style.opacity = '0';
+        setTimeout(() => {
+          featureImg.src = imgs[t.dataset.i];
+          featureImg.style.opacity = '1';
+        }, 150);
       });
     });
 
@@ -2202,6 +2212,9 @@
       { file: './images/hero-banner-3.webp', label: 'Banner 4' },
       { file: './images/hero-banner-6.webp', label: 'Banner 5' },
     ];
+
+    // Preload all banner images
+    BANNERS.forEach(b => { const img = new Image(); img.src = b.file; });
 
     (function() {
       if (BANNERS.length < 1) return;
