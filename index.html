@@ -706,16 +706,43 @@
 
     /* ── Bottom CTA ── */
     .bcta {
-      text-align: center; padding: 80px 0;
+      padding: 80px 0;
       border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .bcta-inner {
+      display: flex; align-items: center; gap: 60px;
+    }
+    .bcta-left {
+      flex: 1; min-width: 0;
     }
     .bcta h2 {
       font-family: var(--mono); font-weight: 700;
-      font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.25;
-      letter-spacing: -0.02em; margin-bottom: 12px;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.25;
+      letter-spacing: -0.02em; margin-bottom: 14px;
+      text-align: left;
     }
-    .bcta p { font-family: var(--mono); font-size: 0.88rem; color: var(--text-2); margin-bottom: 28px; }
+    .bcta h2 em { font-style: normal; color: var(--accent); }
+    .bcta p {
+      font-family: var(--mono); font-size: 0.88rem;
+      color: var(--text-2); margin-bottom: 28px;
+      line-height: 1.7; text-align: left;
+    }
     .bcta-note { font-family: var(--mono); font-size: 0.66rem; color: var(--text-3); margin-top: 14px; }
+    .bcta-right {
+      flex: 1; min-width: 0;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+      border: 1px solid var(--border);
+    }
+    .bcta-right video {
+      width: 100%; height: auto; display: block;
+    }
+    @media (max-width: 768px) {
+      .bcta-inner { flex-direction: column; gap: 36px; }
+      .bcta h2, .bcta p { text-align: center; }
+      .bcta-left .icta { text-align: center; }
+    }
 
     /* ── Footer ── */
     footer {
@@ -2491,13 +2518,25 @@
 
   <!-- Bottom CTA -->
   <section class="bcta">
-    <div class="w">
-      <h2>Stop guessing. Start profiting.</h2>
-      <p>Join 70,000+ Shopify merchants tracking their true net profit.</p>
-      <div class="icta" style="margin-top:0;">
-        <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
+    <div class="w-wide">
+      <div class="bcta-inner">
+
+        <!-- Left: CTA -->
+        <div class="bcta-left">
+          <h2>Your next wise move starts with seeing your <em>True Net Profit</em> now.</h2>
+          <p>Get instant net profit insights into your numbers to make every choice count — with TrueProfit.</p>
+          <div class="icta" style="margin-top:0; text-align:left;">
+            <a href="https://trueprof.it/link/KfUchICah9">Start 14-day free trial →</a>
+          </div>
+          <div class="bcta-note">No credit card required · 30-second install · Cancel anytime</div>
+        </div>
+
+        <!-- Right: Video -->
+        <div class="bcta-right">
+          <video src="./images/cta-video-footer.mp4" autoplay muted loop playsinline></video>
+        </div>
+
       </div>
-      <div class="bcta-note">No credit card required · 30-second install · Cancel anytime</div>
     </div>
   </section>
 
@@ -2534,7 +2573,7 @@
       "./images/product-analytics.png",
       "./images/TrueProfit-COGS-dashboard.png",
       "./images/advertising-tracking-dashboard-2.png",
-      "./images/ltv-tracking-dashboard-4.png",
+      "./images/ltv-tracking-dashboard-2.png",
       "./images/trueprofit-general-dashboard-1.png"
     ];
     // Preload all feature images
