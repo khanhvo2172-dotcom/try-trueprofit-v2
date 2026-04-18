@@ -2586,7 +2586,6 @@
     (function() {
       if (BANNERS.length < 1) return;
       let idx = 0;
-      let _bannerUserInteracted = false;
       const imgEl = document.getElementById('hero-banner-img');
 
       // Build floating bar
@@ -2656,17 +2655,24 @@
       `;
       document.body.appendChild(bar);
 
+      let isFirstRender = true;
+
       function render() {
         const total = BANNERS.length;
         const b = BANNERS[idx];
 
-        // Swap banner with fade
-        imgEl.style.transition = 'opacity 0.2s ease';
-        imgEl.style.opacity = '0';
-        setTimeout(() => {
+        // Swap banner with fade (skip fade on first load)
+        if (isFirstRender) {
           imgEl.src = b.file;
-          imgEl.style.opacity = '1';
-        }, 200);
+          isFirstRender = false;
+        } else {
+          imgEl.style.transition = 'opacity 0.2s ease';
+          imgEl.style.opacity = '0';
+          setTimeout(() => {
+            imgEl.src = b.file;
+            imgEl.style.opacity = '1';
+          }, 200);
+        }
 
         document.getElementById('bt-label').textContent = b.label;
         document.getElementById('bt-counter').textContent = (idx + 1) + ' / ' + total;
@@ -2679,18 +2685,13 @@
         BANNERS.forEach((_, i) => {
           const d = document.createElement('button');
           d.className = 'bt-dot' + (i === idx ? ' on' : '');
-          d.onclick = () => { _bannerUserInteracted = true; idx = i; render(); };
+          d.onclick = () => { idx = i; render(); };
           dotsEl.appendChild(d);
         });
-
-        // Scroll hero banner into view on switch (only after user interaction)
-        if (typeof _bannerUserInteracted !== 'undefined') {
-          imgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
       }
 
-      document.getElementById('bt-prev').onclick = () => { _bannerUserInteracted = true; if (idx > 0) { idx--; render(); } };
-      document.getElementById('bt-next').onclick = () => { _bannerUserInteracted = true; if (idx < BANNERS.length - 1) { idx++; render(); } };
+      document.getElementById('bt-prev').onclick = () => { if (idx > 0) { idx--; render(); } };
+      document.getElementById('bt-next').onclick = () => { if (idx < BANNERS.length - 1) { idx++; render(); } };
       document.getElementById('bt-close').onclick = () => { bar.style.display = 'none'; };
 
       // Keyboard arrows
