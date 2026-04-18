@@ -1314,7 +1314,7 @@
   <!-- Nav -->
   <nav>
     <div class="nav-inner">
-      <a href="#" class="nav-brand"><img src="./images/logo-trueprofit.png" alt="TrueProfit" style="height:28px;width:auto;display:block;" /></a>
+      <a href="#" class="nav-brand"><img src="./images/logo_black.png" alt="TrueProfit" style="height:28px;width:auto;display:block;" /></a>
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
@@ -1362,7 +1362,7 @@
       <!-- Hero banner placeholder -->
       <div class="hero-banner-slot">
         <div class="hero-banner-inner">
-        <img src="./images/hero-banner-2.webp" alt="TrueProfit Dashboard" class="hero-banner-img" id="hero-banner-img" />
+        <img src="./images/trueprofit-general-dashboard-2.jpg" alt="TrueProfit Dashboard" class="hero-banner-img" id="hero-banner-img" />
         </div>
       </div>
 
@@ -1873,6 +1873,7 @@
         <span class="ftab" data-i="3">COSTS & EXPENSES</span>
         <span class="ftab" data-i="4">ADVERTISING ATTRIBUTION</span>
         <span class="ftab" data-i="5">LIFETIME VALUE</span>
+        <span class="ftab" data-i="6">MCP SERVER</span>
       </div>
 
       <p class="fdesc" id="fdesc">Track revenue, costs, and net profit in real-time. Customize your dashboard to your needs.</p>
@@ -2487,7 +2488,7 @@
           <div class="srow"><span class="n">01</span><div><h3>Install the app</h3><p>One click from the Shopify App Store. 30 seconds.</p></div></div>
           <div class="srow"><span class="n">02</span><div><h3>Connect ad channels</h3><p>Meta, Google, TikTok, Snapchat, Pinterest.</p></div></div>
           <div class="srow"><span class="n">03</span><div><h3>Connect Suppliers &amp; Payment Methods</h3><p>Sync your fulfillment platforms (DSers, CJ, AutoDS, Zendrop) and payment gateways so every cost is captured automatically.</p></div></div>
-          <div class="srow"><span class="n">04</span><div><h3>Get your Net Profit</h3><p>See your Net Profit, Gross Profit &amp; Margin alongside a full cost breakdown — ads, COGS, shipping, fees, and more — updated in real time.</p></div></div>
+          <div class="srow"><span class="n">04</span><div><h3>Get your Net Profit</h3><p>See your Net Profit, Gross Profit &amp; Margin alongside a full cost breakdown - Ads, COGS, shipping, fees,... in real time.</p></div></div>
         </div>
       </div>
 
@@ -2502,7 +2503,7 @@
   <section class="sec" id="faq">
     <div class="w">
       <div class="sec-label">FAQ</div>
-      <h2>Questions? Answers.</h2>
+      <h2>Frequently Asked Questions.</h2>
 
       <div class="faq">
         <div class="faq-i"><button class="faq-q">What ad integrations do you offer?</button><div class="faq-a"><div class="faq-a-in">Facebook/Meta, Google, TikTok, Snapchat, and Pinterest. Spend data is pulled automatically so you see true ROAS based on net profit.</div></div></div>
@@ -2572,7 +2573,7 @@
       "./images/product-analytics.png",
       "./images/TrueProfit-COGS-dashboard.png",
       "./images/advertising-tracking-dashboard-2.png",
-      "./images/ltv-tracking-dashboard-4.png",
+      "./images/ltv-tracking-dashboard-2.png",
       "./images/trueprofit-general-dashboard-1.png"
     ];
     // Preload all feature images
@@ -2610,141 +2611,6 @@
     });
   </script>
 
-  <!-- =====================================================
-       HERO BANNER TESTER — remove before going live
-       Add your banner filenames to the array below
-  ====================================================== -->
-  <script>
-    const BANNERS = [
-      { file: './images/hero-banner-1-v2.png',  label: 'Banner 1' },
-      { file: './images/hero-banner-1-v3.png', label: 'Banner 2' },
-      { file: './images/hero-banner-5.webp', label: 'Banner 3' },
-      { file: './images/hero-banner-3.webp', label: 'Banner 4' },
-      { file: './images/hero-banner-6.webp', label: 'Banner 5' },
-    ];
-
-    (function() {
-      if (BANNERS.length < 1) return;
-      let idx = 0;
-      const imgEl = document.getElementById('hero-banner-img');
-
-      // Build floating bar
-      const bar = document.createElement('div');
-      bar.id = 'banner-tester';
-      bar.innerHTML = `
-        <style>
-          #banner-tester {
-            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-            z-index: 9999; display: flex; align-items: center; gap: 10px;
-            background: rgba(26,26,26,0.96); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.12); border-radius: 100px;
-            padding: 8px 14px 8px 10px;
-            font-family: 'JetBrains Mono', monospace;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-            white-space: nowrap;
-          }
-          #banner-tester .bt-badge {
-            font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
-            text-transform: uppercase; color: #23c48c;
-            background: rgba(35,196,140,0.15); border: 1px solid rgba(35,196,140,0.3);
-            border-radius: 100px; padding: 3px 9px;
-          }
-          #banner-tester .bt-btn {
-            width: 28px; height: 28px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-            color: #fff; font-size: 13px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: background 0.15s; flex-shrink: 0;
-          }
-          #banner-tester .bt-btn:hover { background: rgba(255,255,255,0.2); }
-          #banner-tester .bt-btn:disabled { opacity: 0.3; cursor: default; }
-          #banner-tester .bt-label {
-            font-size: 0.72rem; color: rgba(255,255,255,0.85);
-            min-width: 140px; text-align: center;
-          }
-          #banner-tester .bt-counter {
-            font-size: 0.65rem; color: rgba(255,255,255,0.4);
-          }
-          #banner-tester .bt-dots {
-            display: flex; gap: 5px; align-items: center;
-          }
-          #banner-tester .bt-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: rgba(255,255,255,0.25); cursor: pointer;
-            border: none; transition: background 0.15s, transform 0.15s;
-          }
-          #banner-tester .bt-dot.on {
-            background: #23c48c; transform: scale(1.4);
-          }
-          #banner-tester .bt-close {
-            width: 20px; height: 20px; border-radius: 50%;
-            background: rgba(255,255,255,0.08); border: none;
-            color: rgba(255,255,255,0.4); font-size: 12px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: color 0.15s;
-          }
-          #banner-tester .bt-close:hover { color: #fff; }
-        </style>
-        <span class="bt-badge">Testing</span>
-        <button class="bt-btn" id="bt-prev">&#8592;</button>
-        <div class="bt-dots" id="bt-dots"></div>
-        <span class="bt-label" id="bt-label"></span>
-        <span class="bt-counter" id="bt-counter"></span>
-        <button class="bt-btn" id="bt-next">&#8594;</button>
-        <button class="bt-close" title="Hide tester" id="bt-close">&#215;</button>
-      `;
-      document.body.appendChild(bar);
-
-      let isFirstRender = true;
-
-      function render() {
-        const total = BANNERS.length;
-        const b = BANNERS[idx];
-
-        // Swap banner with fade (skip fade on first load)
-        if (isFirstRender) {
-          imgEl.src = b.file;
-          isFirstRender = false;
-        } else {
-          imgEl.style.transition = 'opacity 0.2s ease';
-          imgEl.style.opacity = '0';
-          setTimeout(() => {
-            imgEl.src = b.file;
-            imgEl.style.opacity = '1';
-          }, 200);
-        }
-
-        document.getElementById('bt-label').textContent = b.label;
-        document.getElementById('bt-counter').textContent = (idx + 1) + ' / ' + total;
-        document.getElementById('bt-prev').disabled = idx === 0;
-        document.getElementById('bt-next').disabled = idx === total - 1;
-
-        // Dots
-        const dotsEl = document.getElementById('bt-dots');
-        dotsEl.innerHTML = '';
-        BANNERS.forEach((_, i) => {
-          const d = document.createElement('button');
-          d.className = 'bt-dot' + (i === idx ? ' on' : '');
-          d.onclick = () => { idx = i; render(); };
-          dotsEl.appendChild(d);
-        });
-      }
-
-      document.getElementById('bt-prev').onclick = () => { if (idx > 0) { idx--; render(); } };
-      document.getElementById('bt-next').onclick = () => { if (idx < BANNERS.length - 1) { idx++; render(); } };
-      document.getElementById('bt-close').onclick = () => { bar.style.display = 'none'; };
-
-      // Keyboard arrows
-      document.addEventListener('keydown', e => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-        if (e.key === 'ArrowLeft' && idx > 0) { idx--; render(); }
-        if (e.key === 'ArrowRight' && idx < BANNERS.length - 1) { idx++; render(); }
-      });
-
-      render();
-    })();
-  </script>
-  <!-- ===== END BANNER TESTER ===== -->
 
 </body>
 </html>
