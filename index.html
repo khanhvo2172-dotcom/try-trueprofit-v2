@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrueProfit — #1 Net Profit Analytics for Shopify</title>
   <meta name="description" content="Real-time net profit tracking for Shopify. COGS, shipping, ads, fees — see your true bottom line." />
+  <link rel="icon" type="image/x-icon" href="./favicon-logo.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -410,7 +411,7 @@
     .srow h3 { font-family: var(--mono); font-size: 0.88rem; font-weight: 600; margin-bottom: 2px; }
     .srow p { font-size: 0.82rem; color: var(--text-2); line-height: 1.6; }
 
-    /* ── Testimonials (3-column, card style) ── */
+    /* ── Testimonials ── */
     .tgrid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 18px; margin-top: 40px;
@@ -425,17 +426,66 @@
       border-bottom: 1px solid var(--border-light);
     }
     .tcard-top .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--text-4); }
+    .tcard-stars {
+      padding: 16px 20px 0;
+      font-size: 0.9rem; color: var(--accent); letter-spacing: 2px;
+    }
     .tcard-body {
-      padding: 22px 20px; flex: 1;
+      padding: 10px 20px 20px; flex: 1;
       font-family: var(--mono); font-size: 0.82rem; color: var(--text);
       line-height: 1.75;
     }
     .tcard-body em { font-style: italic; font-weight: 600; }
     .tcard-footer {
       padding: 14px 20px; border-top: 1px solid var(--border-light);
+      display: flex; align-items: center; gap: 10px;
     }
+    .tcard-avatar {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: var(--accent-dim); border: 1px solid rgba(35,196,140,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 700; color: var(--accent);
+    }
+    .tcard-meta { flex: 1; }
     .tcard-name { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; color: var(--text); }
-    .tcard-role { font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); margin-top: 2px; }
+    .tcard-role { font-family: var(--mono); font-size: 0.7rem; color: var(--text-3); margin-top: 1px; }
+
+    /* ── Testimonial Slider ── */
+    .tslider-wrap { margin-top: 20px; position: relative; }
+    .tslider-viewport { overflow: hidden; border-radius: var(--r); }
+    .tslider-track {
+      display: flex; gap: 18px;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .tslider-track .tcard {
+      flex: 0 0 calc((100% - 36px) / 3);
+      min-width: 0;
+    }
+    .tslider-controls {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-top: 22px;
+    }
+    .tslider-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--bg-card); border: 1.5px solid var(--border);
+      color: var(--text); font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+      flex-shrink: 0;
+    }
+    .tslider-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .tslider-btn:disabled { opacity: 0.35; cursor: default; }
+    .tslider-dots { display: flex; gap: 6px; align-items: center; }
+    .tslider-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--border); border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s; padding: 0;
+    }
+    .tslider-dot.on { background: var(--accent); transform: scale(1.35); }
+    @media (max-width: 768px) {
+      .tgrid { grid-template-columns: 1fr; }
+      .tslider-track .tcard { flex: 0 0 100%; }
+    }
 
     /* ── KOL Video Grid ── */
     .vgrid-header { text-align: center; margin: 52px 0 8px; }
@@ -1236,7 +1286,7 @@
   <!-- Nav -->
   <nav>
     <div class="nav-inner">
-      <a href="#" class="nav-brand"><span class="nav-mark">T</span> TrueProfit</a>
+      <a href="#" class="nav-brand"><img src="./favicon-logo.ico" alt="TrueProfit" class="nav-mark" style="background:none;border-radius:5px;object-fit:contain;" /> TrueProfit</a>
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
@@ -1945,35 +1995,187 @@
       <h2>Trusted by <em>profit-focused</em> brands</h2>
       <p class="sec-sub">Profitable brands use TrueProfit to kill vanity metrics and focus on money-in-the-bank.</p>
 
-      <div class="tgrid">
-        <div class="tcard">
-          <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="tcard-stars">★★★★★</div>
-          <div class="tcard-body">"I thought I was profitable until TrueProfit showed me my real numbers. <em>Turned out 3 of my 'best sellers' were actually losing money on ads.</em>"</div>
-          <div class="tcard-footer">
-            <div class="tcard-name">Jake M.</div>
-            <div class="tcard-role">— Dropshipping Store, $50K/mo</div>
-          </div>
+      <!-- Single slider: all 12 reviews, 3 visible at a time -->
+      <div class="tslider-wrap" style="margin-top:40px;">
+        <div class="tslider-viewport">
+          <div class="tslider-track" id="tslider-track">
+
+            <!-- 1 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">The best app for profit tracking I've used. I have tried different, probably most of them in the Shopify app store, but <em>TrueProfit is the most intuitive, well versed in features, easy to understand and use.</em> Highly recommend!</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">EH</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">Elegant Home</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">I can confidently say it has transformed how I understand and manage my e-commerce business. As a Shopify store owner in Raleigh, NC, I've tried numerous profit tracking apps, but <em>True Profit Analytics stands head and shoulders above the competition.</em> EXCELLENT APP.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">YS</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">YinzerShop</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">TrueProfit is the absolute BEST app to help track profits. Their customer service is also top notch, with almost immediate replies. <em>Helped me with my problems today faster than ANY other service I have ever used.</em> Highly, highly recommend this app for everyone.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">JC</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">Jcrafted</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">I've been testing this against Triple Whale and Polar and (so far) <em>it's been more user friendly and has better insights.</em> The focus on real net profit is impressive and the data is quick to load. Keep your pricing down and you'll kill the giants in this space.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">CA</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">Calmerceuticals</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">The new AI features and the mobile app make it so easy! <em>I have been using TrueProfit now for years and couldn't recommend it more!</em> The customer support is always sharp and on point! Love it!</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">TT</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">Titan Time</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">It allows you to always have a <em>complete picture of the financial situation</em> of your shop quickly and accurately. This app is an absolute must-have for any online shop. Customer service is prompt and competent.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">DR</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">DRiiBE</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">The dashboard gives you a great overview and is so easy to configure. <em>TrueProfit gives an awesome snapshot of how you are tracking at any given time.</em> Worth every penny!</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">MB</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">M&amp;B</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">Great mobile application for when I'm on the go. I've been a user of True Profit for years now across multiple stores. <em>Feature rich with integrations with all my advertising channels.</em> The support is helpful and fast as well. Will continue to be a happy customer.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">AL</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">AlphaLifeHacks</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">It's been a game-changer for understanding our real profits. <em>The platform is super intuitive once you're set up, and a huge shoutout to Vani from customer support!</em> He helped us correct 100% of our data, responded incredibly fast, and explained everything clearly. Highly Recommended!</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">AS</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">Asipu.Deutschland</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">It's extremely easy to use and the support there is great! You just have to do a few clicks and your profit is calculated perfectly! <em>In the past I thought I knew my numbers but these apps proved that I wasn't calculating things properly.</em> Happy to use that app.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">MN</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">marnetic</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">I have tried many other free and paid apps and <em>it doesn't compare to TrueProfit.</em> Excellent app, using it for almost 2 years. In my opinion, this is the best app for estimating net profit. Worth every penny to keep track of your profits.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">IG</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">iiGears™</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 12 -->
+            <div class="tcard">
+              <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tcard-stars">★★★★★</div>
+              <div class="tcard-body">Good value for money. This app lets me track my profit + product costs nicely, and <em>its metrics can even break down to single products.</em> Customer service is prompt and helpful, big thanks to Lilly. I'm recommending this app to anyone wanting to understand their business finance.</div>
+              <div class="tcard-footer">
+                <div class="tcard-avatar">MM</div>
+                <div class="tcard-meta">
+                  <div class="tcard-name">Man's Manor</div>
+                  <div class="tcard-role">Verified Shopify Review</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end tslider-track -->
+        </div><!-- end tslider-viewport -->
+        <div class="tslider-controls">
+          <button class="tslider-btn" id="tslider-prev" aria-label="Previous">&#8592;</button>
+          <div class="tslider-dots" id="tslider-dots"></div>
+          <button class="tslider-btn" id="tslider-next" aria-label="Next">&#8594;</button>
         </div>
-        <div class="tcard">
-          <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="tcard-stars">★★★★★</div>
-          <div class="tcard-body">"Finally ditched my spreadsheets. <em>The real-time dashboard saves me hours every week</em> and the product analytics are a game changer."</div>
-          <div class="tcard-footer">
-            <div class="tcard-name">Sarah L.</div>
-            <div class="tcard-role">— DTC Brand, $120K/mo</div>
-          </div>
-        </div>
-        <div class="tcard">
-          <div class="tcard-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="tcard-stars">★★★★★</div>
-          <div class="tcard-body">"The ad tracking alone is worth it. <em>I can see true ROAS by channel and killed campaigns that were eating my margins.</em>"</div>
-          <div class="tcard-footer">
-            <div class="tcard-name">Ryan K.</div>
-            <div class="tcard-role">— Print on Demand, $30K/mo</div>
-          </div>
-        </div>
-      </div>
+      </div><!-- end tslider-wrap -->
 
       <!-- KOL Videos -->
       <div class="vgrid-header">
@@ -2166,8 +2368,45 @@
       });
     });
 
-    // FAQ
-    document.querySelectorAll('.faq-q').forEach(q => {
+    // Testimonial Slider
+    (function() {
+      const track = document.getElementById('tslider-track');
+      const dotsEl = document.getElementById('tslider-dots');
+      const prevBtn = document.getElementById('tslider-prev');
+      const nextBtn = document.getElementById('tslider-next');
+      if (!track) return;
+
+      const cards = track.querySelectorAll('.tcard');
+      const total = cards.length;
+      const perPage = window.innerWidth <= 768 ? 1 : 3;
+      const pages = Math.ceil(total / perPage);
+      let page = 0;
+
+      // Build dots
+      for (let i = 0; i < pages; i++) {
+        const d = document.createElement('button');
+        d.className = 'tslider-dot' + (i === 0 ? ' on' : '');
+        d.setAttribute('aria-label', 'Page ' + (i + 1));
+        d.onclick = () => goTo(i);
+        dotsEl.appendChild(d);
+      }
+
+      function goTo(p) {
+        page = Math.max(0, Math.min(p, pages - 1));
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 18;
+        const offset = page * perPage * (cardWidth + gap);
+        track.style.transform = 'translateX(-' + offset + 'px)';
+        dotsEl.querySelectorAll('.tslider-dot').forEach((d, i) => d.classList.toggle('on', i === page));
+        prevBtn.disabled = page === 0;
+        nextBtn.disabled = page >= pages - 1;
+      }
+
+      prevBtn.onclick = () => goTo(page - 1);
+      nextBtn.onclick = () => goTo(page + 1);
+      goTo(0);
+    })();
+  
       q.addEventListener('click', () => {
         const i = q.parentElement, a = i.querySelector('.faq-a'), o = i.classList.contains('open');
         document.querySelectorAll('.faq-i').forEach(x => { x.classList.remove('open'); x.querySelector('.faq-a').style.maxHeight = '0'; });
