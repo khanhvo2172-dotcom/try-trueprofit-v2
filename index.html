@@ -58,6 +58,8 @@
     .w { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
     .w-wide { max-width: var(--max-w-wide); margin: 0 auto; padding: 0 24px; }
 
+    .hero-br { display: none; }
+
     /* ── Nav ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 99;
@@ -584,15 +586,20 @@
     }
     .pbadge::before { content: '✦ '; }
     .p-icon {
-      width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;
+      width: 48px; height: 48px; border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem;
       background: linear-gradient(135deg, rgba(35,196,140,0.2), rgba(35,196,140,0.05));
       border: 1px solid rgba(35,196,140,0.2);
+      flex-shrink: 0;
+    }
+    /* Icon + name on same row */
+    .p-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 12px;
     }
     .p-name {
       font-family: var(--mono); font-size: 1rem; font-weight: 700;
-      color: #fff; margin-bottom: 6px;
+      color: #fff; margin-bottom: 0;
     }
     .p-desc {
       font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.45);
@@ -617,7 +624,7 @@
       display: block; text-align: center;
       font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
       padding: 11px; border-radius: 8px; text-decoration: none;
-      margin-bottom: 24px; transition: 0.15s; letter-spacing: 0.01em;
+      margin-top: 20px; transition: 0.15s; letter-spacing: 0.01em;
     }
     .pcta.line {
       border: 1.5px solid rgba(35,196,140,0.5); color: #23c48c;
@@ -1205,8 +1212,8 @@
 
     @media (max-width: 768px) {
       .mm-top { flex-direction: column; gap: 32px; align-items: stretch; }
-      .mm-cards-wrap { justify-content: center; }
-      .mm-card { width: 165px; padding: 22px 20px; }
+      .mm-cards-wrap { justify-content: center; width: 100%; }
+      .mm-card { width: calc(50% - 6px); padding: 22px 18px; }
       .mm-val { font-size: 1.5rem; }
       .mm-growth-num { font-size: 1.8rem; }
     }
@@ -1303,6 +1310,290 @@
     .mm-col-green { color: var(--accent); font-weight: 700; }
     .mm-col-red   { color: var(--red);    font-weight: 700; }
     .mm-col-muted { color: var(--text-3); }
+
+    /* ═══════════════════════════════════════════
+       MOBILE OPTIMIZATIONS
+       ═══════════════════════════════════════════ */
+
+    /* ── Global touch & readability improvements ── */
+    @media (max-width: 768px) {
+      /* Ensure minimum touch target height */
+      button, a, [role="button"] { min-height: 44px; }
+      /* Slightly larger base font for readability */
+      body { font-size: 16px; }
+      /* Reduce section padding globally */
+      .sec { padding: 52px 0; }
+      /* Reduce container horizontal padding */
+      .w, .w-wide { padding: 0 16px; }
+    }
+
+    /* ── Nav mobile: auto height to accommodate menu ── */
+    @media (max-width: 640px) {
+      nav { height: auto; min-height: 54px; }
+      .nav-inner { height: 54px; }
+    }
+
+    /* ── Hero: shrink top padding, fix CTA layout ── */
+    @media (max-width: 768px) {
+      .hero { padding: 90px 0 40px; }
+      .hero h1 { font-size: clamp(1.3rem, 5.8vw, 1.8rem); }
+      .hero h1 span { white-space: nowrap; }
+      .hero-br { display: inline; }
+      .hero-your { display: none; }
+      .hero-sub { display: none; }  /* Remove subtext on mobile */
+      .hero-eyebrow { font-size: 0.62rem; padding: 5px 14px; }  /* Smaller than title */
+      .hero-cta-card { max-width: 100%; padding: 0 4px; gap: 10px; }
+
+      /* ── Trust line: plain centered text, no flex ── */
+      .hero-cta-trust {
+        display: block; text-align: center;
+        font-size: 0.66rem; line-height: 1.9;
+      }
+      .hero-cta-dot { display: none; }
+      .hero-cta-rating { display: block; }
+      .hero-cta-rating .stars { display: inline; }
+
+      /* ── Mobile: show dashboard ABOVE CTA ── */
+      .hero .w { display: flex; flex-direction: column; align-items: center; }
+      .hero-eyebrow  { order: 1; }
+      .hero .w > h1  { order: 2; }
+      .hero-sub      { order: 3; }
+      .hero-banner-slot { order: 4; width: 100%; }
+      .hero-cta-card { order: 5; }
+      .hero-metrics  { order: 6; width: 100%; }
+      .hero-metrics-label { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding: 72px 0 32px; }
+      .hero h1 { font-size: clamp(1.5rem, 7.5vw, 2rem); }
+      .hero h1 span { white-space: nowrap; }
+      /* Keep buttons side-by-side — never stack */
+      .hero-cta-btns { flex-direction: row; gap: 8px; }
+      .tcta-btn-primary { padding: 11px 10px; font-size: 0.72rem; }
+      .tcta-btn-secondary { padding: 11px 10px; font-size: 0.72rem; }
+    }
+
+    /* ── Hero banner: full width, no height cap ── */
+    @media (max-width: 768px) {
+      .hero-banner-slot { margin-top: 16px; margin-bottom: 20px; padding: 0; }
+      .hero-banner-inner { border-radius: 0; border-left: none; border-right: none; }
+      .hero-banner-img { width: 100%; max-height: none; object-fit: cover; object-position: top left; display: block; }
+    }
+
+    /* ── CTA button redesign: pill shape matching Image 2 ── */
+    @media (max-width: 768px) {
+      .hero-cta-btns { gap: 10px; }
+      .tcta-btn-primary {
+        flex: 1; padding: 13px 18px; font-size: 0.82rem; font-weight: 700;
+        background: var(--accent); color: #fff;
+        border-radius: 100px;
+        box-shadow: 0 4px 18px rgba(35,196,140,0.35);
+      }
+      .tcta-btn-primary:hover { background: #1fb07d; }
+      .tcta-btn-secondary {
+        flex: 1; padding: 13px 18px; font-size: 0.82rem; font-weight: 600;
+        background: transparent; color: var(--accent);
+        border: 1.5px solid var(--accent); border-radius: 100px;
+      }
+      .tcta-btn-secondary:hover { background: rgba(35,196,140,0.08); color: var(--accent); }
+    }
+
+    /* ── Section headings: prevent overflow ── */
+    @media (max-width: 768px) {
+      .sec h2 { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+      .bcta h2 { font-size: clamp(1.4rem, 6vw, 2rem); }
+    }
+
+    /* ── Feature tabs: allow horizontal scroll on mobile ── */
+    @media (max-width: 640px) {
+      /* Wrap the tabs in a relative container for the fade overlay */
+      .ftabs-wrap { position: relative; }
+      .ftabs-wrap::after {
+        content: '';
+        position: absolute; right: 0; top: 0; bottom: 8px;
+        width: 48px;
+        background: linear-gradient(to right, transparent, var(--bg));
+        pointer-events: none;
+        border-radius: 0 100px 100px 0;
+      }
+      .ftabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+        padding-right: 48px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .ftabs::-webkit-scrollbar { display: none; }
+      .ftab { flex-shrink: 0; font-size: 0.68rem; padding: 7px 12px; }
+    }
+
+    /* ── Mockup: hide sidebar, fix inner on small screens ── */
+    @media (max-width: 480px) {
+      .mock-sidebar { display: none; }
+      .mock-main { margin-left: 0; padding: 12px 14px; }
+      .dg { grid-template-columns: 1fr 1fr; font-size: 0.75rem; }
+      .dc-v { font-size: 0.88rem; }
+    }
+
+    /* ── Iceberg: improve mobile stacking ── */
+    @media (max-width: 768px) {
+      .ice-row { font-size: 0.8rem; padding: 10px 14px; }
+      .ice-two-col { gap: 20px; }
+      .leak-panel { border-radius: var(--r); }
+    }
+
+    /* ── Before vs After: compact on mobile ── */
+    @media (max-width: 768px) {
+      .vs-grid { gap: 0; overflow: visible; }
+      .vs-after { border-radius: 10px; overflow: hidden; margin-top: 16px; max-width: 100%; }
+      .vs-after-img { max-height: none; width: 100%; max-width: 100%; object-fit: cover; }
+    }
+
+    /* ── Funnel layout improvements ── */
+    @media (max-width: 768px) {
+      .funnel-layout { padding: 0 8px; gap: 16px; }
+      .funnel-machine { padding: 22px 16px; }
+      .fi-card { padding: 12px 14px; }
+      .fi-logos { gap: 4px; }
+      .fi-logo { font-size: 0.62rem; }
+    }
+
+    /* ── Pricing: ensure cards readable on mobile ── */
+    @media (max-width: 560px) {
+      .pgrid { grid-template-columns: 1fr; gap: 20px; }
+      .pcard { padding: 28px 20px; }
+      .p-price-num { font-size: 2rem; }
+      .pcta { padding: 13px; font-size: 0.82rem; min-height: 48px; }
+    }
+
+    /* ── Comparison table: hint at scroll ── */
+    @media (max-width: 768px) {
+      .ctbl { position: relative; }
+      .ctbl::after {
+        content: '→ scroll';
+        position: absolute; top: 12px; right: 12px;
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-4); pointer-events: none;
+      }
+      .ctbl table { min-width: 500px; font-size: 0.7rem; }
+      .ctbl th, .ctbl td { padding: 10px 12px; }
+    }
+
+    /* ── Inline CTA: full-width button on mobile ── */
+    @media (max-width: 640px) {
+      .icta a { width: 100%; max-width: 380px; justify-content: center; font-size: 0.9rem; padding: 15px 20px; }
+    }
+
+    /* ── Testimonials slider: swipe hint ── */
+    @media (max-width: 768px) {
+      .tslider-wrap { touch-action: pan-y; }
+      .tcard-body { font-size: 0.8rem; }
+    }
+
+    /* ── KOL Videos: padding fix ── */
+    @media (max-width: 640px) {
+      .vgrid { gap: 32px; }
+      .vgrid-header { margin-top: 32px; }
+    }
+
+    /* ── Make More section ── */
+    @media (max-width: 480px) {
+      .mm-card { padding: 18px 14px; }
+      .mm-val { font-size: 1.35rem; }
+      .mm-growth-num { font-size: 1.6rem; }
+      .mm-growth-item { padding: 20px 12px; }
+    }
+
+    /* ── Bottom CTA: tight padding ── */
+    @media (max-width: 768px) {
+      .bcta { padding: 56px 0; }
+      .bcta-inner { gap: 28px; }
+      .bcta-right { border-radius: 12px; }
+    }
+    @media (max-width: 480px) {
+      .bcta { padding: 44px 0; }
+      .bcta h2, .bcta p { text-align: center; }
+    }
+
+    /* ── Setup rows ── */
+    @media (max-width: 480px) {
+      .srow { padding: 12px 14px; gap: 10px; }
+      .srow h3 { font-size: 0.85rem; }
+      .srow p { font-size: 0.78rem; }
+    }
+
+    /* ── FAQ touch targets ── */
+    @media (max-width: 768px) {
+      .faq-q { padding: 20px 0; font-size: 0.85rem; }
+      .faq-a-in { font-size: 0.8rem; }
+    }
+
+    /* ── Footer: stack links on small screens ── */
+    @media (max-width: 480px) {
+      .ft-links { line-height: 2.4; }
+      .ft-links a { margin: 0 4px; }
+    }
+
+    /* ── Scale section table rows ── */
+    @media (max-width: 768px) {
+      .mm-tables-row { grid-template-columns: 1fr; }
+      .mm-mini-r { font-size: 0.66rem; }
+    }
+
+    /* ── Callout: center on mobile ── */
+    @media (max-width: 640px) {
+      .callout { padding-right: 0; justify-content: center; }
+    }
+
+    /* ── Iceberg badges ── */
+    @media (max-width: 480px) {
+      .ice-badges { gap: 4px; }
+      .ice-badge { font-size: 0.65rem; padding: 3px 8px; }
+    }
+
+    /* ── Stat blocks: improve small mobile ── */
+    @media (max-width: 480px) {
+      .mm-stat-blocks { flex-direction: column; }
+      .mm-stat-divider { width: auto; height: 1px; }
+      .mm-stat-num { font-size: 1.5rem; }
+    }
+
+    /* ── Hero metrics grid: better spacing ── */
+    @media (max-width: 480px) {
+      .hero-metrics-grid { gap: 8px; }
+      .hm-card { padding: 14px 10px 12px; border-radius: 10px; }
+      .hm-num { font-size: 1.5rem; }
+      .hm-label { font-size: 0.58rem; }
+    }
+
+    /* ── Pricing section headings ── */
+    @media (max-width: 480px) {
+      .pricing-section { padding: 56px 0; }
+    }
+
+    /* ── vs-resolution block ── */
+    @media (max-width: 480px) {
+      .vs-resolution { font-size: 0.88rem; padding: 14px 16px; }
+    }
+
+    /* ── Leak panel items ── */
+    @media (max-width: 480px) {
+      .leak-item { gap: 10px; }
+      .leak-name { font-size: 0.78rem; }
+      .leak-desc { font-size: 0.7rem; }
+      .leak-icon { width: 30px; height: 30px; border-radius: 6px; }
+    }
+
+    /* ── Safe area for notched phones ── */
+    @supports (padding: max(0px)) {
+      .w, .w-wide {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+      }
+      footer { padding-bottom: max(28px, env(safe-area-inset-bottom)); }
+    }
   </style>
   <script src="https://t.contentsquare.net/uxa/3fae727e6a3af.js"></script>
 </head>
@@ -1340,7 +1631,7 @@
   <section class="hero">
     <div class="w">
       <div class="hero-eyebrow">#1 net profit analytics for Shopify</div>
-      <h1>Know Your <span style="color:#23c48c;">Real Profit.</span> Not Shopify's Guess</h1>
+      <h1>Know <span class="hero-your">Your </span><span style="color:#23c48c;">Real Profit.</span><br class="hero-br"/> Not Shopify's Guess</h1>
 
       <p class="hero-sub">Shopify shows you revenue. TrueProfit shows you what you keep. Connect in 30 seconds — Your live Profit & Loss, with every cost accounted for.</p>
 
@@ -1790,7 +2081,7 @@
 
         <!-- Row 3: full-width image -->
         <div class="mm-scale-img-wrap">
-          <img src="./images/scale_7cea86cc.webp" alt="TrueProfit analytics dashboard" class="mm-scale-img" />
+          <img src="./images/scale_7cea86cc.webp" alt="TrueProfit analytics dashboard" class="mm-scale-img" id="mm-scale-img" />
         </div>
 
       </div><!-- /mm-bottom -->
@@ -1862,6 +2153,7 @@
     <div class="w">
       <h2>Everything you need to <em>track your Net Profit</em> accurately</h2>
 
+      <div class="ftabs-wrap">
       <div class="ftabs">
         <span class="ftab on" data-i="0">DASHBOARD</span>
         <span class="ftab" data-i="1">P&L REPORT</span>
@@ -1869,6 +2161,7 @@
         <span class="ftab" data-i="3">COSTS & EXPENSES</span>
         <span class="ftab" data-i="4">ADVERTISING ATTRIBUTION</span>
         <span class="ftab" data-i="5">LIFETIME VALUE</span>
+      </div>
       </div>
 
       <p class="fdesc" id="fdesc">Track revenue, costs, and net profit in real-time. Customize your dashboard to your needs.</p>
@@ -1900,15 +2193,16 @@
 
         <!-- Basic -->
         <div class="pcard">
-          <div class="p-icon">💡</div>
-          <div class="p-name">Basic</div>
-          <div class="p-desc">The essential features to track your store's net profit.</div>
+          <div class="p-header">
+            <div class="p-icon">💡</div>
+            <div class="p-name">Basic</div>
+          </div>
           <div class="p-price">
             <span class="p-price-num">$35</span>
             <span class="p-price-unit">/month</span>
           </div>
+          <div class="p-desc">The essential features to track your store's net profit.</div>
           <div class="p-orders">300 orders · $0.3 per extra order<br/>Maximum surcharge: $300</div>
-          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta line">Start 14 Days Free</a>
           <div class="p-divider"></div>
           <div class="p-features">
             <div class="p-feat"><span class="p-feat-check">✓</span> Realtime profit dashboard</div>
@@ -1917,19 +2211,21 @@
             <div class="p-feat"><span class="p-feat-check">✓</span> Custom Costs</div>
             <div class="p-feat"><span class="p-feat-x">✕</span> Product Analytics</div>
           </div>
+          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta line">Start 14 Days Free</a>
         </div>
 
         <!-- Advanced -->
         <div class="pcard">
-          <div class="p-icon">🚀</div>
-          <div class="p-name">Advanced</div>
-          <div class="p-desc">The power to grow with data-based decisions.</div>
+          <div class="p-header">
+            <div class="p-icon">🚀</div>
+            <div class="p-name">Advanced</div>
+          </div>
           <div class="p-price">
             <span class="p-price-num">$60</span>
             <span class="p-price-unit">/month</span>
           </div>
+          <div class="p-desc">The power to grow with data-based decisions.</div>
           <div class="p-orders">600 orders · $0.2 per extra order<br/>Maximum surcharge: $500</div>
-          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta line">Start 14 Days Free</a>
           <div class="p-divider"></div>
           <div class="p-features">
             <div class="p-feat"><span class="p-feat-check">✓</span> Everything in Basic, plus:</div>
@@ -1937,20 +2233,22 @@
             <div class="p-feat"><span class="p-feat-check">✓</span> P&amp;L Report</div>
             <div class="p-feat"><span class="p-feat-x">✕</span> Ad Sync Custom Rules</div>
           </div>
+          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta line">Start 14 Days Free</a>
         </div>
 
         <!-- Ultimate -->
         <div class="pcard feat">
           <div class="pbadge">Recommended</div>
-          <div class="p-icon">⚡</div>
-          <div class="p-name">Ultimate</div>
-          <div class="p-desc">The insights to scale your businesses globally.</div>
+          <div class="p-header">
+            <div class="p-icon">⚡</div>
+            <div class="p-name">Ultimate</div>
+          </div>
           <div class="p-price">
             <span class="p-price-num">$100</span>
             <span class="p-price-unit">/month</span>
           </div>
+          <div class="p-desc">The insights to scale your businesses globally.</div>
           <div class="p-orders">1500 orders · $0.1 per extra order<br/>Maximum surcharge: $700</div>
-          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta fill">Start 14 Days Free</a>
           <div class="p-divider"></div>
           <div class="p-features">
             <div class="p-feat"><span class="p-feat-check">✓</span> Everything in Advanced, plus:</div>
@@ -1958,19 +2256,21 @@
             <div class="p-feat"><span class="p-feat-check">✓</span> Unlimited COGS Zones</div>
             <div class="p-feat"><span class="p-feat-x">✕</span> Marketing Attribution</div>
           </div>
+          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta fill">Start 14 Days Free</a>
         </div>
 
         <!-- Enterprise -->
         <div class="pcard">
-          <div class="p-icon">🏆</div>
-          <div class="p-name">Enterprise</div>
-          <div class="p-desc">The complete package for elite sellers and brands.</div>
+          <div class="p-header">
+            <div class="p-icon">🏆</div>
+            <div class="p-name">Enterprise</div>
+          </div>
           <div class="p-price">
             <span class="p-price-num">$200</span>
             <span class="p-price-unit">/month</span>
           </div>
+          <div class="p-desc">The complete package for elite sellers and brands.</div>
           <div class="p-orders">3500 orders · $0.07 per extra order<br/>Maximum surcharge: $1000</div>
-          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta line">Start 14 Days Free</a>
           <div class="p-divider"></div>
           <div class="p-features">
             <div class="p-feat"><span class="p-feat-check">✓</span> Everything in Ultimate, plus:</div>
@@ -1978,6 +2278,7 @@
             <div class="p-feat"><span class="p-feat-check">✓</span> Unlimited Team Members</div>
             <div class="p-feat"><span class="p-feat-check">✓</span> Prioritized Support</div>
           </div>
+          <a href="https://trueprof.it/link/rJSTJHoV6K" class="pcta line">Start 14 Days Free</a>
         </div>
 
       </div>
@@ -2602,6 +2903,31 @@
         }
       });
     });
+
+    // ── Mobile: close nav when any nav-mobile link is tapped ──
+    document.querySelectorAll('.nav-mobile a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelector('.nav-mobile').classList.remove('open');
+      });
+    });
+
+    // ── Testimonials slider: touch/swipe support ──
+    (function() {
+      const track = document.querySelector('.tslider-track');
+      if (!track) return;
+      let startX = 0, isDragging = false;
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        if (!isDragging) return;
+        isDragging = false;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) < 40) return;
+        const btn = dx < 0
+          ? document.querySelector('.tslider-btn[data-dir="next"]')
+          : document.querySelector('.tslider-btn[data-dir="prev"]');
+        if (btn && !btn.disabled) btn.click();
+      });
+    })();
   </script>
 
 
